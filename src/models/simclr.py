@@ -1,14 +1,24 @@
 """
-SimCLR Model Architecture.
+SimCLR Model Architecture with PatchCore-style Patch Feature Extraction.
+
 ResNet-50 encoder backbone + MLP projection head for contrastive learning.
-Supports multi-layer feature extraction for anomaly detection.
+Supports:
+    - Single-layer global feature extraction (layer4 → 2048-dim)
+    - Multi-layer global feature extraction (layer2+layer3+layer4 → 3584-dim)
+    - Patch-level spatial feature extraction (PatchCore-style) for anomaly localization
+
+Research note:
+    PatchCore (Roth et al., 2022) extracts spatial feature maps and builds a
+    patch-wise memory bank. This gives dramatically better AUROC than global
+    features because anomalies are typically local — a small defect in a large
+    normal image gets averaged out in global pooling.
 """
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import models
-from typing import List, Optional
+from typing import List, Optional, Tuple, Dict
 import logging
 
 logger = logging.getLogger(__name__)
@@ -22,6 +32,7 @@ class ResNetEncoder(nn.Module):
     Supports:
         - Single-layer output (standard forward): 2048-dim for ResNet-50
         - Multi-layer extraction (layer2 + layer3 + layer4): 3584-dim for ResNet-50
+        - Patch-level spatial feature extraction from intermediate layers
     """
 
     def __init__(self, pretrained: bool = True, backbone: str = "resnet50"):
@@ -66,6 +77,10 @@ class ResNetEncoder(nn.Module):
     def get_multi_layer_dim(self, layers: List[str]) -> int:
         """Get the total feature dimension for multi-layer extraction."""
         return sum(self._layer_dims[layer] for layer in layers)
+
+    def get_layer_dim(self, layer: str) -> int:
+        """Get feature dimension for a single layer."""
+        return self._layer_dims[layer]
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -147,6 +162,106 @@ class ResNetEncoder(nn.Module):
 
         return concatenated
 
+    @torch.no_grad()
+    def extract_patch_features(
+        self,
+        x: torch.Tensor,
+        layers: Optional[List[str]] = None,
+    ) -> Tuple[torch.Tensor, Tuple[int, int]]:
+        """
+        Extract patch-level spatial features for PatchCore-style anomaly detection.
+
+        Instead of global average pooling (which discards spatial info), this
+        returns per-patch feature vectors from intermediate feature maps.
+
+        Multi-scale fusion:
+            - layer2 features (28×28 for 224 input) provide fine-grained detail
+            - layer3 features (14×14) provide semantic context
+            - layer3 is upsampled to layer2 resolution, then concatenated
+
+        Research note (PatchCore):
+            Using layers 2+3 gives the best trade-off between local detail and
+            semantic meaning. Layer4 is too coarse (7×7) for localization.
+            Layer1 is too early (low-level, noisy).
+
+        Args:
+            x: Input tensor of shape (B, 3, H, W)
+            layers: Layers to use. Default: ["layer2", "layer3"]
+
+        Returns:
+            Tuple of:
+                - patch_features: (B, H_patch * W_patch, C_total) patch embeddings
+                - patch_shape: (H_patch, W_patch) spatial dimensions of patch grid
+        """
+        if layers is None:
+            layers = ["layer2", "layer3"]
+
+        # Forward through shared stem
+        x = self.conv1(x)
+        x = self.bn1(x)
+        x = self.relu(x)
+        x = self.maxpool(x)
+
+        # Extract intermediate feature maps
+        feat_maps = {}
+        x = self.layer1(x)
+        if "layer1" in layers:
+            feat_maps["layer1"] = x
+
+        x = self.layer2(x)
+        if "layer2" in layers:
+            feat_maps["layer2"] = x
+
+        x = self.layer3(x)
+        if "layer3" in layers:
+            feat_maps["layer3"] = x
+
+        x = self.layer4(x)
+        if "layer4" in layers:
+            feat_maps["layer4"] = x
+
+        if not feat_maps:
+            raise ValueError(f"No valid layers found in {layers}")
+
+        # Determine target spatial resolution (use highest-res feature map)
+        # Layer order by resolution: layer1 > layer2 > layer3 > layer4
+        resolution_order = ["layer1", "layer2", "layer3", "layer4"]
+        target_layer = None
+        for layer_name in resolution_order:
+            if layer_name in feat_maps:
+                target_layer = layer_name
+                break
+
+        target_h, target_w = feat_maps[target_layer].shape[2:]
+
+        # Upsample all feature maps to target resolution and concatenate
+        aligned_features = []
+        for layer_name in resolution_order:
+            if layer_name in feat_maps:
+                fmap = feat_maps[layer_name]
+                if fmap.shape[2:] != (target_h, target_w):
+                    # Bilinear upsample to match target resolution
+                    fmap = F.interpolate(
+                        fmap,
+                        size=(target_h, target_w),
+                        mode="bilinear",
+                        align_corners=False,
+                    )
+                aligned_features.append(fmap)
+
+        # Concatenate along channel dimension: (B, C_total, H, W)
+        multi_scale = torch.cat(aligned_features, dim=1)
+
+        B, C, H, W = multi_scale.shape
+
+        # Reshape to patch embeddings: (B, H*W, C)
+        patch_features = multi_scale.permute(0, 2, 3, 1).reshape(B, H * W, C)
+
+        # L2 normalize each patch embedding
+        patch_features = F.normalize(patch_features, p=2, dim=2)
+
+        return patch_features, (H, W)
+
 
 class ProjectionHead(nn.Module):
     """
@@ -154,12 +269,13 @@ class ProjectionHead(nn.Module):
     Maps encoder features to a lower-dimensional space where contrastive loss is applied.
 
     Architecture: Linear -> BatchNorm -> ReLU -> Linear
+    Hidden dim increased to 512 per SimCLR paper recommendations.
     """
 
     def __init__(
         self,
         input_dim: int = 2048,
-        hidden_dim: int = 256,
+        hidden_dim: int = 512,
         output_dim: int = 128,
     ):
         super().__init__()
@@ -198,6 +314,7 @@ class SimCLRModel(nn.Module):
     Supports:
         - Standard single-layer encoding (layer4)
         - Multi-layer feature extraction (layer2 + layer3 + layer4)
+        - Patch-level feature extraction (PatchCore-style)
     """
 
     def __init__(self, config: dict = None):
@@ -219,8 +336,13 @@ class SimCLRModel(nn.Module):
             "feature_layers", ["layer2", "layer3", "layer4"]
         )
 
+        # Patch feature config
+        self.patch_layers = model_cfg.get(
+            "patch_layers", ["layer2", "layer3"]
+        )
+
         feature_dim = self.encoder.feature_dim
-        projection_hidden = model_cfg.get("projection_hidden_dim", 256)
+        projection_hidden = model_cfg.get("projection_hidden_dim", 512)
         projection_dim = model_cfg.get("projection_dim", 128)
 
         self.projection_head = ProjectionHead(
@@ -229,7 +351,7 @@ class SimCLRModel(nn.Module):
             output_dim=projection_dim,
         )
 
-        # Log multi-layer dim
+        # Log config
         if self.multi_layer:
             ml_dim = self.encoder.get_multi_layer_dim(self.feature_layers)
             logger.info(
@@ -242,6 +364,12 @@ class SimCLRModel(nn.Module):
                 f"SimCLR model initialized | backbone={backbone} | "
                 f"feature_dim={feature_dim} | projection_dim={projection_dim}"
             )
+
+        # Log patch feature dim
+        patch_dim = self.encoder.get_multi_layer_dim(self.patch_layers)
+        logger.info(
+            f"Patch features: layers={self.patch_layers} -> {patch_dim}-dim per patch"
+        )
 
     def forward(self, x: torch.Tensor) -> tuple:
         """
@@ -273,7 +401,7 @@ class SimCLRModel(nn.Module):
     @torch.no_grad()
     def extract_features(self, x: torch.Tensor) -> torch.Tensor:
         """
-        Extract features for anomaly detection.
+        Extract features for anomaly detection (global, pooled).
 
         Uses multi-layer extraction if enabled in config,
         otherwise falls back to single-layer encoding.
@@ -289,3 +417,20 @@ class SimCLRModel(nn.Module):
         else:
             features = self.encoder(x)
             return F.normalize(features, p=2, dim=1)
+
+    @torch.no_grad()
+    def extract_patch_features(
+        self, x: torch.Tensor
+    ) -> Tuple[torch.Tensor, Tuple[int, int]]:
+        """
+        Extract patch-level features for PatchCore anomaly detection.
+
+        Args:
+            x: Input tensor of shape (B, 3, H, W)
+
+        Returns:
+            Tuple of:
+                - patch_features: (B, num_patches, C) patch embeddings
+                - patch_shape: (H_patch, W_patch) spatial dimensions
+        """
+        return self.encoder.extract_patch_features(x, self.patch_layers)

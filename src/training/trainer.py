@@ -121,6 +121,9 @@ class SimCLRTrainer:
         # Gradient clipping
         self.grad_clip = training_cfg.get("gradient_clip_max_norm", 1.0)
 
+        # Gradient accumulation for effective larger batches on CPU
+        self.accum_steps = training_cfg.get("gradient_accumulation_steps", 1)
+
         # Early stopping
         es_cfg = training_cfg.get("early_stopping", {})
         self.early_stopping = None
@@ -358,7 +361,7 @@ class SimCLRTrainer:
         return history
 
     def _train_one_epoch(self, dataloader, epoch: int) -> float:
-        """Train for one epoch and return average loss."""
+        """Train for one epoch with gradient accumulation support."""
         self.model.train()
         total_loss = 0.0
         num_batches = 0
@@ -369,49 +372,71 @@ class SimCLRTrainer:
             leave=False,
         )
 
-        for view_1, view_2, labels, indices in pbar:
+        self.optimizer.zero_grad(set_to_none=True)
+
+        for batch_idx, (view_1, view_2, labels, indices) in enumerate(pbar):
             view_1 = view_1.to(self.device)
             view_2 = view_2.to(self.device)
-
-            self.optimizer.zero_grad(set_to_none=True)
 
             if self.use_amp:
                 with autocast(self.device.type):
                     _, z_i = self.model(view_1)
                     _, z_j = self.model(view_2)
                     loss = self.criterion(z_i, z_j)
+                    # Scale loss for gradient accumulation
+                    loss = loss / self.accum_steps
 
                 self.scaler.scale(loss).backward()
 
+                if (batch_idx + 1) % self.accum_steps == 0:
+                    if self.grad_clip > 0:
+                        self.scaler.unscale_(self.optimizer)
+                        nn.utils.clip_grad_norm_(
+                            self.model.parameters(), self.grad_clip
+                        )
+                    self.scaler.step(self.optimizer)
+                    self.scaler.update()
+                    self.optimizer.zero_grad(set_to_none=True)
+            else:
+                _, z_i = self.model(view_1)
+                _, z_j = self.model(view_2)
+                loss = self.criterion(z_i, z_j)
+                loss = loss / self.accum_steps
+
+                loss.backward()
+
+                if (batch_idx + 1) % self.accum_steps == 0:
+                    if self.grad_clip > 0:
+                        nn.utils.clip_grad_norm_(
+                            self.model.parameters(), self.grad_clip
+                        )
+                    self.optimizer.step()
+                    self.optimizer.zero_grad(set_to_none=True)
+
+            if self.scheduler is not None:
+                self.scheduler.step()
+
+            total_loss += loss.item() * self.accum_steps  # Undo scaling for logging
+            num_batches += 1
+            self.global_step += 1
+
+            pbar.set_postfix({"loss": f"{loss.item() * self.accum_steps:.4f}"})
+
+        # Handle remaining gradients if num_batches not divisible by accum_steps
+        if num_batches % self.accum_steps != 0:
+            if self.use_amp:
                 if self.grad_clip > 0:
                     self.scaler.unscale_(self.optimizer)
                     nn.utils.clip_grad_norm_(
                         self.model.parameters(), self.grad_clip
                     )
-
                 self.scaler.step(self.optimizer)
                 self.scaler.update()
             else:
-                _, z_i = self.model(view_1)
-                _, z_j = self.model(view_2)
-                loss = self.criterion(z_i, z_j)
-
-                loss.backward()
-
                 if self.grad_clip > 0:
                     nn.utils.clip_grad_norm_(
                         self.model.parameters(), self.grad_clip
                     )
-
                 self.optimizer.step()
-
-            if self.scheduler is not None:
-                self.scheduler.step()
-
-            total_loss += loss.item()
-            num_batches += 1
-            self.global_step += 1
-
-            pbar.set_postfix({"loss": f"{loss.item():.4f}"})
 
         return total_loss / max(num_batches, 1)
