@@ -1,11 +1,7 @@
-# ═══════════════════════════════════════════════════════════════
+
 # Vision-Based Industrial Anomaly Detection - Configuration
 # Research-Grade Framework (PatchCore + Hybrid Scoring)
-# ═══════════════════════════════════════════════════════════════
-
-# ───────────────────────────────────────────────────────────────
 # Dataset Configuration
-# ───────────────────────────────────────────────────────────────
 dataset:
   name: "mvtec_ad"
   root_dir: "Data/mvtec_ad"
@@ -32,9 +28,7 @@ dataset:
   # No pin_memory on CPU — only useful with CUDA
   pin_memory: false
 
-# ───────────────────────────────────────────────────────────────
 # Model Configuration
-# ───────────────────────────────────────────────────────────────
 model:
   backbone: "resnet50"
   pretrained: true
@@ -61,9 +55,7 @@ model:
   # This is the recommended mode (AUROC > 0.90 with PatchCore)
   feature_extraction_only: true
 
-# ───────────────────────────────────────────────────────────────
 # Patch-Based Anomaly Detection (PatchCore-style) — PRIMARY
-# ───────────────────────────────────────────────────────────────
 patch_detection:
   # Enable PatchCore pipeline (recommended for high AUROC)
   enabled: true
@@ -77,9 +69,7 @@ patch_detection:
   use_pca: true
   pca_components: 256
 
-# ───────────────────────────────────────────────────────────────
 # Memory Bank Configuration (Global features — fallback mode)
-# ───────────────────────────────────────────────────────────────
 memory_bank:
   # Coreset subsampling for global features
   subsample: null
@@ -88,9 +78,7 @@ memory_bank:
   use_pca: true
   pca_components: 200
 
-# ───────────────────────────────────────────────────────────────
 # Hybrid Scoring Configuration
-# ───────────────────────────────────────────────────────────────
 scoring:
   # kNN scoring (primary — most effective for PatchCore)
   k_neighbors: 3
@@ -101,9 +89,7 @@ scoring:
   weight_mahalanobis: 0.0
   weight_cosine: 0.0
 
-# ───────────────────────────────────────────────────────────────
 # Score Calibration (fix confidence issue)
-# ───────────────────────────────────────────────────────────────
 calibration:
   # "minmax", "minmax_sigmoid" (recommended), "temperature", "percentile"
   method: "minmax_sigmoid"
@@ -111,9 +97,7 @@ calibration:
   percentile_low: 5.0
   percentile_high: 95.0
 
-# ───────────────────────────────────────────────────────────────
 # Anomaly Localization (Heatmaps)
-# ───────────────────────────────────────────────────────────────
 localization:
   # Gaussian smoothing sigma for heatmaps
   # Higher = smoother, lower = more detailed
@@ -121,10 +105,8 @@ localization:
   colormap: "jet"
   overlay_alpha: 0.4
 
-# ───────────────────────────────────────────────────────────────
 # Contrastive Learning (SimCLR) Configuration
 # Only used when model.feature_extraction_only = false
-# ───────────────────────────────────────────────────────────────
 training:
   epochs: 50
   batch_size: 32
@@ -152,9 +134,7 @@ training:
   # Resume training from last checkpoint
   resume: false
 
-# ───────────────────────────────────────────────────────────────
 # Data Augmentation Configuration (Strong — SimCLR-style)
-# ───────────────────────────────────────────────────────────────
 augmentations:
   random_crop:
     enabled: true
@@ -186,9 +166,7 @@ augmentations:
     mean: [0.485, 0.456, 0.406]
     std: [0.229, 0.224, 0.225]
 
-# ───────────────────────────────────────────────────────────────
 # Anomaly Detection Configuration (Legacy — for global scorer)
-# ───────────────────────────────────────────────────────────────
 anomaly_detection:
   # "mahalanobis" (recommended) or "knn"
   method: "mahalanobis"
@@ -197,18 +175,14 @@ anomaly_detection:
   # Threshold: null = auto-calibrate, or set a fixed value
   score_threshold: null
 
-# ───────────────────────────────────────────────────────────────
 # Threshold Calibration
-# ───────────────────────────────────────────────────────────────
 thresholding:
   # "youden" (maximize TPR-FPR), "f1" (maximize F1), "percentile"
   method: "youden"
   # Percentile value (only used if method = "percentile")
   value: 97
 
-# ───────────────────────────────────────────────────────────────
 # Evaluation Configuration
-# ───────────────────────────────────────────────────────────────
 evaluation:
   metrics:
     - "auroc"
@@ -220,16 +194,12 @@ evaluation:
     - "pixel_auroc"
     - "pro_score"
 
-# ───────────────────────────────────────────────────────────────
 # Grad-CAM Configuration (legacy, kept for comparison)
-# ───────────────────────────────────────────────────────────────
 gradcam:
   target_layer: "layer3"
   colormap: "jet"
 
-# ───────────────────────────────────────────────────────────────
 # Output Configuration
-# ───────────────────────────────────────────────────────────────
 output:
   root_dir: "outputs"
   checkpoints_dir: "outputs/checkpoints"
@@ -237,9 +207,7 @@ output:
   results_dir: "outputs/results"
   visualizations_dir: "outputs/visualizations"
 
-# ───────────────────────────────────────────────────────────────
 # Ablation Study Configuration
-# ───────────────────────────────────────────────────────────────
 ablation:
   # Toggle components for ablation experiments
   use_patch_detection: true

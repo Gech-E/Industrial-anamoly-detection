@@ -83,6 +83,7 @@ def test_config():
             "feature_dim": 512,
             "projection_dim": 128,
             "projection_hidden_dim": 256,
+            "multi_layer": False,
         },
         "training": {
             "epochs": 3,
@@ -445,7 +446,7 @@ class TestConfigDriven:
         
         # Required fields
         assert config["dataset"]["image_size"] == 224
-        assert config["model"]["feature_dim"] == 512
+        assert config["model"]["feature_dim"] == 2048
         assert config["model"]["projection_dim"] == 128
         assert config["training"]["temperature"] == 0.07
         assert len(config["dataset"]["categories"]) == 15

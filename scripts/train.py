@@ -54,9 +54,7 @@ from src.scoring.calibration import ScoreCalibrator
 logger = logging.getLogger(__name__)
 
 
-# ═══════════════════════════════════════════════════════════════
 # PatchCore Pipeline (PRIMARY — high AUROC)
-# ═══════════════════════════════════════════════════════════════
 
 def build_patch_memory_bank(
     config: dict,
@@ -135,12 +133,14 @@ def evaluate_patch_pipeline(
     # Add calibration params to metrics
     metrics["calibration"] = calibrator.save_params()
 
+    # Re-save metrics with calibration params (generate_full_report saves before these are added)
+    evaluator.save_metrics(metrics, category)
+
     return metrics
 
 
 # ═══════════════════════════════════════════════════════════════
 # Global Feature Pipeline (legacy, for ablation)
-# ═══════════════════════════════════════════════════════════════
 
 def build_global_memory_bank(
     config: dict,
@@ -202,9 +202,7 @@ def evaluate_global_pipeline(
     return metrics
 
 
-# ═══════════════════════════════════════════════════════════════
 # Main Training Pipeline
-# ═══════════════════════════════════════════════════════════════
 
 def train_category(config: dict, category: str, device: torch.device, args):
     """Train/extract features for a single MVTec category."""

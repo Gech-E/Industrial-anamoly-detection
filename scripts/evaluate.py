@@ -132,6 +132,9 @@ def _evaluate_patch(config, model, category, device,
     metrics["pipeline"] = "patchcore"
     metrics["calibration"] = calibrator.save_params()
 
+    # Re-save metrics with calibration params (generate_full_report saves before these are added)
+    evaluator.save_metrics(metrics, category)
+
     # 6. Generate heatmap visualizations
     logger.info("Generating anomaly heatmap visualizations...")
 
@@ -229,6 +232,9 @@ def _evaluate_global(config, model, category, device,
     metrics = evaluator.generate_full_report(scores, labels, category)
     metrics["pipeline"] = "global"
     metrics["calibration"] = calibrator.save_params()
+
+    # Re-save metrics with calibration params (generate_full_report saves before these are added)
+    evaluator.save_metrics(metrics, category)
 
     # Grad-CAM visualization (legacy)
     try:
