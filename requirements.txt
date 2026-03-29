@@ -1,0 +1,33 @@
+# Core Deep Learning
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Data & Scientific Computing
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+scipy>=1.11.0
+
+# Image Processing
+opencv-python>=4.8.0
+Pillow>=10.0.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Configuration
+pyyaml>=6.0
+
+# Logging & Monitoring
+tensorboard>=2.14.0
+tqdm>=4.65.0
+
+# Web Application
+streamlit>=1.28.0
+
+# Dataset Download
+opendatasets>=0.1.22
+
+# Utilities
+colorama>=0.4.6

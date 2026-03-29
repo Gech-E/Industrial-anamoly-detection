@@ -1,0 +1,44 @@
+# Data
+data/
+*.tar.xz
+*.tar.gz
+
+# Model outputs
+outputs/
+checkpoints/
+*.pt
+*.pth
+*.onnx
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Kaggle
+kaggle.json
+
+# TensorBoard
+runs/
