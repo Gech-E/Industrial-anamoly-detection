@@ -31,3 +31,7 @@ opendatasets>=0.1.22
 
 # Utilities
 colorama>=0.4.6
+
+# Optional: Fast kNN (PatchCore acceleration)
+# Install separately: pip install faiss-cpu
+# faiss-cpu>=1.7.4

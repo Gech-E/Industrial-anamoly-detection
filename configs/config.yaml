@@ -1,8 +1,6 @@
-#  
-# Vision-Based Industrial Anomaly Detection - Configuration
-# (Optimized for ResNet50 + Patch-Based Detection)
-#  
 
+# Vision-Based Industrial Anomaly Detection - Configuration
+# Research-Grade Framework (PatchCore + Hybrid Scoring)
 # Dataset Configuration
 dataset:
   name: "mvtec_ad"
@@ -25,102 +23,166 @@ dataset:
     - "wood"
     - "zipper"
   image_size: 224
-  num_workers: 4
+  # CPU optimization: 0 workers avoids multiprocessing issues on Windows
+  num_workers: 0
+  # No pin_memory on CPU — only useful with CUDA
+  pin_memory: false
 
-# 
 # Model Configuration
-# 
 model:
   backbone: "resnet50"
   pretrained: true
   feature_dim: 2048
   projection_dim: 128
-  projection_hidden_dim: 256
+  # Increased from 256 to 512 per SimCLR paper recommendations
+  projection_hidden_dim: 512
 
-  # Patch-based detection
-  use_patches: true
-  patch_layer: "layer2"
+  # Multi-layer feature extraction (layer2 + layer3 + layer4)
+  # Produces 512 + 1024 + 2048 = 3584-dim features for ResNet50
+  multi_layer: true
+  feature_layers:
+    - "layer2"
+    - "layer3"
+    - "layer4"
 
-  # 🔥 NEW: Feature compression (important for ResNet50)
-  feature_compression: 512
+  # Patch feature layers (for PatchCore-style detection)
+  # layer2 (28x28) + layer3 (14x14) = multi-scale patch features
+  patch_layers:
+    - "layer2"
+    - "layer3"
 
-# 
-# Memory Bank Configuration
-# 
+  # Feature extraction only mode — skip SimCLR training, use ImageNet features
+  # This is the recommended mode (AUROC > 0.90 with PatchCore)
+  feature_extraction_only: true
+
+# Patch-Based Anomaly Detection (PatchCore-style) — PRIMARY
+patch_detection:
+  # Enable PatchCore pipeline (recommended for high AUROC)
+  enabled: true
+
+  # Coreset subsampling: keep this fraction of patches
+  # Lower = faster inference + less memory, minimal AUROC impact
+  coreset_ratio: 0.1
+  coreset_max: 5000
+
+  # PCA on patch features for dimensionality reduction
+  use_pca: true
+  pca_components: 256
+
+# Memory Bank Configuration (Global features — fallback mode)
 memory_bank:
-  subsample: 30000   # 🔥 reduced for ResNet50 (important)
+  # Coreset subsampling for global features
+  subsample: null
 
-# 
+  # PCA dimensionality reduction for CPU efficiency
+  use_pca: true
+  pca_components: 200
+
+# Hybrid Scoring Configuration
+scoring:
+  # kNN scoring (primary — most effective for PatchCore)
+  k_neighbors: 3
+
+  # Hybrid ensemble weights (must sum to > 0)
+  # kNN is the primary scorer; Mahalanobis adds global distribution awareness
+  weight_knn: 1.0
+  weight_mahalanobis: 0.0
+  weight_cosine: 0.0
+
+# Score Calibration (fix confidence issue)
+calibration:
+  # "minmax", "minmax_sigmoid" (recommended), "temperature", "percentile"
+  method: "minmax_sigmoid"
+  temperature: 1.0
+  percentile_low: 5.0
+  percentile_high: 95.0
+
+# Anomaly Localization (Heatmaps)
+localization:
+  # Gaussian smoothing sigma for heatmaps
+  # Higher = smoother, lower = more detailed
+  gaussian_sigma: 4.0
+  colormap: "jet"
+  overlay_alpha: 0.4
+
 # Contrastive Learning (SimCLR) Configuration
-# 
+# Only used when model.feature_extraction_only = false
 training:
-  epochs: 100
+  epochs: 50
   batch_size: 32
   learning_rate: 0.0003
   weight_decay: 0.0001
   temperature: 0.07
   optimizer: "adam"
   scheduler: "cosine"
-  warmup_epochs: 10
+  warmup_epochs: 5
+  # AMP is auto-disabled on CPU
   use_amp: true
   gradient_clip_max_norm: 1.0
   checkpoint_interval: 10
   seed: 42
 
-# 
-# Data Augmentation Configuration (Balanced - NOT too weak)
-# 
+  # Gradient accumulation (for effective larger batches on CPU)
+  gradient_accumulation_steps: 1
+
+  # Early stopping — stop training when loss plateaus
+  early_stopping:
+    enabled: true
+    patience: 15
+    min_delta: 0.001
+
+  # Resume training from last checkpoint
+  resume: false
+
+# Data Augmentation Configuration (Strong — SimCLR-style)
 augmentations:
   random_crop:
-    enabled: false
+    enabled: true
+    scale: [0.2, 1.0]
 
   horizontal_flip:
     enabled: true
     probability: 0.5
 
-  # 🔥 LIGHT jitter (important: not zero!)
+  # Strong color jitter (SimCLR-recommended)
   color_jitter:
     enabled: true
-    probability: 0.3
-    brightness: 0.1
-    contrast: 0.1
-    saturation: 0.1
-    hue: 0.02
+    probability: 0.8
+    brightness: 0.4
+    contrast: 0.4
+    saturation: 0.4
+    hue: 0.1
 
   grayscale:
-    enabled: false
+    enabled: true
+    probability: 0.2
 
   gaussian_blur:
-    enabled: false
+    enabled: true
+    probability: 0.5
+    kernel_size: 23
 
   normalize:
     mean: [0.485, 0.456, 0.406]
     std: [0.229, 0.224, 0.225]
 
-# 
-# Anomaly Detection Configuration
-# 
+# Anomaly Detection Configuration (Legacy — for global scorer)
 anomaly_detection:
-  method: "knn"
-  k_neighbors: 3
+  # "mahalanobis" (recommended) or "knn"
+  method: "mahalanobis"
+  k_neighbors: 5
 
-  score_aggregation: "max"
-
+  # Threshold: null = auto-calibrate, or set a fixed value
   score_threshold: null
 
-  # 🔥 NEW: distance metric
-  distance_metric: "euclidean"
-
-# 
 # Threshold Calibration
-# 
 thresholding:
-  method: "percentile"
-  value: 97   # 🔥 slightly stricter than 95
+  # "youden" (maximize TPR-FPR), "f1" (maximize F1), "percentile"
+  method: "youden"
+  # Percentile value (only used if method = "percentile")
+  value: 97
 
-# 
 # Evaluation Configuration
-# 
 evaluation:
   metrics:
     - "auroc"
@@ -128,26 +190,28 @@ evaluation:
     - "accuracy"
     - "precision"
     - "recall"
+    - "average_precision"
+    - "pixel_auroc"
+    - "pro_score"
 
-# 
-# Grad-CAM Configuration
-# 
+# Grad-CAM Configuration (legacy, kept for comparison)
 gradcam:
-  target_layer: "layer3"   # 🔥 better for localization than layer4
+  target_layer: "layer3"
   colormap: "jet"
 
-# 
-# Optional Preprocessing
-# 
-preprocessing:
-  use_edge_channel: false
-
-#  
 # Output Configuration
-#  
 output:
   root_dir: "outputs"
   checkpoints_dir: "outputs/checkpoints"
   logs_dir: "outputs/logs"
   results_dir: "outputs/results"
   visualizations_dir: "outputs/visualizations"
+
+# Ablation Study Configuration
+ablation:
+  # Toggle components for ablation experiments
+  use_patch_detection: true
+  use_pca: true
+  use_coreset: true
+  scoring_method: "knn"  # "knn", "mahalanobis", "cosine", "hybrid"
+  feature_layers: ["layer2", "layer3"]

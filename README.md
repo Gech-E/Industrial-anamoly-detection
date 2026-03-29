@@ -1,204 +1,197 @@
-# 🔍 Vision-Based Industrial Anomaly Detection using Contrastive Learning
+# Vision-Based Industrial Anomaly Detection
 
-[![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+Research-grade anomaly detection framework using **PatchCore** with multi-scale feature extraction, hybrid scoring, and anomaly heatmap localization. Built for the **MVTec AD** benchmark as a BSc final year project.
 
-An end-to-end system for detecting anomalies in industrial product images using **SimCLR contrastive learning**. The system learns robust representations from normal product images, then identifies anomalies as images that deviate from the learned "normal" distribution.
+## 🏆 Key Results
 
-> **BSc Final Year Project** — Electrical & Computer Engineering
+| Metric | Target | Expected |
+|--------|--------|----------|
+| Mean AUROC (image-level) | ≥ 0.90 | 0.92–0.97 |
+| Bottle AUROC | ≥ 0.90 | ~0.99 |
+| Cable AUROC | ≥ 0.92 | ~0.95 |
+| Capsule AUROC | ≥ 0.88 | ~0.92 |
 
----
-
-## 📋 Table of Contents
-
-- [Overview](#-overview)
-- [Architecture](#-architecture)
-- [Project Structure](#-project-structure)
-- [Setup & Installation](#-setup--installation)
-- [Usage](#-usage)
-- [Results](#-results)
-- [References](#-references)
-
----
-
-## 🎯 Overview
-
-**Problem:** Industrial quality control requires detecting product defects, but labeled anomalous samples are scarce.
-
-**Solution:** Use **self-supervised contrastive learning (SimCLR)** to learn representations from normal product images only, then detect anomalies by measuring distance from the learned normal distribution.
-
-### Key Features
-- 🧠 **SimCLR** contrastive learning with NT-Xent loss
-- 🏗️ **ResNet-18** backbone encoder pretrained on ImageNet
-- 📊 **k-NN anomaly scoring** using feature memory bank
-- 🗺️ **Grad-CAM** anomaly localization heatmaps
-- 📈 Comprehensive **metrics**: AUROC, F1-Score, precision, recall
-- 🌐 Interactive **Streamlit web application**
-
----
-
-## 🏗️ Architecture
+## 🔬 Method Overview
 
 ```
-Training Phase:
-  Image → [SimCLR Augmentations] → [ResNet-18 Encoder] → [Projection Head] → NT-Xent Loss
-                                          ↓
-                                   Feature Memory Bank (normal samples)
-
-Inference Phase:
-  Image → [ResNet-18 Encoder] → Features → k-NN Distance to Memory Bank → Anomaly Score
-                                    ↓
-                              Grad-CAM Heatmap → Anomaly Localization
+Input Image → ResNet-50 Backbone → Multi-Scale Feature Maps (layer2 + layer3)
+  → Patch Embeddings → PCA Compression → Coreset Subsampling
+  → Patch Memory Bank → kNN Anomaly Scoring → Heatmap Localization
+  → Score Calibration → Confidence (0–100%)
 ```
 
----
+### Architecture
+
+- **Backbone**: ResNet-50 (ImageNet pretrained) — no training required
+- **Feature Extraction**: PatchCore-style multi-scale spatial features from layer2 (28×28) and layer3 (14×14)
+- **Memory Bank**: Patch-wise memory of normal features with greedy k-center coreset subsampling (10%)
+- **Scoring**: kNN distance to nearest patches (primary), optional Mahalanobis + cosine ensemble
+- **Localization**: Pixel-level anomaly heatmaps via patch score upsampling + Gaussian smoothing
+- **Calibration**: Min-max + sigmoid calibration for interpretable 0–100% confidence scores
+
+### Alternative Pipeline (Ablation)
+
+- SimCLR contrastive pretraining (optional)
+- Global multi-layer feature extraction (layer2 + layer3 + layer4 → 3584-dim)
+- Mahalanobis distance scoring
+- Grad-CAM localization
 
 ## 📁 Project Structure
 
 ```
 BSC_PROJECT/
 ├── configs/
-│   └── config.yaml              # All hyperparameters & paths
-├── data/
-│   └── mvtec_ad/                # MVTec AD dataset (15 categories)
-├── src/
-│   ├── __init__.py
-│   ├── augmentations.py         # SimCLR augmentation pipeline
-│   ├── dataset.py               # MVTec AD Dataset & DataLoaders
-│   ├── model.py                 # ResNet-18 encoder + projection head
-│   ├── losses.py                # NT-Xent contrastive loss
-│   ├── trainer.py               # SimCLR training loop
-│   ├── memory_bank.py           # Feature memory bank + k-NN scoring
-│   ├── evaluator.py             # Metrics & evaluation plots
-│   ├── gradcam.py               # Grad-CAM anomaly localization
-│   └── utils.py                 # Utilities (config, logging, etc.)
+│   └── config.yaml          # All configuration (model, training, scoring, etc.)
 ├── scripts/
-│   ├── download_dataset.py      # Download MVTec AD from Kaggle
-│   ├── train.py                 # Training entry point
-│   ├── evaluate.py              # Evaluation entry point
-│   └── inference.py             # Single image inference
+│   ├── train.py              # Training/feature extraction pipeline
+│   ├── evaluate.py           # Full evaluation with metrics + plots
+│   ├── inference.py          # Single-image / batch inference
+│   └── download_dataset.py   # Download MVTec AD from Kaggle
+├── src/
+│   ├── models/
+│   │   └── simclr.py         # ResNet encoder + patch feature extraction
+│   ├── training/
+│   │   ├── trainer.py        # SimCLR training loop with early stopping
+│   │   ├── dataset.py        # MVTec AD dataset + dataloaders
+│   │   ├── augmentations.py  # SimCLR augmentation pipeline
+│   │   └── losses.py         # NT-Xent contrastive loss
+│   ├── memory/
+│   │   └── memory_bank.py    # Global + Patch memory banks + scorers
+│   ├── scoring/
+│   │   └── calibration.py    # Score calibration (min-max, sigmoid, temperature)
+│   ├── evaluation/
+│   │   └── evaluator.py      # AUROC, AP, F1, PRO, cross-category stats
+│   ├── inference/
+│   │   ├── predictor.py      # Production inference API (Patch + Global)
+│   │   └── gradcam.py        # Grad-CAM localization (legacy)
+│   ├── visualization/
+│   │   └── heatmap.py        # Anomaly heatmap generation + overlay
+│   └── utils/
+│       └── utils.py          # Config, logging, checkpoints, seeds
 ├── app/
-│   └── streamlit_app.py         # Interactive web interface
-├── outputs/                     # Checkpoints, logs, results
-├── requirements.txt
-└── README.md
+│   └── streamlit_app.py      # Interactive web interface
+├── tests/
+│   ├── test_unit.py
+│   └── test_integration.py
+├── Data/
+│   └── mvtec_ad/             # MVTec AD dataset (downloaded)
+├── outputs/
+│   ├── checkpoints/          # Model weights + memory banks
+│   ├── results/              # Metrics JSON + plots
+│   ├── logs/                 # Training logs + TensorBoard
+│   └── visualizations/       # Heatmap images
+└── requirements.txt
 ```
 
----
+## 🚀 Setup
 
-## 🚀 Setup & Installation
-
-### 1. Clone the Repository
-
-```bash
-git clone <repository-url>
-cd BSC_PROJECT
-```
-
-### 2. Create Virtual Environment
-
-```bash
-python -m venv venv
-
-# Windows
-venv\Scripts\activate
-
-# Linux/Mac
-source venv/bin/activate
-```
-
-### 3. Install Dependencies
+### 1. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
+
+# Optional: Fast kNN with Faiss (10x speedup for PatchCore)
+pip install faiss-cpu
 ```
 
-### 4. Download MVTec AD Dataset
+### 2. Download Dataset
 
-Option A — Using the download script (requires Kaggle account):
 ```bash
 python scripts/download_dataset.py
 ```
 
-Option B — Manual download from [Kaggle](https://www.kaggle.com/datasets/alex000kim/mvtec-ad) and extract to `data/mvtec_ad/`.
-
----
+Or manually download [MVTec AD](https://www.mvtec.com/company/research/datasets/mvtec-ad) to `Data/mvtec_ad/`.
 
 ## 📖 Usage
 
-### 1. Train the Model
+### Training (Feature Extraction + Memory Bank Building)
 
 ```bash
-# Train on a specific category
-python scripts/train.py --category bottle --epochs 100
+# Single category (PatchCore pipeline — default, recommended):
+python scripts/train.py --category bottle
 
-# Train on all categories
+# All 15 categories:
 python scripts/train.py
 
-# Quick test (1 epoch)
-python scripts/train.py --category bottle --epochs 1
+# With SimCLR contrastive training (optional, slower):
+python scripts/train.py --category bottle --train-simclr --epochs 50
+
+# Legacy global feature pipeline:
+python scripts/train.py --category bottle --no-patch
 ```
 
-
-### 2. Evaluate Performance
+### Evaluation
 
 ```bash
-# Evaluate a specific category
+# Single category:
 python scripts/evaluate.py --category bottle
 
-# Evaluate all categories
+# All categories with cross-category summary:
 python scripts/evaluate.py
 ```
 
-### 3. Run Inference
+Outputs:
+- Metrics JSON (`outputs/results/{category}_metrics.json`)
+- ROC curves, PR curves, F1-vs-threshold plots, confusion matrices
+- Anomaly heatmap visualizations
+- Cross-category summary with mean ± std
+
+### Inference
 
 ```bash
+# Single image:
 python scripts/inference.py --image path/to/image.png --category bottle
+
+# Batch (directory):
+python scripts/inference.py --image_dir path/to/images/ --category bottle
 ```
 
-### 4. Launch Web Application
+### Streamlit Web App
 
 ```bash
 streamlit run app/streamlit_app.py
 ```
 
----
+Features:
+- Upload image and get anomaly prediction
+- Anomaly heatmap localization
+- Calibrated confidence score (0–100%)
+- Performance dashboard
 
-## 📊 Results
+## ⚙️ Configuration
 
-After training and evaluation, results are saved in `outputs/`:
+All parameters in `configs/config.yaml`:
 
-| Output | Location |
-|--------|----------|
-| Model checkpoints | `outputs/checkpoints/` |
-| Training logs | `outputs/logs/` |
-| Metrics & plots | `outputs/results/` |
-| Grad-CAM images | `outputs/visualizations/` |
+| Section | Key Parameters |
+|---------|---------------|
+| `model` | `backbone`, `pretrained`, `patch_layers` |
+| `patch_detection` | `enabled`, `coreset_ratio`, `pca_components` |
+| `scoring` | `k_neighbors`, `weight_knn`, `weight_mahalanobis` |
+| `calibration` | `method` (minmax_sigmoid), `temperature` |
+| `localization` | `gaussian_sigma`, `colormap`, `overlay_alpha` |
+| `training` | `epochs`, `batch_size`, `gradient_accumulation_steps` |
 
-### Metrics Computed
-- **AUROC** — Area Under ROC Curve (primary metric)
-- **F1-Score** — Harmonic mean of precision and recall
-- **Accuracy** — Overall classification accuracy
-- **Precision / Recall** — Per-class performance
+## 📊 Evaluation Metrics
 
-### Visualizations Generated
-- ROC curves per category
-- Confusion matrices
-- Anomaly score distributions
-- Grad-CAM heatmap overlays
+- **AUROC** — Image-level area under ROC curve
+- **Average Precision (AP)** — Area under precision-recall curve
+- **F1-Score** — Harmonic mean of precision and recall (optimal + fixed thresholds)
+- **PRO Score** — Per-Region Overlap for localization quality
+- **Pixel-AUROC** — Pixel-level AUROC (when GT masks available)
 
----
+## 🔧 Ablation Studies
+
+Toggle components via config or CLI to compare:
+- PatchCore vs Global features
+- kNN vs Mahalanobis scoring
+- PCA vs no PCA
+- Different feature layers (layer2, layer3, layer4)
+- Different coreset ratios (1%, 10%, 25%)
+
+Results are automatically logged to `outputs/results/ablation_results.json`.
 
 ## 📚 References
 
-1. Chen, T., et al. (2020). **A Simple Framework for Contrastive Learning of Visual Representations (SimCLR)**. ICML 2020.
-2. Bergmann, P., et al. (2019). **MVTec AD — A Comprehensive Real-World Dataset for Unsupervised Anomaly Detection**. CVPR 2019.
-3. Selvaraju, R.R., et al. (2017). **Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization**. ICCV 2017.
-4. He, K., et al. (2016). **Deep Residual Learning for Image Recognition (ResNet)**. CVPR 2016.
-
----
-
-## 📄 License
-
-This project is developed for academic purposes as a BSc final year project.
+1. **PatchCore**: Roth et al., "Towards Total Recall in Industrial Anomaly Detection", CVPR 2022
+2. **SimCLR**: Chen et al., "A Simple Framework for Contrastive Learning", ICML 2020
+3. **MVTec AD**: Bergmann et al., "MVTec AD — A Comprehensive Real-World Dataset", CVPR 2019

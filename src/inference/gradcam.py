@@ -42,10 +42,17 @@ class GradCAM:
         self.activations = None
         self.gradients = None
         
-        # Register hooks
+        # Register hooks (store handles for cleanup)
+        self._hook_handles = []
         self._register_hooks()
         
         logger.info(f"Grad-CAM initialized with target layer: {target_layer_name}")
+    
+    def __del__(self):
+        """Clean up hooks to prevent memory leaks."""
+        for handle in self._hook_handles:
+            handle.remove()
+        self._hook_handles.clear()
     
     def _get_target_layer(self, layer_name: str):
         """Get the target layer from the encoder."""
@@ -75,8 +82,9 @@ class GradCAM:
         def backward_hook(module, grad_input, grad_output):
             self.gradients = grad_output[0].detach()
         
-        self.target_layer.register_forward_hook(forward_hook)
-        self.target_layer.register_full_backward_hook(backward_hook)
+        h1 = self.target_layer.register_forward_hook(forward_hook)
+        h2 = self.target_layer.register_full_backward_hook(backward_hook)
+        self._hook_handles.extend([h1, h2])
     
     def generate(
         self,

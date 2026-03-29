@@ -1,0 +1,53 @@
+============================= test session starts =============================
+collecting ... collected 8 items
+
+tests/test_integration.py::TestTrainingPipeline::test_full_training_loop PASSED [ 12%]
+tests/test_integration.py::TestTrainingPipeline::test_memory_bank_construction FAILED [ 25%]
+tests/test_integration.py::TestEvaluationPipeline::test_full_evaluation_pipeline PASSED [ 37%]
+tests/test_integration.py::TestInferencePipeline::test_single_image_inference FAILED [ 50%]
+tests/test_integration.py::TestInferencePipeline::test_batch_inference PASSED [ 62%]
+tests/test_integration.py::TestMahalanobisPipeline::test_mahalanobis_evaluation PASSED [ 75%]
+tests/test_integration.py::TestConfigDriven::test_config_file_loads_correctly FAILED [ 87%]
+tests/test_integration.py::TestConfigDriven::test_all_augmentations_configurable PASSED [100%]
+
+================================== FAILURES ===================================
+_____________ TestTrainingPipeline.test_memory_bank_construction ______________
+tests\test_integration.py:209: in test_memory_bank_construction
+    assert bank.features.shape == (16, 512)
+E   assert torch.Size([16, 896]) == (16, 512)
+E     
+E     At index 1 diff: 896 != 512
+E     
+E     Full diff:
+E     + torch.Size([16, 896])
+E     - (
+E     -     16,
+E     -     512,
+E     - )
+______________ TestInferencePipeline.test_single_image_inference ______________
+tests\test_integration.py:334: in test_single_image_inference
+    score = scorer.score(features.cpu())
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\torch\utils\_contextlib.py:124: in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+src\memory\memory_bank.py:309: in score
+    return self._knn_score(features)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+src\memory\memory_bank.py:330: in _knn_score
+    sim_matrix = torch.mm(features, bank.t())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: mat1 and mat2 shapes cannot be multiplied (1x512 and 896x16)
+______________ TestConfigDriven.test_config_file_loads_correctly ______________
+tests\test_integration.py:448: in test_config_file_loads_correctly
+    assert config["model"]["feature_dim"] == 512
+E   assert 2048 == 512
+=========================== short test summary info ===========================
+FAILED tests/test_integration.py::TestTrainingPipeline::test_memory_bank_construction
+FAILED tests/test_integration.py::TestInferencePipeline::test_single_image_inference
+FAILED tests/test_integration.py::TestConfigDriven::test_config_file_loads_correctly
+======================== 3 failed, 5 passed in 31.17s =========================
+
+---STDERR---
+none
+EXIT: 1

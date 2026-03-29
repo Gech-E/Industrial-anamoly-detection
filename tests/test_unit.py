@@ -149,7 +149,7 @@ class TestUtils:
         assert "dataset" in config
         assert "model" in config
         assert "training" in config
-        assert config["model"]["backbone"] == "resnet18"
+        assert config["model"]["backbone"] == "resnet50"
     
     def test_set_seed_reproducibility(self):
         """Test that set_seed produces reproducible results."""
@@ -272,11 +272,17 @@ class TestModel:
     """Unit tests for src/model.py"""
     
     def test_resnet_encoder_output_shape(self, sample_batch):
-        """ResNet encoder should output (B, 512) features."""
+        """ResNet encoder should output (B, feature_dim) features."""
         from src.models.simclr import ResNetEncoder
-        encoder = ResNetEncoder(pretrained=False)
+        # Test with resnet18 (used in test config for speed)
+        encoder = ResNetEncoder(pretrained=False, backbone="resnet18")
         features = encoder(sample_batch)
         assert features.shape == (4, 512)
+
+        # Also test resnet50 (used in production config)
+        encoder50 = ResNetEncoder(pretrained=False, backbone="resnet50")
+        features50 = encoder50(sample_batch)
+        assert features50.shape == (4, 2048)
     
     def test_projection_head_output_shape(self):
         """Projection head should map 512 → 128."""

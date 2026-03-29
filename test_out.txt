@@ -1,0 +1,75 @@
+============================= test session starts =============================
+collecting ... collected 40 items
+
+tests/test_unit.py::TestUtils::test_load_config FAILED                   [  2%]
+tests/test_unit.py::TestUtils::test_set_seed_reproducibility PASSED      [  5%]
+tests/test_unit.py::TestUtils::test_get_device PASSED                    [  7%]
+tests/test_unit.py::TestUtils::test_ensure_dirs PASSED                   [ 10%]
+tests/test_unit.py::TestUtils::test_count_parameters PASSED              [ 12%]
+tests/test_unit.py::TestUtils::test_format_time PASSED                   [ 15%]
+tests/test_unit.py::TestUtils::test_save_and_load_checkpoint PASSED      [ 17%]
+tests/test_unit.py::TestAugmentations::test_contrastive_augmentation_returns_two_views PASSED [ 20%]
+tests/test_unit.py::TestAugmentations::test_two_views_are_different PASSED [ 22%]
+tests/test_unit.py::TestAugmentations::test_eval_transform_output_shape PASSED [ 25%]
+tests/test_unit.py::TestAugmentations::test_inverse_normalize PASSED     [ 27%]
+tests/test_unit.py::TestModel::test_resnet_encoder_output_shape FAILED   [ 30%]
+tests/test_unit.py::TestModel::test_projection_head_output_shape PASSED  [ 32%]
+tests/test_unit.py::TestModel::test_simclr_model_forward PASSED          [ 35%]
+tests/test_unit.py::TestModel::test_simclr_model_encode PASSED           [ 37%]
+tests/test_unit.py::TestModel::test_model_train_eval_modes PASSED        [ 40%]
+tests/test_unit.py::TestModel::test_model_gradient_flow PASSED           [ 42%]
+tests/test_unit.py::TestLosses::test_ntxent_loss_returns_scalar PASSED   [ 45%]
+tests/test_unit.py::TestLosses::test_ntxent_loss_identical_pairs PASSED  [ 47%]
+tests/test_unit.py::TestLosses::test_ntxent_loss_gradient PASSED         [ 50%]
+tests/test_unit.py::TestLosses::test_ntxent_loss_temperature_effect PASSED [ 52%]
+tests/test_unit.py::TestLosses::test_ntxent_loss_batch_size_invariance PASSED [ 55%]
+tests/test_unit.py::TestDataset::test_mvtec_dataset_train PASSED         [ 57%]
+tests/test_unit.py::TestDataset::test_mvtec_dataset_test PASSED          [ 60%]
+tests/test_unit.py::TestDataset::test_mvtec_dataset_contrastive PASSED   [ 62%]
+tests/test_unit.py::TestDataset::test_dataset_defect_type PASSED         [ 65%]
+tests/test_unit.py::TestDataset::test_create_dataloaders PASSED          [ 67%]
+tests/test_unit.py::TestDataset::test_dataset_not_found_raises_error PASSED [ 70%]
+tests/test_unit.py::TestMemoryBank::test_memory_bank_save_load PASSED    [ 72%]
+tests/test_unit.py::TestMemoryBank::test_knn_scorer_normal_vs_anomaly PASSED [ 75%]
+tests/test_unit.py::TestMemoryBank::test_mahalanobis_scorer PASSED       [ 77%]
+tests/test_unit.py::TestEvaluator::test_evaluate_perfect_separation PASSED [ 80%]
+tests/test_unit.py::TestEvaluator::test_evaluate_random_scores PASSED    [ 82%]
+tests/test_unit.py::TestEvaluator::test_plot_roc_curve PASSED            [ 85%]
+tests/test_unit.py::TestEvaluator::test_plot_confusion_matrix PASSED     [ 87%]
+tests/test_unit.py::TestEvaluator::test_save_metrics_json PASSED         [ 90%]
+tests/test_unit.py::TestEvaluator::test_generate_full_report PASSED      [ 92%]
+tests/test_unit.py::TestGradCAM::test_gradcam_heatmap_shape PASSED       [ 95%]
+tests/test_unit.py::TestGradCAM::test_gradcam_overlay PASSED             [ 97%]
+tests/test_unit.py::TestGradCAM::test_gradcam_visualize_saves_file PASSED [100%]
+
+================================== FAILURES ===================================
+_________________________ TestUtils.test_load_config __________________________
+tests\test_unit.py:152: in test_load_config
+    assert config["model"]["backbone"] == "resnet18"
+E   AssertionError: assert 'resnet50' == 'resnet18'
+E     
+E     - resnet18
+E     ?       ^^
+E     + resnet50
+E     ?       ^^
+_________________ TestModel.test_resnet_encoder_output_shape __________________
+tests\test_unit.py:279: in test_resnet_encoder_output_shape
+    assert features.shape == (4, 512)
+E   assert torch.Size([4, 2048]) == (4, 512)
+E     
+E     At index 1 diff: 2048 != 512
+E     
+E     Full diff:
+E     + torch.Size([4, 2048])
+E     - (
+E     -     4,
+E     -     512,
+E     - )
+=========================== short test summary info ===========================
+FAILED tests/test_unit.py::TestUtils::test_load_config - AssertionError: asse...
+FAILED tests/test_unit.py::TestModel::test_resnet_encoder_output_shape - asse...
+======================== 2 failed, 38 passed in 12.19s ========================
+
+---STDERR---
+none
+EXIT: 1
