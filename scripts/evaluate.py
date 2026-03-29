@@ -12,17 +12,20 @@ import json
 # Add project root to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import numpy as np
 import torch
+from PIL import Image
+
 from src.utils.utils import (
     load_config, set_seed, get_device,
-    setup_logging, ensure_dirs, load_checkpoint
+    setup_logging, ensure_dirs, load_checkpoint,
 )
 from src.models.simclr import SimCLRModel
 from src.training.dataset import create_test_dataloader
+from src.training.augmentations import get_eval_transform
 from src.memory.memory_bank import MemoryBank, AnomalyScorer
 from src.evaluation.evaluator import AnomalyEvaluator
 from src.inference.gradcam import GradCAM
-from src.training.augmentations import get_eval_transform
 
 logger = logging.getLogger(__name__)
 
@@ -30,9 +33,9 @@ logger = logging.getLogger(__name__)
 def evaluate_category(config: dict, category: str, device: torch.device):
     """Evaluate anomaly detection for a single category."""
 
-    logger.info(f"\n{'='*60}")
+    logger.info(f"\n{'=' * 60}")
     logger.info(f"Evaluating category: {category}")
-    logger.info(f"{'='*60}")
+    logger.info(f"{'=' * 60}")
 
     checkpoint_dir = config["output"]["checkpoints_dir"]
     results_dir = config["output"]["results_dir"]
@@ -47,30 +50,29 @@ def evaluate_category(config: dict, category: str, device: torch.device):
     checkpoint_path = os.path.join(checkpoint_dir, f"{category}_best.pt")
     if not os.path.exists(checkpoint_path):
         logger.error(f"Checkpoint not found: {checkpoint_path}")
-        logger.info(f"Run training first: python scripts/train.py --category {category}")
+        logger.info(
+            f"Run training first: python scripts/train.py --category {category}"
+        )
         return None
 
     load_checkpoint(model, checkpoint_path, device=device)
     model = model.to(device)
     model.eval()
 
-    # 2. Load Memory Bank (MATCH TRAIN CONFIG)
+    # 2. Load Memory Bank
     bank_path = os.path.join(checkpoint_dir, f"{category}_memory_bank.pt")
     if not os.path.exists(bank_path):
         logger.error(f"Memory bank not found: {bank_path}")
         return None
 
-    memory_bank = MemoryBank(
-        use_patches=config["model"].get("use_patches", False),
-        patch_layer=config["model"].get("patch_layer", "layer2"),
-    )
+    memory_bank = MemoryBank()
     memory_bank.load(bank_path)
 
     # 3. Anomaly Scorer
-    ad_cfg = config["anomaly_detection"]
+    ad_cfg = config.get("anomaly_detection", {})
 
     scorer = AnomalyScorer(
-        method=ad_cfg.get("method", "knn"),
+        method=ad_cfg.get("method", "mahalanobis"),
         k_neighbors=ad_cfg.get("k_neighbors", 5),
     )
     scorer.fit(memory_bank)
@@ -85,25 +87,31 @@ def evaluate_category(config: dict, category: str, device: torch.device):
     scores, labels = scorer.score_batch(model, test_dataloader, device)
 
     # 6. Evaluation Metrics
-    evaluator = AnomalyEvaluator(output_dir=results_dir)
+    threshold_cfg = config.get("thresholding", {})
+    evaluator = AnomalyEvaluator(
+        output_dir=results_dir,
+        threshold_method=threshold_cfg.get("method", "youden"),
+        percentile_value=threshold_cfg.get("value", 97),
+    )
     metrics = evaluator.generate_full_report(scores, labels, category)
 
-    # 7. Grad-CAM Visualization (CONFIG-DRIVEN)
+    # 7. Grad-CAM Visualization
     logger.info("Generating Grad-CAM visualizations...")
 
-    gradcam_layer = config.get("gradcam", {}).get("target_layer", "layer4")
+    gradcam_layer = config.get("gradcam", {}).get("target_layer", "layer3")
     gradcam = GradCAM(model, target_layer_name=gradcam_layer)
 
     eval_transform = get_eval_transform(config)
 
-    # Select samples
-    anomaly_indices = [i for i, l in enumerate(test_dataset.labels) if l == 1][:5]
-    normal_indices = [i for i, l in enumerate(test_dataset.labels) if l == 0][:2]
+    # Select samples for visualization
+    anomaly_indices = [
+        i for i, l in enumerate(test_dataset.labels) if l == 1
+    ][:5]
+    normal_indices = [
+        i for i, l in enumerate(test_dataset.labels) if l == 0
+    ][:2]
 
     vis_indices = normal_indices + anomaly_indices
-
-    from PIL import Image
-    import numpy as np
 
     for idx in vis_indices:
         img_path = test_dataset.get_image_path(idx)
@@ -114,16 +122,14 @@ def evaluate_category(config: dict, category: str, device: torch.device):
 
         input_tensor = eval_transform(original).unsqueeze(0).to(device)
 
-        # Generate heatmap
         heatmap = gradcam.generate(input_tensor, device)
 
-        # Safe score fetch
         score_val = float(scores[idx]) if idx < len(scores) else 0.0
         label_str = "Anomaly" if test_dataset.labels[idx] == 1 else "Normal"
 
         save_path = os.path.join(
             vis_dir,
-            f"{category}_{defect_type}_{idx}_gradcam.png"
+            f"{category}_{defect_type}_{idx}_gradcam.png",
         )
 
         gradcam.visualize(
@@ -142,16 +148,11 @@ def main():
     parser = argparse.ArgumentParser(description="Evaluate Anomaly Detection")
 
     parser.add_argument(
-        "--config",
-        type=str,
-        default="configs/config.yaml",
+        "--config", type=str, default="configs/config.yaml",
         help="Path to configuration file",
     )
-
     parser.add_argument(
-        "--category",
-        type=str,
-        default=None,
+        "--category", type=str, default=None,
         help="MVTec category to evaluate (optional)",
     )
 
@@ -168,7 +169,9 @@ def main():
     logger.info(f"Using device: {device}")
 
     # Categories
-    categories = [args.category] if args.category else config["dataset"]["categories"]
+    categories = (
+        [args.category] if args.category else config["dataset"]["categories"]
+    )
 
     # Evaluation Loop
     all_metrics = {}
@@ -182,22 +185,26 @@ def main():
     if all_metrics:
         results_dir = config["output"]["results_dir"]
 
-        logger.info(f"\n{'='*70}")
-        logger.info(f"{'Category':<15} {'AUROC':>8} {'F1':>8} {'Acc':>8} {'Prec':>8} {'Recall':>8}")
-        logger.info(f"{'-'*70}")
+        logger.info(f"\n{'=' * 78}")
+        logger.info(
+            f"{'Category':<15} {'AUROC':>8} {'AP':>8} {'F1':>8} "
+            f"{'Acc':>8} {'Prec':>8} {'Recall':>8}"
+        )
+        logger.info(f"{'-' * 78}")
 
         aurocs = []
 
         for cat, m in all_metrics.items():
             logger.info(
-                f"{cat:<15} {m['auroc']:>8.4f} {m['f1_score']:>8.4f} "
-                f"{m['accuracy']:>8.4f} {m['precision']:>8.4f} {m['recall']:>8.4f}"
+                f"{cat:<15} {m['auroc']:>8.4f} {m['average_precision']:>8.4f} "
+                f"{m['f1_score']:>8.4f} {m['accuracy']:>8.4f} "
+                f"{m['precision']:>8.4f} {m['recall']:>8.4f}"
             )
             aurocs.append(m["auroc"])
 
-        logger.info(f"{'-'*70}")
-        logger.info(f"{'MEAN':<15} {sum(aurocs)/len(aurocs):>8.4f}")
-        logger.info(f"{'='*70}")
+        logger.info(f"{'-' * 78}")
+        logger.info(f"{'MEAN':<15} {sum(aurocs) / len(aurocs):>8.4f}")
+        logger.info(f"{'=' * 78}")
 
         summary_path = os.path.join(results_dir, "all_categories_summary.json")
         with open(summary_path, "w") as f:
