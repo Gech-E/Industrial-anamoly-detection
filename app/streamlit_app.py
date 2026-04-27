@@ -363,7 +363,7 @@ def main():
 
         if uploaded_file is not None:
             image = Image.open(uploaded_file).convert("RGB")
-            st.image(image, caption="Uploaded Image", use_container_width=True)
+            st.image(image, caption="Uploaded Image", width="stretch")
 
     with col2:
         st.markdown("### 🔬 Detection Results")
@@ -457,7 +457,7 @@ def main():
             st.image(
                 result["original"],
                 caption="Original Image",
-                use_container_width=True,
+                width="stretch",
             )
 
         with v2:
@@ -479,7 +479,7 @@ def main():
                 st.image(
                     result["overlay"],
                     caption="Overlay Visualization",
-                    use_container_width=True,
+                    width="stretch",
                 )
             else:
                 st.info("No overlay available")
@@ -529,7 +529,7 @@ def main():
                         "Precision": "{:.4f}",
                         "Recall": "{:.4f}",
                     }),
-                    use_container_width=True,
+                    width="stretch",
                 )
 
                 # Mean AUROC highlight
@@ -551,7 +551,7 @@ def main():
                         with cols[i % 3]:
                             st.image(
                                 os.path.join(results_dir, rf),
-                                use_container_width=True,
+                                width="stretch",
                             )
         else:
             st.info(
