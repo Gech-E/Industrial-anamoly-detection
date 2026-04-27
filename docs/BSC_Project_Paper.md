@@ -382,7 +382,7 @@ BSC_PROJECT/
 │                     │  View 1   │  View 2                       │
 │                     └─────┬─────┘                               │
 │                           │                                     │
-│                    ResNet-18 Encoder (shared weights)            │
+│                    ResNet-50 Encoder (shared weights)            │
 │                           │                                     │
 │                   Projection Head (MLP)                         │
 │                           │                                     │

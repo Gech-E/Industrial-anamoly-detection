@@ -108,23 +108,23 @@ Or manually download [MVTec AD](https://www.mvtec.com/company/research/datasets/
 
 ```bash
 # Single category (PatchCore pipeline — default, recommended):
-python scripts/train.py --category bottle
+python scripts/train.py --category leather
 
 # All 15 categories:
 python scripts/train.py
 
 # With SimCLR contrastive training (optional, slower):
-python scripts/train.py --category bottle --train-simclr --epochs 50
+python scripts/train.py --category screw --train-simclr --epochs 50
 
 # Legacy global feature pipeline:
-python scripts/train.py --category bottle --no-patch
+python scripts/train.py --category screw --no-patch --epochs 50
 ```
 
 ### Evaluation
 
 ```bash
 # Single category:
-python scripts/evaluate.py --category bottle
+python scripts/evaluate.py --category cable
 
 # All categories with cross-category summary:
 python scripts/evaluate.py
