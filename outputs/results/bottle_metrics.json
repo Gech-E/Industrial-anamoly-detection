@@ -1,0 +1,88 @@
+{
+  "category": "bottle",
+  "auroc": 0.9857142857142857,
+  "average_precision": 0.9962891802290534,
+  "f1_score": 0.9838709677419355,
+  "accuracy": 0.9759036144578314,
+  "precision": 1.0,
+  "recall": 0.9682539682539683,
+  "threshold": 0.8306748270988464,
+  "threshold_method": "youden",
+  "f1_at_fixed_thresholds": {
+    "f1_at_p90": 0.25,
+    "f1_at_p95": 0.14705882352941177,
+    "f1_at_p97": 0.09090909090909091,
+    "f1_at_p99": 0.03125
+  },
+  "confusion_matrix": [
+    [
+      20,
+      0
+    ],
+    [
+      2,
+      61
+    ]
+  ],
+  "classification_report": {
+    "Normal": {
+      "precision": 0.9090909090909091,
+      "recall": 1.0,
+      "f1-score": 0.9523809523809523,
+      "support": 20.0
+    },
+    "Anomaly": {
+      "precision": 1.0,
+      "recall": 0.9682539682539683,
+      "f1-score": 0.9838709677419355,
+      "support": 63.0
+    },
+    "accuracy": 0.9759036144578314,
+    "macro avg": {
+      "precision": 0.9545454545454546,
+      "recall": 0.9841269841269842,
+      "f1-score": 0.9681259600614439,
+      "support": 83.0
+    },
+    "weighted avg": {
+      "precision": 0.9780941949616649,
+      "recall": 0.9759036144578314,
+      "f1-score": 0.9762830122332649,
+      "support": 83.0
+    }
+  },
+  "num_normal": 20,
+  "num_anomaly": 63,
+  "total_samples": 83,
+  "score_stats": {
+    "min": 0.7537134289741516,
+    "max": 1.16132390499115,
+    "mean": 0.9561325311660767,
+    "std": 0.12384913116693497,
+    "normal_mean": 0.7785497903823853,
+    "normal_std": 0.013191224075853825,
+    "anomaly_mean": 1.0125079154968262,
+    "anomaly_std": 0.08344615250825882
+  },
+  "plots": {
+    "roc_curve": "outputs/results\\bottle_roc_curve.png",
+    "pr_curve": "outputs/results\\bottle_pr_curve.png",
+    "f1_threshold": "outputs/results\\bottle_f1_threshold.png",
+    "confusion_matrix": "outputs/results\\bottle_confusion_matrix.png",
+    "score_distribution": "outputs/results\\bottle_score_distribution.png"
+  },
+  "calibration": {
+    "method": "percentile",
+    "temperature": 1.0,
+    "score_min": 0.769297468662262,
+    "score_max": 1.1112212538719177,
+    "score_mean": 0.9561325081859726,
+    "score_std": 0.12384914221993346,
+    "threshold": 0.8955288731153049,
+    "normal_mean": 0.7785497635602951,
+    "normal_std": 0.013191234714925705,
+    "anomaly_mean": 1.0125079826703147,
+    "anomaly_std": 0.08344616268313583,
+    "fitted": true
+  }
+}

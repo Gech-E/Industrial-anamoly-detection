@@ -1,0 +1,88 @@
+{
+  "category": "transistor",
+  "auroc": 0.995,
+  "average_precision": 0.9927658313750913,
+  "f1_score": 0.963855421686747,
+  "accuracy": 0.97,
+  "precision": 0.9302325581395349,
+  "recall": 1.0,
+  "threshold": 0.8956841230392456,
+  "threshold_method": "youden",
+  "f1_at_fixed_thresholds": {
+    "f1_at_p90": 0.4,
+    "f1_at_p95": 0.2222222222222222,
+    "f1_at_p97": 0.13953488372093023,
+    "f1_at_p99": 0.04878048780487805
+  },
+  "confusion_matrix": [
+    [
+      57,
+      3
+    ],
+    [
+      0,
+      40
+    ]
+  ],
+  "classification_report": {
+    "Normal": {
+      "precision": 1.0,
+      "recall": 0.95,
+      "f1-score": 0.9743589743589743,
+      "support": 60.0
+    },
+    "Anomaly": {
+      "precision": 0.9302325581395349,
+      "recall": 1.0,
+      "f1-score": 0.963855421686747,
+      "support": 40.0
+    },
+    "accuracy": 0.97,
+    "macro avg": {
+      "precision": 0.9651162790697674,
+      "recall": 0.975,
+      "f1-score": 0.9691071980228607,
+      "support": 100.0
+    },
+    "weighted avg": {
+      "precision": 0.972093023255814,
+      "recall": 0.97,
+      "f1-score": 0.9701575532900832,
+      "support": 100.0
+    }
+  },
+  "num_normal": 60,
+  "num_anomaly": 40,
+  "total_samples": 100,
+  "score_stats": {
+    "min": 0.724532425403595,
+    "max": 1.0965203046798706,
+    "mean": 0.8867178559303284,
+    "std": 0.09188626706600189,
+    "normal_mean": 0.8234226107597351,
+    "normal_std": 0.048071496188640594,
+    "anomaly_mean": 0.9816605448722839,
+    "anomaly_std": 0.05116519704461098
+  },
+  "plots": {
+    "roc_curve": "outputs/results\\transistor_roc_curve.png",
+    "pr_curve": "outputs/results\\transistor_pr_curve.png",
+    "f1_threshold": "outputs/results\\transistor_f1_threshold.png",
+    "confusion_matrix": "outputs/results\\transistor_confusion_matrix.png",
+    "score_distribution": "outputs/results\\transistor_score_distribution.png"
+  },
+  "calibration": {
+    "method": "percentile",
+    "temperature": 1.0,
+    "score_min": 0.7638149976730346,
+    "score_max": 1.036919856071472,
+    "score_mean": 0.8867178219556808,
+    "score_std": 0.09188627594935594,
+    "threshold": 0.902541609108448,
+    "normal_mean": 0.8234226733446122,
+    "normal_std": 0.048071505771929625,
+    "anomaly_mean": 0.9816605448722839,
+    "anomaly_std": 0.051165205448651135,
+    "fitted": true
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "category": "metal_nut",
+  "auroc": 0.9956011730205279,
+  "average_precision": 0.9990512333965844,
+  "f1_score": 0.9945945945945946,
+  "accuracy": 0.991304347826087,
+  "precision": 1.0,
+  "recall": 0.989247311827957,
+  "threshold": 0.8892578482627869,
+  "threshold_method": "youden",
+  "f1_at_fixed_thresholds": {
+    "f1_at_p90": 0.22857142857142856,
+    "f1_at_p95": 0.12121212121212122,
+    "f1_at_p97": 0.08247422680412371,
+    "f1_at_p99": 0.042105263157894736
+  },
+  "confusion_matrix": [
+    [
+      22,
+      0
+    ],
+    [
+      1,
+      92
+    ]
+  ],
+  "classification_report": {
+    "Normal": {
+      "precision": 0.9565217391304348,
+      "recall": 1.0,
+      "f1-score": 0.9777777777777777,
+      "support": 22.0
+    },
+    "Anomaly": {
+      "precision": 1.0,
+      "recall": 0.989247311827957,
+      "f1-score": 0.9945945945945946,
+      "support": 93.0
+    },
+    "accuracy": 0.991304347826087,
+    "macro avg": {
+      "precision": 0.9782608695652174,
+      "recall": 0.9946236559139785,
+      "f1-score": 0.9861861861861863,
+      "support": 115.0
+    },
+    "weighted avg": {
+      "precision": 0.9916824196597354,
+      "recall": 0.991304347826087,
+      "f1-score": 0.9913774644209428,
+      "support": 115.0
+    }
+  },
+  "num_normal": 22,
+  "num_anomaly": 93,
+  "total_samples": 115,
+  "score_stats": {
+    "min": 0.8055862784385681,
+    "max": 1.1184619665145874,
+    "mean": 0.9721918702125549,
+    "std": 0.0754036158323288,
+    "normal_mean": 0.852795422077179,
+    "normal_std": 0.020278286188840866,
+    "anomaly_mean": 1.0004363059997559,
+    "anomaly_std": 0.052568219602108
+  },
+  "plots": {
+    "roc_curve": "outputs/results\\metal_nut_roc_curve.png",
+    "pr_curve": "outputs/results\\metal_nut_pr_curve.png",
+    "f1_threshold": "outputs/results\\metal_nut_f1_threshold.png",
+    "confusion_matrix": "outputs/results\\metal_nut_confusion_matrix.png",
+    "score_distribution": "outputs/results\\metal_nut_score_distribution.png"
+  },
+  "calibration": {
+    "method": "percentile",
+    "temperature": 1.0,
+    "score_min": 0.8442188024520874,
+    "score_max": 1.0768415093421935,
+    "score_mean": 0.9721918774687726,
+    "score_std": 0.07540362138589166,
+    "threshold": 0.9266157925478524,
+    "normal_mean": 0.8527953733097423,
+    "normal_std": 0.020278295923675815,
+    "anomaly_mean": 1.0004362117859624,
+    "anomaly_std": 0.05256822836373916,
+    "fitted": true
+  }
+}

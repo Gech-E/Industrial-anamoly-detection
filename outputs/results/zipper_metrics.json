@@ -1,0 +1,88 @@
+{
+  "category": "zipper",
+  "auroc": 0.8553046218487396,
+  "average_precision": 0.9647339370086174,
+  "f1_score": 0.8807339449541285,
+  "accuracy": 0.8278145695364238,
+  "precision": 0.9696969696969697,
+  "recall": 0.8067226890756303,
+  "threshold": 0.8639315366744995,
+  "threshold_method": "youden",
+  "f1_at_fixed_thresholds": {
+    "f1_at_p90": 0.23703703703703705,
+    "f1_at_p95": 0.12598425196850394,
+    "f1_at_p97": 0.08064516129032258,
+    "f1_at_p99": 0.03305785123966942
+  },
+  "confusion_matrix": [
+    [
+      29,
+      3
+    ],
+    [
+      23,
+      96
+    ]
+  ],
+  "classification_report": {
+    "Normal": {
+      "precision": 0.5576923076923077,
+      "recall": 0.90625,
+      "f1-score": 0.6904761904761905,
+      "support": 32.0
+    },
+    "Anomaly": {
+      "precision": 0.9696969696969697,
+      "recall": 0.8067226890756303,
+      "f1-score": 0.8807339449541285,
+      "support": 119.0
+    },
+    "accuracy": 0.8278145695364238,
+    "macro avg": {
+      "precision": 0.7636946386946387,
+      "recall": 0.8564863445378151,
+      "f1-score": 0.7856050677151595,
+      "support": 151.0
+    },
+    "weighted avg": {
+      "precision": 0.8823847234443262,
+      "recall": 0.8278145695364238,
+      "f1-score": 0.8404144208263535,
+      "support": 151.0
+    }
+  },
+  "num_normal": 32,
+  "num_anomaly": 119,
+  "total_samples": 151,
+  "score_stats": {
+    "min": 0.8342677354812622,
+    "max": 1.138485074043274,
+    "mean": 0.9301099181175232,
+    "std": 0.07627640664577484,
+    "normal_mean": 0.8562889695167542,
+    "normal_std": 0.011601142585277557,
+    "anomaly_mean": 0.9499608874320984,
+    "anomaly_std": 0.0740739181637764
+  },
+  "plots": {
+    "roc_curve": "outputs/results\\zipper_roc_curve.png",
+    "pr_curve": "outputs/results\\zipper_pr_curve.png",
+    "f1_threshold": "outputs/results\\zipper_f1_threshold.png",
+    "confusion_matrix": "outputs/results\\zipper_confusion_matrix.png",
+    "score_distribution": "outputs/results\\zipper_score_distribution.png"
+  },
+  "calibration": {
+    "method": "percentile",
+    "temperature": 1.0,
+    "score_min": 0.8450648784637451,
+    "score_max": 1.054471731185913,
+    "score_mean": 0.9301099295647729,
+    "score_std": 0.07627641891788556,
+    "threshold": 0.9031249703917683,
+    "normal_mean": 0.8562890067696571,
+    "normal_std": 0.011601153027346827,
+    "anomaly_mean": 0.9499609340138796,
+    "anomaly_std": 0.0740739320859401,
+    "fitted": true
+  }
+}

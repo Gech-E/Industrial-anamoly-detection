@@ -1,0 +1,88 @@
+{
+  "category": "grid",
+  "auroc": 1.0,
+  "average_precision": 1.0000000000000002,
+  "f1_score": 1.0,
+  "accuracy": 1.0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "threshold": 0.8239609599113464,
+  "threshold_method": "youden",
+  "f1_at_fixed_thresholds": {
+    "f1_at_p90": 0.24615384615384617,
+    "f1_at_p95": 0.13114754098360656,
+    "f1_at_p97": 0.1,
+    "f1_at_p99": 0.034482758620689655
+  },
+  "confusion_matrix": [
+    [
+      21,
+      0
+    ],
+    [
+      0,
+      57
+    ]
+  ],
+  "classification_report": {
+    "Normal": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 21.0
+    },
+    "Anomaly": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 57.0
+    },
+    "accuracy": 1.0,
+    "macro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 78.0
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 78.0
+    }
+  },
+  "num_normal": 21,
+  "num_anomaly": 57,
+  "total_samples": 78,
+  "score_stats": {
+    "min": 0.7471143007278442,
+    "max": 1.159109354019165,
+    "mean": 0.968809962272644,
+    "std": 0.12712764739990234,
+    "normal_mean": 0.7800557017326355,
+    "normal_std": 0.018944967538118362,
+    "anomaly_mean": 1.0383511781692505,
+    "anomaly_std": 0.06341353803873062
+  },
+  "plots": {
+    "roc_curve": "outputs/results\\grid_roc_curve.png",
+    "pr_curve": "outputs/results\\grid_pr_curve.png",
+    "f1_threshold": "outputs/results\\grid_f1_threshold.png",
+    "confusion_matrix": "outputs/results\\grid_confusion_matrix.png",
+    "score_distribution": "outputs/results\\grid_score_distribution.png"
+  },
+  "calibration": {
+    "method": "percentile",
+    "temperature": 1.0,
+    "score_min": 0.763937845826149,
+    "score_max": 1.1140043318271635,
+    "score_mean": 0.9688101143409045,
+    "score_std": 0.12712764977873628,
+    "threshold": 0.9092034756539759,
+    "normal_mean": 0.7800557584989638,
+    "normal_std": 0.018944977994881942,
+    "anomaly_mean": 1.038351192808988,
+    "anomaly_std": 0.0634135465598436,
+    "fitted": true
+  }
+}

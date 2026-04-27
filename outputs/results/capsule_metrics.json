@@ -1,0 +1,88 @@
+{
+  "category": "capsule",
+  "auroc": 0.8723573992820105,
+  "average_precision": 0.9630112417386818,
+  "f1_score": 0.9345794392523364,
+  "accuracy": 0.8939393939393939,
+  "precision": 0.9523809523809523,
+  "recall": 0.9174311926605505,
+  "threshold": 0.7113566994667053,
+  "threshold_method": "youden",
+  "f1_at_fixed_thresholds": {
+    "f1_at_p90": 0.22764227642276422,
+    "f1_at_p95": 0.1206896551724138,
+    "f1_at_p97": 0.07079646017699115,
+    "f1_at_p99": 0.036036036036036036
+  },
+  "confusion_matrix": [
+    [
+      18,
+      5
+    ],
+    [
+      9,
+      100
+    ]
+  ],
+  "classification_report": {
+    "Normal": {
+      "precision": 0.6666666666666666,
+      "recall": 0.782608695652174,
+      "f1-score": 0.72,
+      "support": 23.0
+    },
+    "Anomaly": {
+      "precision": 0.9523809523809523,
+      "recall": 0.9174311926605505,
+      "f1-score": 0.9345794392523364,
+      "support": 109.0
+    },
+    "accuracy": 0.8939393939393939,
+    "macro avg": {
+      "precision": 0.8095238095238095,
+      "recall": 0.8500199441563623,
+      "f1-score": 0.8272897196261682,
+      "support": 132.0
+    },
+    "weighted avg": {
+      "precision": 0.9025974025974026,
+      "recall": 0.8939393939393939,
+      "f1-score": 0.8971905975644294,
+      "support": 132.0
+    }
+  },
+  "num_normal": 23,
+  "num_anomaly": 109,
+  "total_samples": 132,
+  "score_stats": {
+    "min": 0.6859946250915527,
+    "max": 1.0439647436141968,
+    "mean": 0.7868353128433228,
+    "std": 0.0772927775979042,
+    "normal_mean": 0.714043915271759,
+    "normal_std": 0.0460563600063324,
+    "anomaly_mean": 0.8021950721740723,
+    "anomaly_std": 0.0737103670835495
+  },
+  "plots": {
+    "roc_curve": "outputs/results\\capsule_roc_curve.png",
+    "pr_curve": "outputs/results\\capsule_pr_curve.png",
+    "f1_threshold": "outputs/results\\capsule_f1_threshold.png",
+    "confusion_matrix": "outputs/results\\capsule_confusion_matrix.png",
+    "score_distribution": "outputs/results\\capsule_score_distribution.png"
+  },
+  "calibration": {
+    "method": "percentile",
+    "temperature": 1.0,
+    "score_min": 0.689150932431221,
+    "score_max": 0.9260695993900299,
+    "score_mean": 0.7868353029092153,
+    "score_std": 0.07729279257054245,
+    "threshold": 0.7581194139449398,
+    "normal_mean": 0.7140438634416332,
+    "normal_std": 0.046056370988513534,
+    "anomaly_mean": 0.8021949644482463,
+    "anomaly_std": 0.07371037917954733,
+    "fitted": true
+  }
+}

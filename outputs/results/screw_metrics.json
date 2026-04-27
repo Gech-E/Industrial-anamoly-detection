@@ -1,0 +1,88 @@
+{
+  "category": "screw",
+  "auroc": 0.5908997745439639,
+  "average_precision": 0.7735214735859612,
+  "f1_score": 0.777292576419214,
+  "accuracy": 0.68125,
+  "precision": 0.8090909090909091,
+  "recall": 0.7478991596638656,
+  "threshold": 0.9185239672660828,
+  "threshold_method": "youden",
+  "f1_at_fixed_thresholds": {
+    "f1_at_p90": 0.1925925925925926,
+    "f1_at_p95": 0.09448818897637795,
+    "f1_at_p97": 0.04838709677419355,
+    "f1_at_p99": 0.01652892561983471
+  },
+  "confusion_matrix": [
+    [
+      20,
+      21
+    ],
+    [
+      30,
+      89
+    ]
+  ],
+  "classification_report": {
+    "Normal": {
+      "precision": 0.4,
+      "recall": 0.4878048780487805,
+      "f1-score": 0.43956043956043955,
+      "support": 41.0
+    },
+    "Anomaly": {
+      "precision": 0.8090909090909091,
+      "recall": 0.7478991596638656,
+      "f1-score": 0.777292576419214,
+      "support": 119.0
+    },
+    "accuracy": 0.68125,
+    "macro avg": {
+      "precision": 0.6045454545454545,
+      "recall": 0.617852018856323,
+      "f1-score": 0.6084265079898268,
+      "support": 160.0
+    },
+    "weighted avg": {
+      "precision": 0.7042613636363637,
+      "recall": 0.68125,
+      "f1-score": 0.6907487163491531,
+      "support": 160.0
+    }
+  },
+  "num_normal": 41,
+  "num_anomaly": 119,
+  "total_samples": 160,
+  "score_stats": {
+    "min": 0.8938670754432678,
+    "max": 1.0826977491378784,
+    "mean": 0.9339349865913391,
+    "std": 0.027476662769913673,
+    "normal_mean": 0.9314059615135193,
+    "normal_std": 0.03455403447151184,
+    "anomaly_mean": 0.9348062872886658,
+    "anomaly_std": 0.02451014332473278
+  },
+  "plots": {
+    "roc_curve": "outputs/results\\screw_roc_curve.png",
+    "pr_curve": "outputs/results\\screw_pr_curve.png",
+    "f1_threshold": "outputs/results\\screw_f1_threshold.png",
+    "confusion_matrix": "outputs/results\\screw_confusion_matrix.png",
+    "score_distribution": "outputs/results\\screw_score_distribution.png"
+  },
+  "calibration": {
+    "method": "percentile",
+    "temperature": 1.0,
+    "score_min": 0.9000230669975281,
+    "score_max": 0.9739612102508545,
+    "score_mean": 0.9339350000023842,
+    "score_std": 0.02747667285029118,
+    "threshold": 0.9331061602200756,
+    "normal_mean": 0.9314059760512375,
+    "normal_std": 0.03455404303981827,
+    "anomaly_mean": 0.9348063443889137,
+    "anomaly_std": 0.024510153144459174,
+    "fitted": true
+  }
+}

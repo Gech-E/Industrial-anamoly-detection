@@ -1,0 +1,88 @@
+{
+  "category": "cable",
+  "auroc": 0.9928785607196402,
+  "average_precision": 0.9956111748575052,
+  "f1_score": 0.978494623655914,
+  "accuracy": 0.9733333333333334,
+  "precision": 0.9680851063829787,
+  "recall": 0.9891304347826086,
+  "threshold": 0.9554961323738098,
+  "threshold_method": "youden",
+  "f1_at_fixed_thresholds": {
+    "f1_at_p90": 0.2803738317757009,
+    "f1_at_p95": 0.16,
+    "f1_at_p97": 0.10309278350515463,
+    "f1_at_p99": 0.0425531914893617
+  },
+  "confusion_matrix": [
+    [
+      55,
+      3
+    ],
+    [
+      1,
+      91
+    ]
+  ],
+  "classification_report": {
+    "Normal": {
+      "precision": 0.9821428571428571,
+      "recall": 0.9482758620689655,
+      "f1-score": 0.9649122807017544,
+      "support": 58.0
+    },
+    "Anomaly": {
+      "precision": 0.9680851063829787,
+      "recall": 0.9891304347826086,
+      "f1-score": 0.978494623655914,
+      "support": 92.0
+    },
+    "accuracy": 0.9733333333333334,
+    "macro avg": {
+      "precision": 0.975113981762918,
+      "recall": 0.9687031484257871,
+      "f1-score": 0.9717034521788341,
+      "support": 150.0
+    },
+    "weighted avg": {
+      "precision": 0.9735207700101317,
+      "recall": 0.9733333333333334,
+      "f1-score": 0.9732427843803056,
+      "support": 150.0
+    }
+  },
+  "num_normal": 58,
+  "num_anomaly": 92,
+  "total_samples": 150,
+  "score_stats": {
+    "min": 0.8607555031776428,
+    "max": 1.1518819332122803,
+    "mean": 0.9944712519645691,
+    "std": 0.08569342643022537,
+    "normal_mean": 0.9037433862686157,
+    "normal_std": 0.02533533237874508,
+    "anomaly_mean": 1.0516692399978638,
+    "anomaly_std": 0.055741894990205765
+  },
+  "plots": {
+    "roc_curve": "outputs/results\\cable_roc_curve.png",
+    "pr_curve": "outputs/results\\cable_pr_curve.png",
+    "f1_threshold": "outputs/results\\cable_f1_threshold.png",
+    "confusion_matrix": "outputs/results\\cable_confusion_matrix.png",
+    "score_distribution": "outputs/results\\cable_score_distribution.png"
+  },
+  "calibration": {
+    "method": "percentile",
+    "temperature": 1.0,
+    "score_min": 0.8779675364494324,
+    "score_max": 1.127075445652008,
+    "score_mean": 0.99447119474411,
+    "score_std": 0.08569343502615236,
+    "threshold": 0.9777062741824534,
+    "normal_mean": 0.9037433893516146,
+    "normal_std": 0.025335342238481176,
+    "anomaly_mean": 1.051669159013292,
+    "anomaly_std": 0.055741904788950816,
+    "fitted": true
+  }
+}

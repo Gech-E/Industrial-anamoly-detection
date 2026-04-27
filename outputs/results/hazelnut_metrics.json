@@ -1,0 +1,88 @@
+{
+  "category": "hazelnut",
+  "auroc": 0.8510714285714285,
+  "average_precision": 0.8543795555867085,
+  "f1_score": 0.896551724137931,
+  "accuracy": 0.8636363636363636,
+  "precision": 0.8666666666666667,
+  "recall": 0.9285714285714286,
+  "threshold": 0.9304896593093872,
+  "threshold_method": "youden",
+  "f1_at_fixed_thresholds": {
+    "f1_at_p90": 0.2222222222222222,
+    "f1_at_p95": 0.13157894736842105,
+    "f1_at_p97": 0.08108108108108109,
+    "f1_at_p99": 0.05555555555555555
+  },
+  "confusion_matrix": [
+    [
+      30,
+      10
+    ],
+    [
+      5,
+      65
+    ]
+  ],
+  "classification_report": {
+    "Normal": {
+      "precision": 0.8571428571428571,
+      "recall": 0.75,
+      "f1-score": 0.8,
+      "support": 40.0
+    },
+    "Anomaly": {
+      "precision": 0.8666666666666667,
+      "recall": 0.9285714285714286,
+      "f1-score": 0.896551724137931,
+      "support": 70.0
+    },
+    "accuracy": 0.8636363636363636,
+    "macro avg": {
+      "precision": 0.861904761904762,
+      "recall": 0.8392857142857143,
+      "f1-score": 0.8482758620689655,
+      "support": 110.0
+    },
+    "weighted avg": {
+      "precision": 0.8632034632034633,
+      "recall": 0.8636363636363636,
+      "f1-score": 0.8614420062695924,
+      "support": 110.0
+    }
+  },
+  "num_normal": 40,
+  "num_anomaly": 70,
+  "total_samples": 110,
+  "score_stats": {
+    "min": 0.822138786315918,
+    "max": 1.0652004480361938,
+    "mean": 0.9429960250854492,
+    "std": 0.055728934705257416,
+    "normal_mean": 0.8967949151992798,
+    "normal_std": 0.056803856045007706,
+    "anomaly_mean": 0.9693966507911682,
+    "anomaly_std": 0.0334642194211483
+  },
+  "plots": {
+    "roc_curve": "outputs/results\\hazelnut_roc_curve.png",
+    "pr_curve": "outputs/results\\hazelnut_pr_curve.png",
+    "f1_threshold": "outputs/results\\hazelnut_f1_threshold.png",
+    "confusion_matrix": "outputs/results\\hazelnut_confusion_matrix.png",
+    "score_distribution": "outputs/results\\hazelnut_score_distribution.png"
+  },
+  "calibration": {
+    "method": "percentile",
+    "temperature": 1.0,
+    "score_min": 0.8398993194103241,
+    "score_max": 1.0314288854598999,
+    "score_mean": 0.9429960592226548,
+    "score_std": 0.05572894390002886,
+    "threshold": 0.9330958070499555,
+    "normal_mean": 0.8967948824167251,
+    "normal_std": 0.05680386697182874,
+    "anomaly_mean": 0.9693967316831861,
+    "anomaly_std": 0.03346423107453798,
+    "fitted": true
+  }
+}
