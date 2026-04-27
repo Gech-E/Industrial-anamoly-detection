@@ -1,0 +1,21 @@
+2026-03-29 09:07:07 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260329_090707.log
+2026-03-29 09:07:07 | INFO     | root | Using CPU
+2026-03-29 09:07:07 | INFO     | __main__ | Using device: cpu
+2026-03-29 09:07:07 | INFO     | __main__ | 
+============================================================
+2026-03-29 09:07:07 | INFO     | __main__ | Processing category: bottle
+2026-03-29 09:07:07 | INFO     | __main__ | ============================================================
+2026-03-29 09:07:07 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-29 09:07:07 | INFO     | src.models.simclr | Projection head: 2048 -> 256 -> 128
+2026-03-29 09:07:07 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-03-29 09:07:07 | INFO     | __main__ | Model parameters: 24.07M total, 24.07M trainable
+2026-03-29 09:07:07 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained features)
+2026-03-29 09:07:07 | INFO     | __main__ | Using multi-layer extraction for high-quality representations
+2026-03-29 09:07:07 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\bottle_best.pt
+2026-03-29 09:07:07 | INFO     | __main__ | Building feature memory bank from normal training images...
+2026-03-29 09:07:07 | WARNING  | src.training.dataset | Skipping corrupt image: Data/mvtec_ad\bottle\train\good\011.png (broken PNG file (bad header checksum in b'IDAT'))
+2026-03-29 09:07:07 | WARNING  | src.training.dataset | Skipped 1 corrupt image(s) in Data/mvtec_ad\bottle\train
+2026-03-29 09:07:07 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=train, samples=208, normal=208, anomaly=0
+2026-03-29 09:07:07 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-03-29 09:07:31 | INFO     | src.memory.memory_bank | Feature extraction: 208 samples, dim=3584, time=23.2s
+2026-03-29 09:07:31 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 256 dims

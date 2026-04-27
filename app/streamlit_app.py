@@ -107,23 +107,53 @@ def load_pipeline(config_path, category):
     )
 
     checkpoint_path = os.path.join(checkpoint_dir, f"{category}_best.pt")
-    if not os.path.exists(checkpoint_path):
-        return None, None, None, None, None, None, config, device, False
+    meta_path = os.path.join(checkpoint_dir, f"{category}_meta.pt")
 
-    # Load model
-    checkpoint = torch.load(
-        checkpoint_path, map_location=device, weights_only=False
-    )
-    state_dict = checkpoint.get("model_state_dict", {})
-    is_resnet50 = any("conv3" in key for key in state_dict.keys())
+    # Determine if we have a checkpoint or can reconstruct from pretrained
+    has_checkpoint = os.path.exists(checkpoint_path)
+    has_meta = os.path.exists(meta_path)
+
+    if not has_checkpoint and not has_meta:
+        # No model artifacts at all
+        return None, None, None, None, None, None, config, device, False
 
     if "model" not in config:
         config["model"] = {}
-    config["model"]["backbone"] = "resnet50" if is_resnet50 else "resnet18"
-    config["model"]["feature_dim"] = 2048 if is_resnet50 else 512
 
-    model = SimCLRModel(config)
-    model.load_state_dict(state_dict)
+    if has_checkpoint:
+        # Full checkpoint available (local development)
+        checkpoint = torch.load(
+            checkpoint_path, map_location=device, weights_only=False
+        )
+        state_dict = checkpoint.get("model_state_dict", {})
+        is_resnet50 = any("conv3" in key for key in state_dict.keys())
+
+        config["model"]["backbone"] = "resnet50" if is_resnet50 else "resnet18"
+        config["model"]["feature_dim"] = 2048 if is_resnet50 else 512
+
+        model = SimCLRModel(config)
+        model.load_state_dict(state_dict)
+    else:
+        # No checkpoint but meta exists — reconstruct from pretrained weights.
+        # This works because feature_extraction_only mode uses frozen ImageNet
+        # backbone weights, so we can recreate the identical model.
+        meta = torch.load(meta_path, map_location="cpu", weights_only=False)
+        backbone = "resnet50"  # default
+        if isinstance(meta, dict):
+            # Detect backbone from meta or config
+            if meta.get("patch_feature_dim") == 128:
+                backbone = "resnet50"
+            feature_layers = meta.get("feature_layers", ["layer2", "layer3", "layer4"])
+            patch_layers = meta.get("patch_layers", ["layer2", "layer3"])
+            config["model"]["feature_layers"] = feature_layers
+            config["model"]["patch_layers"] = patch_layers
+
+        config["model"]["backbone"] = backbone
+        config["model"]["pretrained"] = True
+        config["model"]["feature_dim"] = 2048 if backbone == "resnet50" else 512
+
+        model = SimCLRModel(config)
+
     model = model.to(device)
     model.eval()
 
@@ -322,9 +352,12 @@ def main():
             "checkpoints_dir", "outputs/checkpoints"
         )
         checkpoint_path = os.path.join(checkpoint_dir, f"{category}_best.pt")
+        meta_path = os.path.join(checkpoint_dir, f"{category}_meta.pt")
         patch_bank_path = os.path.join(checkpoint_dir, f"{category}_patch_bank.pt")
 
-        if os.path.exists(checkpoint_path):
+        has_model = os.path.exists(checkpoint_path) or os.path.exists(meta_path)
+
+        if has_model:
             st.success(f"✅ Model loaded for **{category}**")
             if os.path.exists(patch_bank_path):
                 st.info("🧩 PatchCore pipeline active")

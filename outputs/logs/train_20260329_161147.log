@@ -1,0 +1,57 @@
+2026-03-29 16:11:47 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260329_161147.log
+2026-03-29 16:11:47 | INFO     | root | Using CPU
+2026-03-29 16:11:47 | INFO     | __main__ | Using device: cpu
+2026-03-29 16:11:47 | INFO     | __main__ | 
+============================================================
+2026-03-29 16:11:47 | INFO     | __main__ | Evaluating category: cable
+2026-03-29 16:11:47 | INFO     | __main__ | ============================================================
+2026-03-29 16:11:48 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-29 16:11:48 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-03-29 16:11:48 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-03-29 16:11:48 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-03-29 16:11:49 | INFO     | root | Checkpoint loaded: outputs/checkpoints\cable_best.pt (epoch 49, loss 0.1133)
+2026-03-29 16:11:49 | INFO     | __main__ | Using PatchCore pipeline
+2026-03-29 16:11:49 | INFO     | src.memory.memory_bank | Patch PCA transform restored: 1536 -> 256
+2026-03-29 16:11:49 | INFO     | src.memory.memory_bank | Patch memory bank loaded: 5000 patches, dim=256, patch_shape=(28, 28)
+2026-03-29 16:11:49 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=3, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-03-29 16:11:49 | INFO     | faiss.loader | Loading faiss with AVX2 support.
+2026-03-29 16:11:49 | INFO     | faiss.loader | Successfully loaded faiss with AVX2 support.
+2026-03-29 16:11:49 | INFO     | src.memory.memory_bank | Faiss index built with 5000 patches
+2026-03-29 16:11:49 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 5000 patches
+2026-03-29 16:11:50 | INFO     | src.training.dataset | MVTecDataset: category=cable, split=test, samples=150, normal=58, anomaly=92
+2026-03-29 16:11:50 | INFO     | __main__ | Test samples: 150
+2026-03-29 16:12:30 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=minmax_sigmoid
+2026-03-29 16:12:30 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.9208, max=1.1011, threshold=0.9960, method=minmax_sigmoid
+2026-03-29 16:12:30 | INFO     | src.evaluation.evaluator | [cable] AUROC: 0.9593 | AP: 0.9773 | F1: 0.9006 | Acc: 0.8867 | Precision: 0.9747 | Recall: 0.8370 | Threshold: 0.9912 (youden)
+2026-03-29 16:12:30 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\cable_roc_curve.png
+2026-03-29 16:12:30 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\cable_pr_curve.png
+2026-03-29 16:12:31 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\cable_metrics.json
+2026-03-29 16:12:31 | INFO     | __main__ | Generating anomaly heatmap visualizations...
+2026-03-29 16:12:32 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\cable_good_60_heatmap.png
+2026-03-29 16:12:33 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\cable_good_61_heatmap.png
+2026-03-29 16:12:34 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\cable_bent_wire_0_heatmap.png
+2026-03-29 16:12:34 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\cable_bent_wire_1_heatmap.png
+2026-03-29 16:12:35 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\cable_bent_wire_2_heatmap.png
+2026-03-29 16:12:36 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\cable_bent_wire_3_heatmap.png
+2026-03-29 16:12:37 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\cable_bent_wire_4_heatmap.png
+2026-03-29 16:12:37 | INFO     | __main__ | Evaluation complete for cable
+2026-03-29 16:12:37 | INFO     | src.evaluation.evaluator | 
+==============================================================================
+2026-03-29 16:12:37 | INFO     | src.evaluation.evaluator | Cross-Category Summary (mean +/- std)
+2026-03-29 16:12:37 | INFO     | src.evaluation.evaluator | ==============================================================================
+2026-03-29 16:12:37 | INFO     | src.evaluation.evaluator |   auroc               : 0.9593 +/- 0.0000 (min=0.9593, max=0.9593)
+2026-03-29 16:12:37 | INFO     | src.evaluation.evaluator |   average_precision   : 0.9773 +/- 0.0000 (min=0.9773, max=0.9773)
+2026-03-29 16:12:37 | INFO     | src.evaluation.evaluator |   f1_score            : 0.9006 +/- 0.0000 (min=0.9006, max=0.9006)
+2026-03-29 16:12:37 | INFO     | src.evaluation.evaluator |   accuracy            : 0.8867 +/- 0.0000 (min=0.8867, max=0.8867)
+2026-03-29 16:12:37 | INFO     | src.evaluation.evaluator |   precision           : 0.9747 +/- 0.0000 (min=0.9747, max=0.9747)
+2026-03-29 16:12:37 | INFO     | src.evaluation.evaluator |   recall              : 0.8370 +/- 0.0000 (min=0.8370, max=0.8370)
+2026-03-29 16:12:37 | INFO     | src.evaluation.evaluator | ==============================================================================
+2026-03-29 16:12:37 | INFO     | __main__ | 
+==============================================================================
+2026-03-29 16:12:37 | INFO     | __main__ | Category           AUROC       AP       F1      Acc     Prec   Recall
+2026-03-29 16:12:37 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-03-29 16:12:37 | INFO     | __main__ | cable             0.9593   0.9773   0.9006   0.8867   0.9747   0.8370
+2026-03-29 16:12:37 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-03-29 16:12:37 | INFO     | __main__ | MEAN...........   0.9593 +/- 0.0000
+2026-03-29 16:12:37 | INFO     | __main__ | ==============================================================================
+2026-03-29 16:12:37 | INFO     | __main__ | Summary saved: outputs/results\all_categories_summary.json

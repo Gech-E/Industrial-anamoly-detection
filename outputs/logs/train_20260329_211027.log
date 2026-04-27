@@ -1,0 +1,58 @@
+2026-03-29 21:10:27 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260329_211027.log
+2026-03-29 21:10:27 | INFO     | root | Using CPU
+2026-03-29 21:10:27 | INFO     | __main__ | Using device: cpu
+2026-03-29 21:10:27 | INFO     | __main__ | 
+============================================================
+2026-03-29 21:10:27 | INFO     | __main__ | Evaluating category: leather
+2026-03-29 21:10:27 | INFO     | __main__ | ============================================================
+2026-03-29 21:10:28 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-29 21:10:28 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-03-29 21:10:28 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-03-29 21:10:28 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-03-29 21:10:29 | INFO     | root | Checkpoint loaded: outputs/checkpoints\leather_best.pt (epoch 18, loss 4.1255)
+2026-03-29 21:10:29 | INFO     | __main__ | Using PatchCore pipeline
+2026-03-29 21:10:29 | INFO     | src.memory.memory_bank | Patch PCA transform restored: 1536 -> 256
+2026-03-29 21:10:29 | INFO     | src.memory.memory_bank | Patch memory bank loaded: 5000 patches, dim=256, patch_shape=(28, 28)
+2026-03-29 21:10:29 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=3, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-03-29 21:10:29 | INFO     | faiss.loader | Loading faiss with AVX2 support.
+2026-03-29 21:10:29 | INFO     | faiss.loader | Successfully loaded faiss with AVX2 support.
+2026-03-29 21:10:29 | INFO     | src.memory.memory_bank | Faiss index built with 5000 patches
+2026-03-29 21:10:29 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 5000 patches
+2026-03-29 21:10:30 | INFO     | src.training.dataset | MVTecDataset: category=leather, split=test, samples=124, normal=32, anomaly=92
+2026-03-29 21:10:30 | INFO     | __main__ | Test samples: 124
+2026-03-29 21:11:07 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=minmax_sigmoid
+2026-03-29 21:11:07 | INFO     | src.scoring.calibration | Calibrator fitted: min=1.1182, max=1.1998, threshold=1.1554, method=minmax_sigmoid
+2026-03-29 21:11:07 | INFO     | src.evaluation.evaluator | [leather] AUROC: 0.6488 | AP: 0.8538 | F1: 0.7574 | Acc: 0.6694 | Precision: 0.8312 | Recall: 0.6957 | Threshold: 1.1519 (youden)
+2026-03-29 21:11:07 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\leather_roc_curve.png
+2026-03-29 21:11:08 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\leather_pr_curve.png
+2026-03-29 21:11:09 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\leather_metrics.json
+2026-03-29 21:11:09 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\leather_metrics.json
+2026-03-29 21:11:09 | INFO     | __main__ | Generating anomaly heatmap visualizations...
+2026-03-29 21:11:10 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\leather_good_74_heatmap.png
+2026-03-29 21:11:11 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\leather_good_75_heatmap.png
+2026-03-29 21:11:12 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\leather_color_0_heatmap.png
+2026-03-29 21:11:13 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\leather_color_1_heatmap.png
+2026-03-29 21:11:14 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\leather_color_2_heatmap.png
+2026-03-29 21:11:14 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\leather_color_3_heatmap.png
+2026-03-29 21:11:15 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\leather_color_4_heatmap.png
+2026-03-29 21:11:15 | INFO     | __main__ | Evaluation complete for leather
+2026-03-29 21:11:15 | INFO     | src.evaluation.evaluator | 
+==============================================================================
+2026-03-29 21:11:15 | INFO     | src.evaluation.evaluator | Cross-Category Summary (mean +/- std)
+2026-03-29 21:11:15 | INFO     | src.evaluation.evaluator | ==============================================================================
+2026-03-29 21:11:15 | INFO     | src.evaluation.evaluator |   auroc               : 0.6488 +/- 0.0000 (min=0.6488, max=0.6488)
+2026-03-29 21:11:15 | INFO     | src.evaluation.evaluator |   average_precision   : 0.8538 +/- 0.0000 (min=0.8538, max=0.8538)
+2026-03-29 21:11:15 | INFO     | src.evaluation.evaluator |   f1_score            : 0.7574 +/- 0.0000 (min=0.7574, max=0.7574)
+2026-03-29 21:11:15 | INFO     | src.evaluation.evaluator |   accuracy            : 0.6694 +/- 0.0000 (min=0.6694, max=0.6694)
+2026-03-29 21:11:15 | INFO     | src.evaluation.evaluator |   precision           : 0.8312 +/- 0.0000 (min=0.8312, max=0.8312)
+2026-03-29 21:11:15 | INFO     | src.evaluation.evaluator |   recall              : 0.6957 +/- 0.0000 (min=0.6957, max=0.6957)
+2026-03-29 21:11:15 | INFO     | src.evaluation.evaluator | ==============================================================================
+2026-03-29 21:11:15 | INFO     | __main__ | 
+==============================================================================
+2026-03-29 21:11:15 | INFO     | __main__ | Category           AUROC       AP       F1      Acc     Prec   Recall
+2026-03-29 21:11:15 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-03-29 21:11:15 | INFO     | __main__ | leather           0.6488   0.8538   0.7574   0.6694   0.8312   0.6957
+2026-03-29 21:11:15 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-03-29 21:11:15 | INFO     | __main__ | MEAN...........   0.6488 +/- 0.0000
+2026-03-29 21:11:15 | INFO     | __main__ | ==============================================================================
+2026-03-29 21:11:15 | INFO     | __main__ | Summary saved: outputs/results\all_categories_summary.json

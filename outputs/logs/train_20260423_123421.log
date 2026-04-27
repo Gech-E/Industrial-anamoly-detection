@@ -1,0 +1,17 @@
+2026-04-23 12:34:21 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260423_123421.log
+2026-04-23 12:34:21 | INFO     | root | Using CPU
+2026-04-23 12:34:21 | INFO     | __main__ | Using device: cpu
+2026-04-23 12:34:21 | INFO     | __main__ | Pipeline: PatchCore
+2026-04-23 12:34:21 | INFO     | __main__ | 
+============================================================
+2026-04-23 12:34:21 | INFO     | __main__ | Processing category: bottle
+2026-04-23 12:34:21 | INFO     | __main__ | ============================================================
+2026-04-23 12:34:23 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 12:34:23 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 12:34:23 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer1', 'layer2', 'layer3'] -> 1792-dim | projection_dim=128
+2026-04-23 12:34:23 | INFO     | src.models.simclr | Patch features: layers=['layer1', 'layer2'] -> 768-dim per patch
+2026-04-23 12:34:23 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 12:34:23 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 12:34:23 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\bottle_best.pt
+2026-04-23 12:34:23 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 12:34:23 | INFO     | __main__ | Building PatchCore patch memory bank...

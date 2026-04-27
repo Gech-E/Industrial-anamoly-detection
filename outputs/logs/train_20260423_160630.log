@@ -1,0 +1,921 @@
+2026-04-23 16:06:30 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260423_160630.log
+2026-04-23 16:06:30 | INFO     | root | Using CPU
+2026-04-23 16:06:30 | INFO     | __main__ | Using device: cpu
+2026-04-23 16:06:30 | INFO     | __main__ | Pipeline: PatchCore
+2026-04-23 16:06:30 | INFO     | __main__ | 
+============================================================
+2026-04-23 16:06:30 | INFO     | __main__ | Processing category: bottle
+2026-04-23 16:06:30 | INFO     | __main__ | ============================================================
+2026-04-23 16:06:31 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 16:06:31 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 16:06:31 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 16:06:31 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 16:06:31 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 16:06:31 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 16:06:31 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\bottle_best.pt
+2026-04-23 16:06:31 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 16:06:31 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 16:06:31 | WARNING  | src.training.dataset | Skipping corrupt image: Data/mvtec_ad\bottle\train\good\011.png (broken PNG file (bad header checksum in b'IDAT'))
+2026-04-23 16:06:32 | WARNING  | src.training.dataset | Skipped 1 corrupt image(s) in Data/mvtec_ad\bottle\train
+2026-04-23 16:06:32 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=train, samples=208, normal=208, anomaly=0
+2026-04-23 16:06:32 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 16:07:25 | INFO     | src.memory.memory_bank | Patch extraction: 163072 patches, dim=1536, patch_shape=(28, 28), time=52.5s
+2026-04-23 16:07:25 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 16:07:54 | INFO     | src.memory.memory_bank | PCA explained variance: 91.5%
+2026-04-23 16:07:54 | INFO     | src.memory.memory_bank | Coreset subsampling: 163072 -> 8000 patches
+2026-04-23 16:08:41 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 16:09:32 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 16:10:22 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 16:11:29 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 16:12:10 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 16:12:45 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 16:13:33 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 16:14:22 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 16:15:08 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 16:16:04 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 16:16:56 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 16:17:33 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 16:18:14 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 16:19:00 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 16:19:46 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 16:20:23 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=831.1s
+2026-04-23 16:20:23 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\bottle_patch_bank.pt
+2026-04-23 16:20:23 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 16:20:23 | WARNING  | src.training.dataset | Skipping corrupt image: Data/mvtec_ad\bottle\train\good\011.png (broken PNG file (bad header checksum in b'IDAT'))
+2026-04-23 16:20:24 | WARNING  | src.training.dataset | Skipped 1 corrupt image(s) in Data/mvtec_ad\bottle\train
+2026-04-23 16:20:24 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=train, samples=208, normal=208, anomaly=0
+2026-04-23 16:20:24 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 16:21:20 | INFO     | src.memory.memory_bank | Feature extraction: 208 samples, dim=3584, time=55.7s
+2026-04-23 16:21:20 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 16:21:21 | INFO     | src.memory.memory_bank | PCA explained variance: 99.2%
+2026-04-23 16:21:21 | INFO     | src.memory.memory_bank | Memory bank built: 208 features, dim=128, total_time=56.2s
+2026-04-23 16:21:21 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\bottle_memory_bank.pt
+2026-04-23 16:21:21 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 16:21:21 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 16:21:21 | INFO     | faiss.loader | Loading faiss with AVX2 support.
+2026-04-23 16:21:21 | INFO     | faiss.loader | Successfully loaded faiss with AVX2 support.
+2026-04-23 16:21:21 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 16:21:21 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 16:21:21 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=test, samples=83, normal=20, anomaly=63
+2026-04-23 16:21:51 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 16:21:51 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.7693, max=1.1112, threshold=0.8955, method=percentile
+2026-04-23 16:21:52 | INFO     | src.evaluation.evaluator | [bottle] AUROC: 0.9857 | AP: 0.9963 | F1: 0.9839 | Acc: 0.9759 | Precision: 1.0000 | Recall: 0.9683 | Threshold: 0.8307 (youden)
+2026-04-23 16:21:52 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\bottle_roc_curve.png
+2026-04-23 16:21:53 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\bottle_pr_curve.png
+2026-04-23 16:21:55 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\bottle_metrics.json
+2026-04-23 16:21:55 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\bottle_metrics.json
+2026-04-23 16:21:55 | INFO     | __main__ | 
+  >>> Results: AUROC=0.9857 | F1=0.9839 | Precision=1.0000 | Recall=0.9683
+2026-04-23 16:21:55 | INFO     | __main__ | Total pipeline time for bottle: 15.4m
+2026-04-23 16:21:55 | INFO     | __main__ | 
+============================================================
+2026-04-23 16:21:55 | INFO     | __main__ | Processing category: cable
+2026-04-23 16:21:55 | INFO     | __main__ | ============================================================
+2026-04-23 16:21:56 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 16:21:57 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 16:21:57 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 16:21:57 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 16:21:57 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 16:21:57 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 16:21:57 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\cable_best.pt
+2026-04-23 16:21:57 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 16:21:57 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 16:21:59 | INFO     | src.training.dataset | MVTecDataset: category=cable, split=train, samples=224, normal=224, anomaly=0
+2026-04-23 16:21:59 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 16:23:16 | INFO     | src.memory.memory_bank | Patch extraction: 175616 patches, dim=1536, patch_shape=(28, 28), time=77.3s
+2026-04-23 16:23:16 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 16:23:44 | INFO     | src.memory.memory_bank | PCA explained variance: 76.2%
+2026-04-23 16:23:44 | INFO     | src.memory.memory_bank | Coreset subsampling: 175616 -> 8000 patches
+2026-04-23 16:24:36 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 16:25:22 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 16:26:02 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 16:26:50 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 16:27:51 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 16:28:41 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 16:30:02 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 16:30:58 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 16:31:40 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 16:32:34 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 16:33:22 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 16:34:00 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 16:34:53 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 16:35:47 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 16:36:31 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 16:37:15 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=915.6s
+2026-04-23 16:37:15 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\cable_patch_bank.pt
+2026-04-23 16:37:15 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 16:37:18 | INFO     | src.training.dataset | MVTecDataset: category=cable, split=train, samples=224, normal=224, anomaly=0
+2026-04-23 16:37:18 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 16:38:32 | INFO     | src.memory.memory_bank | Feature extraction: 224 samples, dim=3584, time=74.7s
+2026-04-23 16:38:32 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 16:38:33 | INFO     | src.memory.memory_bank | PCA explained variance: 97.7%
+2026-04-23 16:38:33 | INFO     | src.memory.memory_bank | Memory bank built: 224 features, dim=128, total_time=75.0s
+2026-04-23 16:38:33 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\cable_memory_bank.pt
+2026-04-23 16:38:33 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 16:38:33 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 16:38:33 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 16:38:33 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 16:38:34 | INFO     | src.training.dataset | MVTecDataset: category=cable, split=test, samples=150, normal=58, anomaly=92
+2026-04-23 16:39:32 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 16:39:32 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.8780, max=1.1271, threshold=0.9777, method=percentile
+2026-04-23 16:39:33 | INFO     | src.evaluation.evaluator | [cable] AUROC: 0.9929 | AP: 0.9956 | F1: 0.9785 | Acc: 0.9733 | Precision: 0.9681 | Recall: 0.9891 | Threshold: 0.9555 (youden)
+2026-04-23 16:39:33 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\cable_roc_curve.png
+2026-04-23 16:39:34 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\cable_pr_curve.png
+2026-04-23 16:39:36 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\cable_metrics.json
+2026-04-23 16:39:36 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\cable_metrics.json
+2026-04-23 16:39:36 | INFO     | __main__ | 
+  >>> Results: AUROC=0.9929 | F1=0.9785 | Precision=0.9681 | Recall=0.9891
+2026-04-23 16:39:36 | INFO     | __main__ | Total pipeline time for cable: 17.7m
+2026-04-23 16:39:36 | INFO     | __main__ | 
+============================================================
+2026-04-23 16:39:36 | INFO     | __main__ | Processing category: capsule
+2026-04-23 16:39:36 | INFO     | __main__ | ============================================================
+2026-04-23 16:39:37 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 16:39:37 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 16:39:37 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 16:39:37 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 16:39:37 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 16:39:37 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 16:39:38 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\capsule_best.pt
+2026-04-23 16:39:38 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 16:39:38 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 16:39:40 | INFO     | src.training.dataset | MVTecDataset: category=capsule, split=train, samples=219, normal=219, anomaly=0
+2026-04-23 16:39:40 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 16:41:03 | INFO     | src.memory.memory_bank | Patch extraction: 171696 patches, dim=1536, patch_shape=(28, 28), time=83.0s
+2026-04-23 16:41:03 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 16:41:30 | INFO     | src.memory.memory_bank | PCA explained variance: 88.7%
+2026-04-23 16:41:30 | INFO     | src.memory.memory_bank | Coreset subsampling: 171696 -> 8000 patches
+2026-04-23 16:42:15 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 16:43:35 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 16:44:55 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 16:46:05 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 16:47:27 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 16:48:26 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 16:49:47 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 16:51:04 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 16:52:08 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 16:53:38 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 16:54:39 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 16:56:00 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 16:57:29 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 16:58:38 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 16:59:50 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 17:00:31 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=1251.1s
+2026-04-23 17:00:31 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\capsule_patch_bank.pt
+2026-04-23 17:00:31 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 17:00:33 | INFO     | src.training.dataset | MVTecDataset: category=capsule, split=train, samples=219, normal=219, anomaly=0
+2026-04-23 17:00:33 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 17:01:35 | INFO     | src.memory.memory_bank | Feature extraction: 219 samples, dim=3584, time=62.4s
+2026-04-23 17:01:35 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 17:01:36 | INFO     | src.memory.memory_bank | PCA explained variance: 98.8%
+2026-04-23 17:01:36 | INFO     | src.memory.memory_bank | Memory bank built: 219 features, dim=128, total_time=63.2s
+2026-04-23 17:01:36 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\capsule_memory_bank.pt
+2026-04-23 17:01:36 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 17:01:36 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 17:01:36 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 17:01:36 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 17:01:37 | INFO     | src.training.dataset | MVTecDataset: category=capsule, split=test, samples=132, normal=23, anomaly=109
+2026-04-23 17:02:23 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 17:02:23 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.6892, max=0.9261, threshold=0.7581, method=percentile
+2026-04-23 17:02:23 | INFO     | src.evaluation.evaluator | [capsule] AUROC: 0.8724 | AP: 0.9630 | F1: 0.9346 | Acc: 0.8939 | Precision: 0.9524 | Recall: 0.9174 | Threshold: 0.7114 (youden)
+2026-04-23 17:02:23 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\capsule_roc_curve.png
+2026-04-23 17:02:23 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\capsule_pr_curve.png
+2026-04-23 17:02:24 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\capsule_metrics.json
+2026-04-23 17:02:24 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\capsule_metrics.json
+2026-04-23 17:02:24 | INFO     | __main__ | 
+  >>> Results: AUROC=0.8724 | F1=0.9346 | Precision=0.9524 | Recall=0.9174
+2026-04-23 17:02:24 | INFO     | __main__ | Total pipeline time for capsule: 22.8m
+2026-04-23 17:02:24 | INFO     | __main__ | 
+============================================================
+2026-04-23 17:02:24 | INFO     | __main__ | Processing category: carpet
+2026-04-23 17:02:24 | INFO     | __main__ | ============================================================
+2026-04-23 17:02:25 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 17:02:25 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 17:02:25 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 17:02:25 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 17:02:25 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 17:02:25 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 17:02:25 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\carpet_best.pt
+2026-04-23 17:02:25 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 17:02:25 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 17:02:27 | INFO     | src.training.dataset | MVTecDataset: category=carpet, split=train, samples=280, normal=280, anomaly=0
+2026-04-23 17:02:27 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 17:04:00 | INFO     | src.memory.memory_bank | Patch extraction: 219520 patches, dim=1536, patch_shape=(28, 28), time=93.1s
+2026-04-23 17:04:00 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 17:04:52 | INFO     | src.memory.memory_bank | PCA explained variance: 79.9%
+2026-04-23 17:04:52 | INFO     | src.memory.memory_bank | Coreset subsampling: 219520 -> 8000 patches
+2026-04-23 17:07:07 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 17:09:10 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 17:11:40 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 17:13:02 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 17:14:28 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 17:15:53 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 17:16:55 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 17:18:48 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 17:20:26 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 17:22:06 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 17:23:41 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 17:25:34 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 17:27:06 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 17:28:42 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 17:30:49 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 17:32:30 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=1803.2s
+2026-04-23 17:32:30 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\carpet_patch_bank.pt
+2026-04-23 17:32:30 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 17:32:33 | INFO     | src.training.dataset | MVTecDataset: category=carpet, split=train, samples=280, normal=280, anomaly=0
+2026-04-23 17:32:33 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 17:33:49 | INFO     | src.memory.memory_bank | Feature extraction: 280 samples, dim=3584, time=75.7s
+2026-04-23 17:33:49 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 17:33:50 | INFO     | src.memory.memory_bank | PCA explained variance: 97.8%
+2026-04-23 17:33:50 | INFO     | src.memory.memory_bank | Memory bank built: 280 features, dim=128, total_time=76.1s
+2026-04-23 17:33:50 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\carpet_memory_bank.pt
+2026-04-23 17:33:50 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 17:33:50 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 17:33:50 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 17:33:50 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 17:33:51 | INFO     | src.training.dataset | MVTecDataset: category=carpet, split=test, samples=117, normal=28, anomaly=89
+2026-04-23 17:34:36 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 17:34:36 | INFO     | src.scoring.calibration | Calibrator fitted: min=1.0999, max=1.1796, threshold=1.1293, method=percentile
+2026-04-23 17:34:36 | INFO     | src.evaluation.evaluator | [carpet] AUROC: 0.9001 | AP: 0.9710 | F1: 0.8750 | Acc: 0.8291 | Precision: 0.9859 | Recall: 0.7865 | Threshold: 1.1278 (youden)
+2026-04-23 17:34:38 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\carpet_roc_curve.png
+2026-04-23 17:34:39 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\carpet_pr_curve.png
+2026-04-23 17:34:41 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\carpet_metrics.json
+2026-04-23 17:34:41 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\carpet_metrics.json
+2026-04-23 17:34:41 | INFO     | __main__ | 
+  >>> Results: AUROC=0.9001 | F1=0.8750 | Precision=0.9859 | Recall=0.7865
+2026-04-23 17:34:41 | INFO     | __main__ | Total pipeline time for carpet: 32.3m
+2026-04-23 17:34:41 | INFO     | __main__ | 
+============================================================
+2026-04-23 17:34:41 | INFO     | __main__ | Processing category: grid
+2026-04-23 17:34:41 | INFO     | __main__ | ============================================================
+2026-04-23 17:34:42 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 17:34:42 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 17:34:42 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 17:34:42 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 17:34:42 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 17:34:42 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 17:34:43 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\grid_best.pt
+2026-04-23 17:34:43 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 17:34:43 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 17:34:44 | INFO     | src.training.dataset | MVTecDataset: category=grid, split=train, samples=264, normal=264, anomaly=0
+2026-04-23 17:34:44 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 17:35:57 | INFO     | src.memory.memory_bank | Patch extraction: 206976 patches, dim=1536, patch_shape=(28, 28), time=72.9s
+2026-04-23 17:35:57 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 17:36:44 | INFO     | src.memory.memory_bank | PCA explained variance: 87.2%
+2026-04-23 17:36:44 | INFO     | src.memory.memory_bank | Coreset subsampling: 206976 -> 8000 patches
+2026-04-23 17:38:48 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 17:39:41 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 17:40:23 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 17:41:38 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 17:42:51 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 17:43:46 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 17:44:30 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 17:45:16 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 17:46:03 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 17:46:58 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 17:48:23 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 17:49:24 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 17:50:27 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 17:51:38 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 17:52:57 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 17:53:56 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=1152.1s
+2026-04-23 17:53:56 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\grid_patch_bank.pt
+2026-04-23 17:53:56 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 17:53:57 | INFO     | src.training.dataset | MVTecDataset: category=grid, split=train, samples=264, normal=264, anomaly=0
+2026-04-23 17:53:57 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 17:54:53 | INFO     | src.memory.memory_bank | Feature extraction: 264 samples, dim=3584, time=55.7s
+2026-04-23 17:54:53 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 17:54:53 | INFO     | src.memory.memory_bank | PCA explained variance: 99.5%
+2026-04-23 17:54:53 | INFO     | src.memory.memory_bank | Memory bank built: 264 features, dim=128, total_time=56.0s
+2026-04-23 17:54:53 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\grid_memory_bank.pt
+2026-04-23 17:54:53 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 17:54:53 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 17:54:53 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 17:54:53 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 17:54:54 | INFO     | src.training.dataset | MVTecDataset: category=grid, split=test, samples=78, normal=21, anomaly=57
+2026-04-23 17:55:16 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 17:55:16 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.7639, max=1.1140, threshold=0.9092, method=percentile
+2026-04-23 17:55:16 | INFO     | src.evaluation.evaluator | [grid] AUROC: 1.0000 | AP: 1.0000 | F1: 1.0000 | Acc: 1.0000 | Precision: 1.0000 | Recall: 1.0000 | Threshold: 0.8240 (youden)
+2026-04-23 17:55:16 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\grid_roc_curve.png
+2026-04-23 17:55:17 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\grid_pr_curve.png
+2026-04-23 17:55:18 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\grid_metrics.json
+2026-04-23 17:55:18 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\grid_metrics.json
+2026-04-23 17:55:18 | INFO     | __main__ | 
+  >>> Results: AUROC=1.0000 | F1=1.0000 | Precision=1.0000 | Recall=1.0000
+2026-04-23 17:55:18 | INFO     | __main__ | Total pipeline time for grid: 20.6m
+2026-04-23 17:55:18 | INFO     | __main__ | 
+============================================================
+2026-04-23 17:55:18 | INFO     | __main__ | Processing category: hazelnut
+2026-04-23 17:55:18 | INFO     | __main__ | ============================================================
+2026-04-23 17:55:19 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 17:55:19 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 17:55:19 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 17:55:19 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 17:55:19 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 17:55:19 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 17:55:20 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\hazelnut_best.pt
+2026-04-23 17:55:20 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 17:55:20 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 17:55:24 | INFO     | src.training.dataset | MVTecDataset: category=hazelnut, split=train, samples=391, normal=391, anomaly=0
+2026-04-23 17:55:24 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 17:57:14 | INFO     | src.memory.memory_bank | Patch extraction: 306544 patches, dim=1536, patch_shape=(28, 28), time=110.1s
+2026-04-23 17:57:14 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 17:57:49 | INFO     | src.memory.memory_bank | PCA explained variance: 80.3%
+2026-04-23 17:57:49 | INFO     | src.memory.memory_bank | Coreset subsampling: 306544 -> 8000 patches
+2026-04-23 17:58:38 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 17:59:25 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 18:00:11 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 18:00:57 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 18:01:43 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 18:02:29 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 18:03:15 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 18:04:03 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 18:04:49 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 18:05:35 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 18:06:20 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 18:07:05 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 18:07:54 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 18:08:47 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 18:09:34 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 18:10:20 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=896.2s
+2026-04-23 18:10:20 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\hazelnut_patch_bank.pt
+2026-04-23 18:10:20 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 18:10:22 | INFO     | src.training.dataset | MVTecDataset: category=hazelnut, split=train, samples=391, normal=391, anomaly=0
+2026-04-23 18:10:22 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 18:12:03 | INFO     | src.memory.memory_bank | Feature extraction: 391 samples, dim=3584, time=100.6s
+2026-04-23 18:12:03 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 18:12:03 | INFO     | src.memory.memory_bank | PCA explained variance: 96.7%
+2026-04-23 18:12:03 | INFO     | src.memory.memory_bank | Memory bank built: 391 features, dim=128, total_time=100.9s
+2026-04-23 18:12:03 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\hazelnut_memory_bank.pt
+2026-04-23 18:12:03 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 18:12:03 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 18:12:03 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 18:12:03 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 18:12:04 | INFO     | src.training.dataset | MVTecDataset: category=hazelnut, split=test, samples=110, normal=40, anomaly=70
+2026-04-23 18:12:40 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 18:12:40 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.8399, max=1.0314, threshold=0.9331, method=percentile
+2026-04-23 18:12:40 | INFO     | src.evaluation.evaluator | [hazelnut] AUROC: 0.8511 | AP: 0.8544 | F1: 0.8966 | Acc: 0.8636 | Precision: 0.8667 | Recall: 0.9286 | Threshold: 0.9305 (youden)
+2026-04-23 18:12:40 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\hazelnut_roc_curve.png
+2026-04-23 18:12:40 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\hazelnut_pr_curve.png
+2026-04-23 18:12:43 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\hazelnut_metrics.json
+2026-04-23 18:12:43 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\hazelnut_metrics.json
+2026-04-23 18:12:43 | INFO     | __main__ | 
+  >>> Results: AUROC=0.8511 | F1=0.8966 | Precision=0.8667 | Recall=0.9286
+2026-04-23 18:12:43 | INFO     | __main__ | Total pipeline time for hazelnut: 17.4m
+2026-04-23 18:12:43 | INFO     | __main__ | 
+============================================================
+2026-04-23 18:12:43 | INFO     | __main__ | Processing category: leather
+2026-04-23 18:12:43 | INFO     | __main__ | ============================================================
+2026-04-23 18:12:44 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 18:12:44 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 18:12:44 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 18:12:44 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 18:12:44 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 18:12:44 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 18:12:44 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\leather_best.pt
+2026-04-23 18:12:44 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 18:12:44 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 18:12:46 | INFO     | src.training.dataset | MVTecDataset: category=leather, split=train, samples=245, normal=245, anomaly=0
+2026-04-23 18:12:46 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 18:13:50 | INFO     | src.memory.memory_bank | Patch extraction: 192080 patches, dim=1536, patch_shape=(28, 28), time=63.4s
+2026-04-23 18:13:50 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 18:14:14 | INFO     | src.memory.memory_bank | PCA explained variance: 82.4%
+2026-04-23 18:14:14 | INFO     | src.memory.memory_bank | Coreset subsampling: 192080 -> 8000 patches
+2026-04-23 18:14:42 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 18:15:10 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 18:15:38 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 18:16:06 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 18:16:34 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 18:17:02 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 18:17:30 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 18:17:58 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 18:18:26 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 18:18:54 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 18:19:23 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 18:19:51 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 18:20:20 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 18:20:48 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 18:21:16 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 18:21:44 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=537.5s
+2026-04-23 18:21:44 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\leather_patch_bank.pt
+2026-04-23 18:21:44 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 18:21:46 | INFO     | src.training.dataset | MVTecDataset: category=leather, split=train, samples=245, normal=245, anomaly=0
+2026-04-23 18:21:46 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 18:22:45 | INFO     | src.memory.memory_bank | Feature extraction: 245 samples, dim=3584, time=59.0s
+2026-04-23 18:22:45 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 18:22:45 | INFO     | src.memory.memory_bank | PCA explained variance: 98.6%
+2026-04-23 18:22:45 | INFO     | src.memory.memory_bank | Memory bank built: 245 features, dim=128, total_time=59.4s
+2026-04-23 18:22:45 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\leather_memory_bank.pt
+2026-04-23 18:22:45 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 18:22:45 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 18:22:45 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 18:22:45 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 18:22:46 | INFO     | src.training.dataset | MVTecDataset: category=leather, split=test, samples=124, normal=32, anomaly=92
+2026-04-23 18:23:25 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 18:23:25 | INFO     | src.scoring.calibration | Calibrator fitted: min=1.0756, max=1.1945, threshold=1.1317, method=percentile
+2026-04-23 18:23:25 | INFO     | src.evaluation.evaluator | [leather] AUROC: 1.0000 | AP: 1.0000 | F1: 1.0000 | Acc: 1.0000 | Precision: 1.0000 | Recall: 1.0000 | Threshold: 1.1353 (youden)
+2026-04-23 18:23:25 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\leather_roc_curve.png
+2026-04-23 18:23:26 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\leather_pr_curve.png
+2026-04-23 18:23:27 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\leather_metrics.json
+2026-04-23 18:23:27 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\leather_metrics.json
+2026-04-23 18:23:27 | INFO     | __main__ | 
+  >>> Results: AUROC=1.0000 | F1=1.0000 | Precision=1.0000 | Recall=1.0000
+2026-04-23 18:23:27 | INFO     | __main__ | Total pipeline time for leather: 10.7m
+2026-04-23 18:23:27 | INFO     | __main__ | 
+============================================================
+2026-04-23 18:23:27 | INFO     | __main__ | Processing category: metal_nut
+2026-04-23 18:23:27 | INFO     | __main__ | ============================================================
+2026-04-23 18:23:28 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 18:23:28 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 18:23:28 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 18:23:28 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 18:23:28 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 18:23:28 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 18:23:28 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\metal_nut_best.pt
+2026-04-23 18:23:28 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 18:23:28 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 18:23:29 | INFO     | src.training.dataset | MVTecDataset: category=metal_nut, split=train, samples=220, normal=220, anomaly=0
+2026-04-23 18:23:29 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 18:24:15 | INFO     | src.memory.memory_bank | Patch extraction: 172480 patches, dim=1536, patch_shape=(28, 28), time=46.3s
+2026-04-23 18:24:15 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 18:24:36 | INFO     | src.memory.memory_bank | PCA explained variance: 81.1%
+2026-04-23 18:24:36 | INFO     | src.memory.memory_bank | Coreset subsampling: 172480 -> 8000 patches
+2026-04-23 18:25:02 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 18:25:28 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 18:25:54 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 18:26:21 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 18:26:47 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 18:27:13 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 18:27:39 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 18:28:05 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 18:28:31 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 18:28:56 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 18:29:22 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 18:29:48 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 18:30:14 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 18:30:39 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 18:31:05 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 18:31:31 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=481.6s
+2026-04-23 18:31:31 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\metal_nut_patch_bank.pt
+2026-04-23 18:31:31 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 18:31:31 | INFO     | src.training.dataset | MVTecDataset: category=metal_nut, split=train, samples=220, normal=220, anomaly=0
+2026-04-23 18:31:31 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 18:32:15 | INFO     | src.memory.memory_bank | Feature extraction: 220 samples, dim=3584, time=43.5s
+2026-04-23 18:32:15 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 18:32:15 | INFO     | src.memory.memory_bank | PCA explained variance: 98.5%
+2026-04-23 18:32:15 | INFO     | src.memory.memory_bank | Memory bank built: 220 features, dim=128, total_time=43.8s
+2026-04-23 18:32:15 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\metal_nut_memory_bank.pt
+2026-04-23 18:32:15 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 18:32:15 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 18:32:15 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 18:32:15 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 18:32:16 | INFO     | src.training.dataset | MVTecDataset: category=metal_nut, split=test, samples=115, normal=22, anomaly=93
+2026-04-23 18:32:46 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 18:32:46 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.8442, max=1.0768, threshold=0.9266, method=percentile
+2026-04-23 18:32:46 | INFO     | src.evaluation.evaluator | [metal_nut] AUROC: 0.9956 | AP: 0.9991 | F1: 0.9946 | Acc: 0.9913 | Precision: 1.0000 | Recall: 0.9892 | Threshold: 0.8893 (youden)
+2026-04-23 18:32:47 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\metal_nut_roc_curve.png
+2026-04-23 18:32:47 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\metal_nut_pr_curve.png
+2026-04-23 18:32:49 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\metal_nut_metrics.json
+2026-04-23 18:32:49 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\metal_nut_metrics.json
+2026-04-23 18:32:49 | INFO     | __main__ | 
+  >>> Results: AUROC=0.9956 | F1=0.9946 | Precision=1.0000 | Recall=0.9892
+2026-04-23 18:32:49 | INFO     | __main__ | Total pipeline time for metal_nut: 9.4m
+2026-04-23 18:32:49 | INFO     | __main__ | 
+============================================================
+2026-04-23 18:32:49 | INFO     | __main__ | Processing category: pill
+2026-04-23 18:32:49 | INFO     | __main__ | ============================================================
+2026-04-23 18:32:50 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 18:32:50 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 18:32:50 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 18:32:50 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 18:32:50 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 18:32:50 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 18:32:50 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\pill_best.pt
+2026-04-23 18:32:50 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 18:32:50 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 18:32:51 | INFO     | src.training.dataset | MVTecDataset: category=pill, split=train, samples=267, normal=267, anomaly=0
+2026-04-23 18:32:51 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 18:33:53 | INFO     | src.memory.memory_bank | Patch extraction: 209328 patches, dim=1536, patch_shape=(28, 28), time=61.7s
+2026-04-23 18:33:53 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 18:34:17 | INFO     | src.memory.memory_bank | PCA explained variance: 84.6%
+2026-04-23 18:34:17 | INFO     | src.memory.memory_bank | Coreset subsampling: 209328 -> 8000 patches
+2026-04-23 18:34:48 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 18:35:18 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 18:35:49 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 18:36:19 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 18:36:49 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 18:37:19 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 18:37:50 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 18:38:22 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 18:38:54 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 18:39:26 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 18:39:59 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 18:40:30 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 18:41:02 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 18:41:34 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 18:42:04 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 18:42:35 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=584.4s
+2026-04-23 18:42:36 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\pill_patch_bank.pt
+2026-04-23 18:42:36 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 18:42:36 | INFO     | src.training.dataset | MVTecDataset: category=pill, split=train, samples=267, normal=267, anomaly=0
+2026-04-23 18:42:36 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 18:43:35 | INFO     | src.memory.memory_bank | Feature extraction: 267 samples, dim=3584, time=58.4s
+2026-04-23 18:43:35 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 18:43:35 | INFO     | src.memory.memory_bank | PCA explained variance: 97.9%
+2026-04-23 18:43:35 | INFO     | src.memory.memory_bank | Memory bank built: 267 features, dim=128, total_time=58.8s
+2026-04-23 18:43:35 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\pill_memory_bank.pt
+2026-04-23 18:43:35 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 18:43:35 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 18:43:35 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 18:43:35 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 18:43:36 | INFO     | src.training.dataset | MVTecDataset: category=pill, split=test, samples=167, normal=26, anomaly=141
+2026-04-23 18:44:24 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 18:44:24 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.7979, max=0.9821, threshold=0.8434, method=percentile
+2026-04-23 18:44:24 | INFO     | src.evaluation.evaluator | [pill] AUROC: 0.8917 | AP: 0.9803 | F1: 0.8685 | Acc: 0.8024 | Precision: 0.9909 | Recall: 0.7730 | Threshold: 0.8319 (youden)
+2026-04-23 18:44:24 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\pill_roc_curve.png
+2026-04-23 18:44:25 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\pill_pr_curve.png
+2026-04-23 18:44:26 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\pill_metrics.json
+2026-04-23 18:44:26 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\pill_metrics.json
+2026-04-23 18:44:26 | INFO     | __main__ | 
+  >>> Results: AUROC=0.8917 | F1=0.8685 | Precision=0.9909 | Recall=0.7730
+2026-04-23 18:44:26 | INFO     | __main__ | Total pipeline time for pill: 11.6m
+2026-04-23 18:44:26 | INFO     | __main__ | 
+============================================================
+2026-04-23 18:44:26 | INFO     | __main__ | Processing category: screw
+2026-04-23 18:44:26 | INFO     | __main__ | ============================================================
+2026-04-23 18:44:27 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 18:44:27 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 18:44:27 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 18:44:27 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 18:44:27 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 18:44:27 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 18:44:27 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\screw_best.pt
+2026-04-23 18:44:27 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 18:44:27 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 18:44:29 | INFO     | src.training.dataset | MVTecDataset: category=screw, split=train, samples=320, normal=320, anomaly=0
+2026-04-23 18:44:29 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 18:45:38 | INFO     | src.memory.memory_bank | Patch extraction: 250880 patches, dim=1536, patch_shape=(28, 28), time=69.3s
+2026-04-23 18:45:38 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 18:46:07 | INFO     | src.memory.memory_bank | PCA explained variance: 81.1%
+2026-04-23 18:46:07 | INFO     | src.memory.memory_bank | Coreset subsampling: 250880 -> 8000 patches
+2026-04-23 18:46:45 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 18:47:23 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 18:48:02 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 18:48:40 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 18:49:19 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 18:49:58 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 18:50:37 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 18:51:15 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 18:51:53 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 18:52:32 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 18:53:09 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 18:53:47 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 18:54:25 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 18:55:02 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 18:55:40 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 18:56:29 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=720.2s
+2026-04-23 18:56:29 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\screw_patch_bank.pt
+2026-04-23 18:56:29 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 18:56:30 | INFO     | src.training.dataset | MVTecDataset: category=screw, split=train, samples=320, normal=320, anomaly=0
+2026-04-23 18:56:30 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 18:57:25 | INFO     | src.memory.memory_bank | Feature extraction: 320 samples, dim=3584, time=55.2s
+2026-04-23 18:57:25 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 18:57:26 | INFO     | src.memory.memory_bank | PCA explained variance: 98.3%
+2026-04-23 18:57:26 | INFO     | src.memory.memory_bank | Memory bank built: 320 features, dim=128, total_time=55.6s
+2026-04-23 18:57:26 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\screw_memory_bank.pt
+2026-04-23 18:57:26 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 18:57:26 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 18:57:26 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 18:57:26 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 18:57:26 | INFO     | src.training.dataset | MVTecDataset: category=screw, split=test, samples=160, normal=41, anomaly=119
+2026-04-23 18:57:50 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 18:57:50 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.9000, max=0.9740, threshold=0.9331, method=percentile
+2026-04-23 18:57:50 | INFO     | src.evaluation.evaluator | [screw] AUROC: 0.5909 | AP: 0.7735 | F1: 0.7773 | Acc: 0.6813 | Precision: 0.8091 | Recall: 0.7479 | Threshold: 0.9185 (youden)
+2026-04-23 18:57:50 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\screw_roc_curve.png
+2026-04-23 18:57:50 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\screw_pr_curve.png
+2026-04-23 18:57:51 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\screw_metrics.json
+2026-04-23 18:57:51 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\screw_metrics.json
+2026-04-23 18:57:51 | INFO     | __main__ | 
+  >>> Results: AUROC=0.5909 | F1=0.7773 | Precision=0.8091 | Recall=0.7479
+2026-04-23 18:57:51 | INFO     | __main__ | Total pipeline time for screw: 13.4m
+2026-04-23 18:57:51 | INFO     | __main__ | 
+============================================================
+2026-04-23 18:57:51 | INFO     | __main__ | Processing category: tile
+2026-04-23 18:57:51 | INFO     | __main__ | ============================================================
+2026-04-23 18:57:51 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 18:57:51 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 18:57:51 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 18:57:51 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 18:57:51 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 18:57:51 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 18:57:51 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\tile_best.pt
+2026-04-23 18:57:51 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 18:57:51 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 18:57:52 | INFO     | src.training.dataset | MVTecDataset: category=tile, split=train, samples=230, normal=230, anomaly=0
+2026-04-23 18:57:52 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 18:58:25 | INFO     | src.memory.memory_bank | Patch extraction: 180320 patches, dim=1536, patch_shape=(28, 28), time=33.5s
+2026-04-23 18:58:25 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 18:58:41 | INFO     | src.memory.memory_bank | PCA explained variance: 73.9%
+2026-04-23 18:58:41 | INFO     | src.memory.memory_bank | Coreset subsampling: 180320 -> 8000 patches
+2026-04-23 18:59:13 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 18:59:45 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 19:00:14 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 19:00:45 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 19:01:16 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 19:01:45 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 19:02:11 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 19:02:39 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 19:03:10 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 19:03:52 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 19:04:27 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 19:05:06 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 19:05:46 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 19:06:24 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 19:07:02 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 19:07:33 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=581.0s
+2026-04-23 19:07:33 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\tile_patch_bank.pt
+2026-04-23 19:07:33 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 19:07:34 | INFO     | src.training.dataset | MVTecDataset: category=tile, split=train, samples=230, normal=230, anomaly=0
+2026-04-23 19:07:34 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 19:08:13 | INFO     | src.memory.memory_bank | Feature extraction: 230 samples, dim=3584, time=39.2s
+2026-04-23 19:08:13 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 19:08:13 | INFO     | src.memory.memory_bank | PCA explained variance: 98.4%
+2026-04-23 19:08:13 | INFO     | src.memory.memory_bank | Memory bank built: 230 features, dim=128, total_time=39.4s
+2026-04-23 19:08:13 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\tile_memory_bank.pt
+2026-04-23 19:08:13 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 19:08:13 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 19:08:13 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 19:08:13 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 19:08:13 | INFO     | src.training.dataset | MVTecDataset: category=tile, split=test, samples=117, normal=33, anomaly=84
+2026-04-23 19:08:39 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 19:08:39 | INFO     | src.scoring.calibration | Calibrator fitted: min=1.1101, max=1.1787, threshold=1.1342, method=percentile
+2026-04-23 19:08:39 | INFO     | src.evaluation.evaluator | [tile] AUROC: 0.9863 | AP: 0.9949 | F1: 0.9639 | Acc: 0.9487 | Precision: 0.9756 | Recall: 0.9524 | Threshold: 1.1243 (youden)
+2026-04-23 19:08:39 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\tile_roc_curve.png
+2026-04-23 19:08:39 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\tile_pr_curve.png
+2026-04-23 19:08:40 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\tile_metrics.json
+2026-04-23 19:08:40 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\tile_metrics.json
+2026-04-23 19:08:40 | INFO     | __main__ | 
+  >>> Results: AUROC=0.9863 | F1=0.9639 | Precision=0.9756 | Recall=0.9524
+2026-04-23 19:08:40 | INFO     | __main__ | Total pipeline time for tile: 10.8m
+2026-04-23 19:08:40 | INFO     | __main__ | 
+============================================================
+2026-04-23 19:08:40 | INFO     | __main__ | Processing category: toothbrush
+2026-04-23 19:08:40 | INFO     | __main__ | ============================================================
+2026-04-23 19:08:41 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 19:08:41 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 19:08:41 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 19:08:41 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 19:08:41 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 19:08:41 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 19:08:41 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\toothbrush_best.pt
+2026-04-23 19:08:41 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 19:08:41 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 19:08:41 | INFO     | src.training.dataset | MVTecDataset: category=toothbrush, split=train, samples=60, normal=60, anomaly=0
+2026-04-23 19:08:41 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 19:08:53 | INFO     | src.memory.memory_bank | Patch extraction: 47040 patches, dim=1536, patch_shape=(28, 28), time=12.0s
+2026-04-23 19:08:53 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 19:08:57 | INFO     | src.memory.memory_bank | PCA explained variance: 87.1%
+2026-04-23 19:08:57 | INFO     | src.memory.memory_bank | Coreset subsampling: 47040 -> 8000 patches
+2026-04-23 19:09:06 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 19:09:14 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 19:09:21 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 19:09:29 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 19:09:36 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 19:09:44 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 19:09:53 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 19:10:01 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 19:10:08 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 19:10:16 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 19:10:25 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 19:10:34 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 19:10:42 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 19:10:51 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 19:11:02 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 19:11:12 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=150.8s
+2026-04-23 19:11:12 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\toothbrush_patch_bank.pt
+2026-04-23 19:11:12 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 19:11:12 | INFO     | src.training.dataset | MVTecDataset: category=toothbrush, split=train, samples=60, normal=60, anomaly=0
+2026-04-23 19:11:12 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 19:11:23 | INFO     | src.memory.memory_bank | Feature extraction: 60 samples, dim=3584, time=10.7s
+2026-04-23 19:11:23 | INFO     | src.memory.memory_bank | PCA components capped: 128 -> 59 (n_samples=60)
+2026-04-23 19:11:23 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 59 dims
+2026-04-23 19:11:23 | INFO     | src.memory.memory_bank | PCA explained variance: 100.0%
+2026-04-23 19:11:23 | INFO     | src.memory.memory_bank | Memory bank built: 60 features, dim=59, total_time=10.8s
+2026-04-23 19:11:23 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\toothbrush_memory_bank.pt
+2026-04-23 19:11:23 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 19:11:23 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 19:11:23 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 19:11:23 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 19:11:23 | INFO     | src.training.dataset | MVTecDataset: category=toothbrush, split=test, samples=42, normal=12, anomaly=30
+2026-04-23 19:11:34 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 19:11:34 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.7604, max=1.0785, threshold=0.8606, method=percentile
+2026-04-23 19:11:34 | INFO     | src.evaluation.evaluator | [toothbrush] AUROC: 0.8000 | AP: 0.9193 | F1: 0.6667 | Acc: 0.6429 | Precision: 1.0000 | Recall: 0.5000 | Threshold: 1.0041 (youden)
+2026-04-23 19:11:35 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\toothbrush_roc_curve.png
+2026-04-23 19:11:35 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\toothbrush_pr_curve.png
+2026-04-23 19:11:36 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\toothbrush_metrics.json
+2026-04-23 19:11:36 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\toothbrush_metrics.json
+2026-04-23 19:11:36 | INFO     | __main__ | 
+  >>> Results: AUROC=0.8000 | F1=0.6667 | Precision=1.0000 | Recall=0.5000
+2026-04-23 19:11:36 | INFO     | __main__ | Total pipeline time for toothbrush: 2.9m
+2026-04-23 19:11:36 | INFO     | __main__ | 
+============================================================
+2026-04-23 19:11:36 | INFO     | __main__ | Processing category: transistor
+2026-04-23 19:11:36 | INFO     | __main__ | ============================================================
+2026-04-23 19:11:36 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 19:11:36 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 19:11:36 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 19:11:36 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 19:11:36 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 19:11:36 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 19:11:37 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\transistor_best.pt
+2026-04-23 19:11:37 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 19:11:37 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 19:11:38 | INFO     | src.training.dataset | MVTecDataset: category=transistor, split=train, samples=213, normal=213, anomaly=0
+2026-04-23 19:11:38 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 19:12:20 | INFO     | src.memory.memory_bank | Patch extraction: 166992 patches, dim=1536, patch_shape=(28, 28), time=42.5s
+2026-04-23 19:12:20 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 19:12:37 | INFO     | src.memory.memory_bank | PCA explained variance: 82.1%
+2026-04-23 19:12:37 | INFO     | src.memory.memory_bank | Coreset subsampling: 166992 -> 8000 patches
+2026-04-23 19:13:03 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 19:13:19 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 19:13:34 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 19:13:50 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 19:14:05 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 19:14:20 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 19:14:35 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 19:14:49 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 19:15:04 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 19:15:22 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 19:15:39 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 19:15:56 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 19:16:14 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 19:16:31 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 19:16:48 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 19:17:05 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=327.8s
+2026-04-23 19:17:05 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\transistor_patch_bank.pt
+2026-04-23 19:17:05 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 19:17:06 | INFO     | src.training.dataset | MVTecDataset: category=transistor, split=train, samples=213, normal=213, anomaly=0
+2026-04-23 19:17:06 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 19:17:41 | INFO     | src.memory.memory_bank | Feature extraction: 213 samples, dim=3584, time=34.6s
+2026-04-23 19:17:41 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 19:17:41 | INFO     | src.memory.memory_bank | PCA explained variance: 98.3%
+2026-04-23 19:17:41 | INFO     | src.memory.memory_bank | Memory bank built: 213 features, dim=128, total_time=34.9s
+2026-04-23 19:17:41 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\transistor_memory_bank.pt
+2026-04-23 19:17:41 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 19:17:41 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 19:17:41 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 19:17:41 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 19:17:42 | INFO     | src.training.dataset | MVTecDataset: category=transistor, split=test, samples=100, normal=60, anomaly=40
+2026-04-23 19:18:02 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 19:18:02 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.7638, max=1.0369, threshold=0.9025, method=percentile
+2026-04-23 19:18:02 | INFO     | src.evaluation.evaluator | [transistor] AUROC: 0.9950 | AP: 0.9928 | F1: 0.9639 | Acc: 0.9700 | Precision: 0.9302 | Recall: 1.0000 | Threshold: 0.8957 (youden)
+2026-04-23 19:18:02 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\transistor_roc_curve.png
+2026-04-23 19:18:03 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\transistor_pr_curve.png
+2026-04-23 19:18:03 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\transistor_metrics.json
+2026-04-23 19:18:03 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\transistor_metrics.json
+2026-04-23 19:18:03 | INFO     | __main__ | 
+  >>> Results: AUROC=0.9950 | F1=0.9639 | Precision=0.9302 | Recall=1.0000
+2026-04-23 19:18:03 | INFO     | __main__ | Total pipeline time for transistor: 6.5m
+2026-04-23 19:18:03 | INFO     | __main__ | 
+============================================================
+2026-04-23 19:18:03 | INFO     | __main__ | Processing category: wood
+2026-04-23 19:18:03 | INFO     | __main__ | ============================================================
+2026-04-23 19:18:04 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 19:18:04 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 19:18:04 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 19:18:04 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 19:18:04 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 19:18:04 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 19:18:04 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\wood_best.pt
+2026-04-23 19:18:04 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 19:18:04 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 19:18:05 | INFO     | src.training.dataset | MVTecDataset: category=wood, split=train, samples=247, normal=247, anomaly=0
+2026-04-23 19:18:05 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 19:18:48 | INFO     | src.memory.memory_bank | Patch extraction: 193648 patches, dim=1536, patch_shape=(28, 28), time=43.4s
+2026-04-23 19:18:48 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 19:19:03 | INFO     | src.memory.memory_bank | PCA explained variance: 76.4%
+2026-04-23 19:19:03 | INFO     | src.memory.memory_bank | Coreset subsampling: 193648 -> 8000 patches
+2026-04-23 19:19:22 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 19:19:40 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 19:19:59 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 19:20:18 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 19:20:36 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 19:20:54 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 19:21:13 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 19:21:32 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 19:21:50 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 19:22:09 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 19:22:28 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 19:22:47 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 19:23:07 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 19:23:27 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 19:23:46 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 19:24:05 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=360.2s
+2026-04-23 19:24:05 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\wood_patch_bank.pt
+2026-04-23 19:24:05 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 19:24:06 | INFO     | src.training.dataset | MVTecDataset: category=wood, split=train, samples=247, normal=247, anomaly=0
+2026-04-23 19:24:06 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 19:24:46 | INFO     | src.memory.memory_bank | Feature extraction: 247 samples, dim=3584, time=39.9s
+2026-04-23 19:24:46 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 19:24:46 | INFO     | src.memory.memory_bank | PCA explained variance: 98.8%
+2026-04-23 19:24:46 | INFO     | src.memory.memory_bank | Memory bank built: 247 features, dim=128, total_time=40.1s
+2026-04-23 19:24:46 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\wood_memory_bank.pt
+2026-04-23 19:24:46 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 19:24:46 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 19:24:46 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 19:24:46 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 19:24:46 | INFO     | src.training.dataset | MVTecDataset: category=wood, split=test, samples=79, normal=19, anomaly=60
+2026-04-23 19:25:03 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 19:25:03 | INFO     | src.scoring.calibration | Calibrator fitted: min=1.1061, max=1.1760, threshold=1.1358, method=percentile
+2026-04-23 19:25:03 | INFO     | src.evaluation.evaluator | [wood] AUROC: 0.9860 | AP: 0.9958 | F1: 0.9565 | Acc: 0.9367 | Precision: 1.0000 | Recall: 0.9167 | Threshold: 1.1350 (youden)
+2026-04-23 19:25:03 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\wood_roc_curve.png
+2026-04-23 19:25:05 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\wood_pr_curve.png
+2026-04-23 19:25:05 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\wood_metrics.json
+2026-04-23 19:25:05 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\wood_metrics.json
+2026-04-23 19:25:05 | INFO     | __main__ | 
+  >>> Results: AUROC=0.9860 | F1=0.9565 | Precision=1.0000 | Recall=0.9167
+2026-04-23 19:25:05 | INFO     | __main__ | Total pipeline time for wood: 7.0m
+2026-04-23 19:25:05 | INFO     | __main__ | 
+============================================================
+2026-04-23 19:25:05 | INFO     | __main__ | Processing category: zipper
+2026-04-23 19:25:05 | INFO     | __main__ | ============================================================
+2026-04-23 19:25:05 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 19:25:05 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 19:25:05 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 19:25:05 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 19:25:05 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 19:25:05 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 19:25:05 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\zipper_best.pt
+2026-04-23 19:25:05 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 19:25:05 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 19:25:06 | INFO     | src.training.dataset | MVTecDataset: category=zipper, split=train, samples=240, normal=240, anomaly=0
+2026-04-23 19:25:06 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 19:25:39 | INFO     | src.memory.memory_bank | Patch extraction: 188160 patches, dim=1536, patch_shape=(28, 28), time=32.7s
+2026-04-23 19:25:39 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 19:25:53 | INFO     | src.memory.memory_bank | PCA explained variance: 90.8%
+2026-04-23 19:25:53 | INFO     | src.memory.memory_bank | Coreset subsampling: 188160 -> 8000 patches
+2026-04-23 19:26:11 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 19:26:29 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 19:26:47 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 19:27:07 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 19:27:26 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 19:27:45 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 19:28:07 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 19:28:27 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 19:28:47 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 19:29:06 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 19:29:25 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 19:29:44 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 19:30:03 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 19:30:27 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 19:31:01 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 19:31:41 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=395.1s
+2026-04-23 19:31:41 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\zipper_patch_bank.pt
+2026-04-23 19:31:41 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 19:31:42 | INFO     | src.training.dataset | MVTecDataset: category=zipper, split=train, samples=240, normal=240, anomaly=0
+2026-04-23 19:31:42 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 19:32:33 | INFO     | src.memory.memory_bank | Feature extraction: 240 samples, dim=3584, time=51.2s
+2026-04-23 19:32:33 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 19:32:33 | INFO     | src.memory.memory_bank | PCA explained variance: 99.0%
+2026-04-23 19:32:33 | INFO     | src.memory.memory_bank | Memory bank built: 240 features, dim=128, total_time=51.5s
+2026-04-23 19:32:33 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\zipper_memory_bank.pt
+2026-04-23 19:32:33 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 19:32:33 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 19:32:33 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 19:32:33 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 19:32:34 | INFO     | src.training.dataset | MVTecDataset: category=zipper, split=test, samples=151, normal=32, anomaly=119
+2026-04-23 19:33:17 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 19:33:17 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.8451, max=1.0545, threshold=0.9031, method=percentile
+2026-04-23 19:33:17 | INFO     | src.evaluation.evaluator | [zipper] AUROC: 0.8553 | AP: 0.9647 | F1: 0.8807 | Acc: 0.8278 | Precision: 0.9697 | Recall: 0.8067 | Threshold: 0.8639 (youden)
+2026-04-23 19:33:17 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\zipper_roc_curve.png
+2026-04-23 19:33:18 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\zipper_pr_curve.png
+2026-04-23 19:33:19 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\zipper_metrics.json
+2026-04-23 19:33:19 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\zipper_metrics.json
+2026-04-23 19:33:19 | INFO     | __main__ | 
+  >>> Results: AUROC=0.8553 | F1=0.8807 | Precision=0.9697 | Recall=0.8067
+2026-04-23 19:33:19 | INFO     | __main__ | Total pipeline time for zipper: 8.2m
+2026-04-23 19:33:19 | INFO     | __main__ | 
+==============================================================================
+2026-04-23 19:33:19 | INFO     | __main__ | Category           AUROC       AP       F1     Prec   Recall
+2026-04-23 19:33:19 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-04-23 19:33:19 | INFO     | __main__ | bottle            0.9857   0.9963   0.9839   1.0000   0.9683
+2026-04-23 19:33:19 | INFO     | __main__ | cable             0.9929   0.9956   0.9785   0.9681   0.9891
+2026-04-23 19:33:19 | INFO     | __main__ | capsule           0.8724   0.9630   0.9346   0.9524   0.9174
+2026-04-23 19:33:19 | INFO     | __main__ | carpet            0.9001   0.9710   0.8750   0.9859   0.7865
+2026-04-23 19:33:19 | INFO     | __main__ | grid              1.0000   1.0000   1.0000   1.0000   1.0000
+2026-04-23 19:33:19 | INFO     | __main__ | hazelnut          0.8511   0.8544   0.8966   0.8667   0.9286
+2026-04-23 19:33:19 | INFO     | __main__ | leather           1.0000   1.0000   1.0000   1.0000   1.0000
+2026-04-23 19:33:19 | INFO     | __main__ | metal_nut         0.9956   0.9991   0.9946   1.0000   0.9892
+2026-04-23 19:33:19 | INFO     | __main__ | pill              0.8917   0.9803   0.8685   0.9909   0.7730
+2026-04-23 19:33:19 | INFO     | __main__ | screw             0.5909   0.7735   0.7773   0.8091   0.7479
+2026-04-23 19:33:19 | INFO     | __main__ | tile              0.9863   0.9949   0.9639   0.9756   0.9524
+2026-04-23 19:33:19 | INFO     | __main__ | toothbrush        0.8000   0.9193   0.6667   1.0000   0.5000
+2026-04-23 19:33:19 | INFO     | __main__ | transistor        0.9950   0.9928   0.9639   0.9302   1.0000
+2026-04-23 19:33:19 | INFO     | __main__ | wood              0.9860   0.9958   0.9565   1.0000   0.9167
+2026-04-23 19:33:19 | INFO     | __main__ | zipper            0.8553   0.9647   0.8807   0.9697   0.8067
+2026-04-23 19:33:19 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-04-23 19:33:19 | INFO     | __main__ | MEAN...........   0.9135 +/- 0.1086
+2026-04-23 19:33:19 | INFO     | __main__ | ==============================================================================
+2026-04-23 19:33:19 | INFO     | __main__ | Summary saved: outputs/results\all_categories_summary.json
+2026-04-23 19:33:19 | INFO     | __main__ | 
+All processing complete!

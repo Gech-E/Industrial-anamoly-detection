@@ -1,0 +1,39 @@
+2026-03-28 14:10:52 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260328_141052.log
+2026-03-28 14:10:52 | INFO     | root | Using CPU
+2026-03-28 14:10:52 | INFO     | __main__ | Using device: cpu
+2026-03-28 14:10:52 | INFO     | __main__ | 
+============================================================
+2026-03-28 14:10:52 | INFO     | __main__ | Evaluating category: bottle
+2026-03-28 14:10:52 | INFO     | __main__ | ============================================================
+2026-03-28 14:10:53 | INFO     | src.model | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-28 14:10:53 | INFO     | src.model | Projection head: 2048 -> 256 -> 128
+2026-03-28 14:10:53 | INFO     | src.model | SimCLR model initialized (feature_dim=2048, projection_dim=128)
+2026-03-28 14:10:53 | INFO     | root | Checkpoint loaded: outputs/checkpoints\bottle_best.pt (epoch 8, loss 0.0236)
+2026-03-28 14:10:53 | INFO     | src.memory_bank | Memory bank loaded from outputs/checkpoints\bottle_memory_bank.pt: 208 features
+2026-03-28 14:10:53 | INFO     | src.memory_bank | Anomaly scorer initialized: method=knn, k=3
+2026-03-28 14:10:53 | INFO     | src.dataset | MVTecDataset: category=bottle, split=test, samples=83, normal=20, anomaly=63
+2026-03-28 14:10:53 | INFO     | __main__ | Test samples: 83
+2026-03-28 14:11:08 | INFO     | src.evaluator | [bottle] AUROC: 0.6341 | F1: 0.8630 | Acc: 0.7590 | Precision: 0.7590 | Recall: 1.0000
+2026-03-28 14:11:09 | INFO     | src.evaluator | ROC curve saved: outputs/results\bottle_roc_curve.png
+2026-03-28 14:11:09 | INFO     | src.evaluator | Confusion matrix saved: outputs/results\bottle_confusion_matrix.png
+2026-03-28 14:11:09 | INFO     | src.evaluator | Score distribution saved: outputs/results\bottle_score_distribution.png
+2026-03-28 14:11:09 | INFO     | src.evaluator | Metrics saved: outputs/results\bottle_metrics.json
+2026-03-28 14:11:09 | INFO     | __main__ | Generating Grad-CAM visualizations...
+2026-03-28 14:11:09 | INFO     | src.gradcam | Grad-CAM initialized with target layer: layer3
+2026-03-28 14:11:10 | INFO     | src.gradcam | Grad-CAM visualization saved: outputs/visualizations\bottle_good_63_gradcam.png
+2026-03-28 14:11:11 | INFO     | src.gradcam | Grad-CAM visualization saved: outputs/visualizations\bottle_good_64_gradcam.png
+2026-03-28 14:11:11 | INFO     | src.gradcam | Grad-CAM visualization saved: outputs/visualizations\bottle_broken_large_0_gradcam.png
+2026-03-28 14:11:12 | INFO     | src.gradcam | Grad-CAM visualization saved: outputs/visualizations\bottle_broken_large_1_gradcam.png
+2026-03-28 14:11:13 | INFO     | src.gradcam | Grad-CAM visualization saved: outputs/visualizations\bottle_broken_large_2_gradcam.png
+2026-03-28 14:11:14 | INFO     | src.gradcam | Grad-CAM visualization saved: outputs/visualizations\bottle_broken_large_3_gradcam.png
+2026-03-28 14:11:14 | INFO     | src.gradcam | Grad-CAM visualization saved: outputs/visualizations\bottle_broken_large_4_gradcam.png
+2026-03-28 14:11:14 | INFO     | __main__ | Evaluation complete for bottle
+2026-03-28 14:11:14 | INFO     | __main__ | 
+======================================================================
+2026-03-28 14:11:14 | INFO     | __main__ | Category           AUROC       F1      Acc     Prec   Recall
+2026-03-28 14:11:14 | INFO     | __main__ | ----------------------------------------------------------------------
+2026-03-28 14:11:14 | INFO     | __main__ | bottle            0.6341   0.8630   0.7590   0.7590   1.0000
+2026-03-28 14:11:14 | INFO     | __main__ | ----------------------------------------------------------------------
+2026-03-28 14:11:14 | INFO     | __main__ | MEAN              0.6341
+2026-03-28 14:11:14 | INFO     | __main__ | ======================================================================
+2026-03-28 14:11:14 | INFO     | __main__ | Summary saved: outputs/results\all_categories_summary.json

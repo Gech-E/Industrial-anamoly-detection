@@ -1,0 +1,165 @@
+2026-03-29 12:17:35 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260329_121735.log
+2026-03-29 12:17:35 | INFO     | root | Using CPU
+2026-03-29 12:17:35 | INFO     | __main__ | Using device: cpu
+2026-03-29 12:17:35 | INFO     | __main__ | Pipeline: PatchCore
+2026-03-29 12:17:35 | INFO     | __main__ | 
+============================================================
+2026-03-29 12:17:35 | INFO     | __main__ | Processing category: cable
+2026-03-29 12:17:35 | INFO     | __main__ | ============================================================
+2026-03-29 12:17:36 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-29 12:17:36 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-03-29 12:17:36 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-03-29 12:17:36 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-03-29 12:17:36 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-03-29 12:17:36 | INFO     | __main__ | Mode: SimCLR contrastive training
+2026-03-29 12:17:38 | INFO     | src.training.dataset | MVTecDataset: category=cable, split=train, samples=224, normal=224, anomaly=0
+2026-03-29 12:17:38 | INFO     | __main__ | Training samples: 224
+2026-03-29 12:17:38 | INFO     | src.training.losses | NT-Xent loss initialized with temperature=0.07
+2026-03-29 12:17:38 | INFO     | src.training.trainer | CPU detected — AMP disabled, optimizing for CPU inference
+2026-03-29 12:17:38 | INFO     | src.training.trainer | Early stopping initialized: patience=15, min_delta=0.001
+2026-03-29 12:17:38 | INFO     | src.training.trainer | SimCLR Trainer initialized | AMP=OFF | Device=cpu | Epochs=50 | Early stopping=ON
+2026-03-29 12:17:38 | INFO     | src.training.trainer | Starting SimCLR training for category: cable
+2026-03-29 12:17:38 | INFO     | src.training.trainer | Epochs: 1->50 | Batch size: 32 | Batches/epoch: 7
+2026-03-29 12:23:00 | INFO     | src.training.trainer | Epoch [1/50] | Loss: 3.9150 | LR: 0.000060 | Time: 5.4m | Elapsed: 5.4m | ETA: 4h 23m
+2026-03-29 12:23:02 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 1, loss 3.9150)
+2026-03-29 12:27:47 | INFO     | src.training.trainer | Epoch [2/50] | Loss: 3.3368 | LR: 0.000120 | Time: 4.8m | Elapsed: 10.2m | ETA: 4h 3m
+2026-03-29 12:27:48 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 2, loss 3.3368)
+2026-03-29 12:32:50 | INFO     | src.training.trainer | Epoch [3/50] | Loss: 2.9008 | LR: 0.000180 | Time: 5.0m | Elapsed: 15.2m | ETA: 3h 58m
+2026-03-29 12:32:51 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 3, loss 2.9008)
+2026-03-29 12:37:19 | INFO     | src.training.trainer | Epoch [4/50] | Loss: 2.3060 | LR: 0.000240 | Time: 4.5m | Elapsed: 19.7m | ETA: 3h 46m
+2026-03-29 12:37:20 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 4, loss 2.3060)
+2026-03-29 12:42:06 | INFO     | src.training.trainer | Epoch [5/50] | Loss: 1.9057 | LR: 0.000300 | Time: 4.8m | Elapsed: 24.5m | ETA: 3h 40m
+2026-03-29 12:42:07 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 5, loss 1.9057)
+2026-03-29 12:46:26 | INFO     | src.training.trainer | Epoch [6/50] | Loss: 1.5309 | LR: 0.000300 | Time: 4.3m | Elapsed: 28.8m | ETA: 3h 31m
+2026-03-29 12:46:27 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 6, loss 1.5309)
+2026-03-29 12:50:51 | INFO     | src.training.trainer | Epoch [7/50] | Loss: 1.4120 | LR: 0.000299 | Time: 4.4m | Elapsed: 33.2m | ETA: 3h 24m
+2026-03-29 12:50:52 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 7, loss 1.4120)
+2026-03-29 12:55:42 | INFO     | src.training.trainer | Epoch [8/50] | Loss: 1.3992 | LR: 0.000297 | Time: 4.8m | Elapsed: 38.1m | ETA: 3h 19m
+2026-03-29 12:55:43 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 8, loss 1.3992)
+2026-03-29 12:59:23 | INFO     | src.training.trainer | Epoch [9/50] | Loss: 1.3961 | LR: 0.000294 | Time: 3.7m | Elapsed: 41.8m | ETA: 3h 10m
+2026-03-29 12:59:24 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 9, loss 1.3961)
+2026-03-29 13:03:00 | INFO     | src.training.trainer | Epoch [10/50] | Loss: 1.0206 | LR: 0.000291 | Time: 3.6m | Elapsed: 45.4m | ETA: 3h 1m
+2026-03-29 13:03:00 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 10, loss 1.0206)
+2026-03-29 13:03:01 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_epoch_10.pt (epoch 10, loss 1.0206)
+2026-03-29 13:05:55 | INFO     | src.training.trainer | Epoch [11/50] | Loss: 1.0655 | LR: 0.000287 | Time: 2.9m | Elapsed: 48.3m | ETA: 2h 51m
+2026-03-29 13:08:29 | INFO     | src.training.trainer | Epoch [12/50] | Loss: 1.0154 | LR: 0.000282 | Time: 2.6m | Elapsed: 50.9m | ETA: 2h 41m
+2026-03-29 13:08:30 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 12, loss 1.0154)
+2026-03-29 13:11:04 | INFO     | src.training.trainer | Epoch [13/50] | Loss: 0.9371 | LR: 0.000277 | Time: 2.6m | Elapsed: 53.4m | ETA: 2h 32m
+2026-03-29 13:11:04 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 13, loss 0.9371)
+2026-03-29 13:13:38 | INFO     | src.training.trainer | Epoch [14/50] | Loss: 1.0165 | LR: 0.000271 | Time: 2.6m | Elapsed: 56.0m | ETA: 2h 24m
+2026-03-29 13:16:13 | INFO     | src.training.trainer | Epoch [15/50] | Loss: 0.9707 | LR: 0.000265 | Time: 2.6m | Elapsed: 58.6m | ETA: 2h 16m
+2026-03-29 13:18:47 | INFO     | src.training.trainer | Epoch [16/50] | Loss: 0.8035 | LR: 0.000258 | Time: 2.6m | Elapsed: 1h 1m | ETA: 2h 9m
+2026-03-29 13:18:48 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 16, loss 0.8035)
+2026-03-29 13:21:36 | INFO     | src.training.trainer | Epoch [17/50] | Loss: 0.8328 | LR: 0.000250 | Time: 2.8m | Elapsed: 1h 3m | ETA: 2h 4m
+2026-03-29 13:24:13 | INFO     | src.training.trainer | Epoch [18/50] | Loss: 0.8925 | LR: 0.000242 | Time: 2.6m | Elapsed: 1h 6m | ETA: 1h 58m
+2026-03-29 13:26:50 | INFO     | src.training.trainer | Epoch [19/50] | Loss: 0.7171 | LR: 0.000234 | Time: 2.6m | Elapsed: 1h 9m | ETA: 1h 52m
+2026-03-29 13:26:51 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 19, loss 0.7171)
+2026-03-29 13:29:26 | INFO     | src.training.trainer | Epoch [20/50] | Loss: 0.8114 | LR: 0.000225 | Time: 2.6m | Elapsed: 1h 11m | ETA: 1h 47m
+2026-03-29 13:29:27 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_epoch_20.pt (epoch 20, loss 0.8114)
+2026-03-29 13:32:04 | INFO     | src.training.trainer | Epoch [21/50] | Loss: 0.8767 | LR: 0.000216 | Time: 2.6m | Elapsed: 1h 14m | ETA: 1h 42m
+2026-03-29 14:11:38 | INFO     | src.training.trainer | Epoch [22/50] | Loss: 0.6788 | LR: 0.000206 | Time: 39.6m | Elapsed: 1h 53m | ETA: 2h 25m
+2026-03-29 14:11:38 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 22, loss 0.6788)
+2026-03-29 14:15:03 | INFO     | src.training.trainer | Epoch [23/50] | Loss: 0.5712 | LR: 0.000196 | Time: 3.4m | Elapsed: 1h 57m | ETA: 2h 17m
+2026-03-29 14:15:04 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 23, loss 0.5712)
+2026-03-29 14:17:44 | INFO     | src.training.trainer | Epoch [24/50] | Loss: 0.4877 | LR: 0.000186 | Time: 2.7m | Elapsed: 2h 0m | ETA: 2h 10m
+2026-03-29 14:17:45 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 24, loss 0.4877)
+2026-03-29 14:20:37 | INFO     | src.training.trainer | Epoch [25/50] | Loss: 0.4976 | LR: 0.000176 | Time: 2.9m | Elapsed: 2h 2m | ETA: 2h 2m
+2026-03-29 14:24:25 | INFO     | src.training.trainer | Epoch [26/50] | Loss: 0.6397 | LR: 0.000166 | Time: 3.8m | Elapsed: 2h 6m | ETA: 1h 57m
+2026-03-29 14:27:44 | INFO     | src.training.trainer | Epoch [27/50] | Loss: 0.4191 | LR: 0.000155 | Time: 3.3m | Elapsed: 2h 10m | ETA: 1h 50m
+2026-03-29 14:27:44 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 27, loss 0.4191)
+2026-03-29 14:31:36 | INFO     | src.training.trainer | Epoch [28/50] | Loss: 0.5219 | LR: 0.000145 | Time: 3.9m | Elapsed: 2h 13m | ETA: 1h 45m
+2026-03-29 14:35:28 | INFO     | src.training.trainer | Epoch [29/50] | Loss: 0.4464 | LR: 0.000134 | Time: 3.9m | Elapsed: 2h 17m | ETA: 1h 39m
+2026-03-29 14:38:39 | INFO     | src.training.trainer | Epoch [30/50] | Loss: 0.2822 | LR: 0.000124 | Time: 3.2m | Elapsed: 2h 21m | ETA: 1h 34m
+2026-03-29 14:38:39 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 30, loss 0.2822)
+2026-03-29 14:38:40 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_epoch_30.pt (epoch 30, loss 0.2822)
+2026-03-29 14:41:41 | INFO     | src.training.trainer | Epoch [31/50] | Loss: 0.2941 | LR: 0.000114 | Time: 3.0m | Elapsed: 2h 24m | ETA: 1h 28m
+2026-03-29 14:44:48 | INFO     | src.training.trainer | Epoch [32/50] | Loss: 0.4359 | LR: 0.000104 | Time: 3.1m | Elapsed: 2h 27m | ETA: 1h 22m
+2026-03-29 14:47:48 | INFO     | src.training.trainer | Epoch [33/50] | Loss: 0.3660 | LR: 0.000094 | Time: 3.0m | Elapsed: 2h 30m | ETA: 1h 17m
+2026-03-29 14:50:58 | INFO     | src.training.trainer | Epoch [34/50] | Loss: 0.4274 | LR: 0.000084 | Time: 3.2m | Elapsed: 2h 33m | ETA: 1h 12m
+2026-03-29 14:54:04 | INFO     | src.training.trainer | Epoch [35/50] | Loss: 0.2822 | LR: 0.000075 | Time: 3.1m | Elapsed: 2h 36m | ETA: 1h 7m
+2026-03-29 14:57:06 | INFO     | src.training.trainer | Epoch [36/50] | Loss: 0.3385 | LR: 0.000066 | Time: 3.0m | Elapsed: 2h 39m | ETA: 1h 2m
+2026-03-29 15:00:12 | INFO     | src.training.trainer | Epoch [37/50] | Loss: 0.2444 | LR: 0.000058 | Time: 3.1m | Elapsed: 2h 42m | ETA: 57.1m
+2026-03-29 15:00:12 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 37, loss 0.2444)
+2026-03-29 15:03:40 | INFO     | src.training.trainer | Epoch [38/50] | Loss: 0.2366 | LR: 0.000050 | Time: 3.5m | Elapsed: 2h 46m | ETA: 52.4m
+2026-03-29 15:03:41 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 38, loss 0.2366)
+2026-03-29 15:07:02 | INFO     | src.training.trainer | Epoch [39/50] | Loss: 0.2641 | LR: 0.000042 | Time: 3.4m | Elapsed: 2h 49m | ETA: 47.8m
+2026-03-29 15:09:54 | INFO     | src.training.trainer | Epoch [40/50] | Loss: 0.2224 | LR: 0.000035 | Time: 2.9m | Elapsed: 2h 52m | ETA: 43.1m
+2026-03-29 15:09:55 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 40, loss 0.2224)
+2026-03-29 15:09:57 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_epoch_40.pt (epoch 40, loss 0.2224)
+2026-03-29 15:13:23 | INFO     | src.training.trainer | Epoch [41/50] | Loss: 0.2344 | LR: 0.000029 | Time: 3.4m | Elapsed: 2h 55m | ETA: 38.6m
+2026-03-29 15:17:00 | INFO     | src.training.trainer | Epoch [42/50] | Loss: 0.2261 | LR: 0.000023 | Time: 3.6m | Elapsed: 2h 59m | ETA: 34.2m
+2026-03-29 15:22:39 | INFO     | src.training.trainer | Epoch [43/50] | Loss: 0.1805 | LR: 0.000018 | Time: 5.7m | Elapsed: 3h 5m | ETA: 30.1m
+2026-03-29 15:22:40 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 43, loss 0.1805)
+2026-03-29 15:27:19 | INFO     | src.training.trainer | Epoch [44/50] | Loss: 0.1943 | LR: 0.000013 | Time: 4.6m | Elapsed: 3h 9m | ETA: 25.9m
+2026-03-29 15:30:32 | INFO     | src.training.trainer | Epoch [45/50] | Loss: 0.1941 | LR: 0.000009 | Time: 3.2m | Elapsed: 3h 12m | ETA: 21.4m
+2026-03-29 15:34:04 | INFO     | src.training.trainer | Epoch [46/50] | Loss: 0.2342 | LR: 0.000006 | Time: 3.5m | Elapsed: 3h 16m | ETA: 17.1m
+2026-03-29 15:38:01 | INFO     | src.training.trainer | Epoch [47/50] | Loss: 0.1560 | LR: 0.000003 | Time: 4.0m | Elapsed: 3h 20m | ETA: 12.8m
+2026-03-29 15:38:03 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 47, loss 0.1560)
+2026-03-29 15:42:55 | INFO     | src.training.trainer | Epoch [48/50] | Loss: 0.2270 | LR: 0.000001 | Time: 4.9m | Elapsed: 3h 25m | ETA: 8.6m
+2026-03-29 15:46:32 | INFO     | src.training.trainer | Epoch [49/50] | Loss: 0.1133 | LR: 0.000000 | Time: 3.6m | Elapsed: 3h 28m | ETA: 4.3m
+2026-03-29 15:46:33 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 49, loss 0.1133)
+2026-03-29 15:49:58 | INFO     | src.training.trainer | Epoch [50/50] | Loss: 0.2584 | LR: 0.000000 | Time: 3.4m | Elapsed: 3h 32m | ETA: 0.0s
+2026-03-29 15:49:58 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_epoch_50.pt (epoch 50, loss 0.2584)
+2026-03-29 15:49:58 | INFO     | src.training.trainer | 
+============================================================
+2026-03-29 15:49:58 | INFO     | src.training.trainer | Training Summary — cable
+2026-03-29 15:49:58 | INFO     | src.training.trainer | ============================================================
+2026-03-29 15:49:58 | INFO     | src.training.trainer |   Total epochs:    50/50
+2026-03-29 15:49:58 | INFO     | src.training.trainer |   Total time:      3h 32m
+2026-03-29 15:49:58 | INFO     | src.training.trainer |   Best loss:       0.1133
+2026-03-29 15:49:58 | INFO     | src.training.trainer |   Avg epoch time:  4.2m
+2026-03-29 15:49:58 | INFO     | src.training.trainer | ============================================================
+2026-03-29 15:49:58 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-03-29 15:49:58 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-03-29 15:49:59 | INFO     | src.training.dataset | MVTecDataset: category=cable, split=train, samples=224, normal=224, anomaly=0
+2026-03-29 15:49:59 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-03-29 15:50:55 | INFO     | src.memory.memory_bank | Patch extraction: 175616 patches, dim=1536, patch_shape=(28, 28), time=55.9s
+2026-03-29 15:50:55 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 256 dims
+2026-03-29 15:51:25 | INFO     | src.memory.memory_bank | PCA explained variance: 86.3%
+2026-03-29 15:51:25 | INFO     | src.memory.memory_bank | Coreset subsampling: 175616 -> 5000 patches
+2026-03-29 15:54:39 | INFO     | src.memory.memory_bank |   Coreset progress: 500/5000
+2026-03-29 15:56:16 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/5000
+2026-03-29 15:58:25 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/5000
+2026-03-29 15:59:57 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/5000
+2026-03-29 16:01:42 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/5000
+2026-03-29 16:02:59 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/5000
+2026-03-29 16:04:28 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/5000
+2026-03-29 16:05:53 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/5000
+2026-03-29 16:07:14 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/5000
+2026-03-29 16:08:36 | INFO     | src.memory.memory_bank | Patch memory bank built: 5000 patches, dim=256, total_time=1116.9s
+2026-03-29 16:08:36 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\cable_patch_bank.pt
+2026-03-29 16:08:36 | INFO     | __main__ | Building global feature memory bank...
+2026-03-29 16:08:38 | INFO     | src.training.dataset | MVTecDataset: category=cable, split=train, samples=224, normal=224, anomaly=0
+2026-03-29 16:08:38 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-03-29 16:09:34 | INFO     | src.memory.memory_bank | Feature extraction: 224 samples, dim=3584, time=56.7s
+2026-03-29 16:09:34 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 200 dims
+2026-03-29 16:09:35 | INFO     | src.memory.memory_bank | PCA explained variance: 99.9%
+2026-03-29 16:09:35 | INFO     | src.memory.memory_bank | Memory bank built: 224 features, dim=200, total_time=57.0s
+2026-03-29 16:09:35 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\cable_memory_bank.pt
+2026-03-29 16:09:35 | INFO     | __main__ | Running PatchCore evaluation...
+2026-03-29 16:09:35 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=3, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-03-29 16:09:35 | INFO     | faiss.loader | Loading faiss with AVX2 support.
+2026-03-29 16:09:36 | INFO     | faiss.loader | Successfully loaded faiss with AVX2 support.
+2026-03-29 16:09:36 | INFO     | src.memory.memory_bank | Faiss index built with 5000 patches
+2026-03-29 16:09:36 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 5000 patches
+2026-03-29 16:09:37 | INFO     | src.training.dataset | MVTecDataset: category=cable, split=test, samples=150, normal=58, anomaly=92
+2026-03-29 16:10:21 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=minmax_sigmoid
+2026-03-29 16:10:21 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.9190, max=1.1013, threshold=0.9958, method=minmax_sigmoid
+2026-03-29 16:10:21 | INFO     | src.evaluation.evaluator | [cable] AUROC: 0.9608 | AP: 0.9782 | F1: 0.8982 | Acc: 0.8867 | Precision: 1.0000 | Recall: 0.8152 | Threshold: 1.0010 (youden)
+2026-03-29 16:10:22 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\cable_roc_curve.png
+2026-03-29 16:10:22 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\cable_pr_curve.png
+2026-03-29 16:10:23 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\cable_metrics.json
+2026-03-29 16:10:23 | INFO     | __main__ | 
+  >>> Results: AUROC=0.9608 | F1=0.8982 | Precision=1.0000 | Recall=0.8152
+2026-03-29 16:10:23 | INFO     | __main__ | Total pipeline time for cable: 3h 52m
+2026-03-29 16:10:23 | INFO     | __main__ | 
+==============================================================================
+2026-03-29 16:10:23 | INFO     | __main__ | Category           AUROC       AP       F1     Prec   Recall
+2026-03-29 16:10:23 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-03-29 16:10:23 | INFO     | __main__ | cable             0.9608   0.9782   0.8982   1.0000   0.8152
+2026-03-29 16:10:23 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-03-29 16:10:23 | INFO     | __main__ | MEAN...........   0.9608 +/- 0.0000
+2026-03-29 16:10:23 | INFO     | __main__ | ==============================================================================
+2026-03-29 16:10:23 | INFO     | __main__ | Summary saved: outputs/results\all_categories_summary.json
+2026-03-29 16:10:23 | INFO     | __main__ | 
+All processing complete!

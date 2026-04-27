@@ -1,0 +1,3 @@
+2026-03-28 14:11:24 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260328_141124.log
+2026-03-28 14:11:24 | INFO     | root | Using CPU
+2026-03-28 14:11:24 | ERROR    | __main__ | Image not found: path/to/image.png

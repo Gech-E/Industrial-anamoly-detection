@@ -1,0 +1,15 @@
+2026-03-28 16:23:05 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260328_162305.log
+2026-03-28 16:23:05 | INFO     | root | Using CPU
+2026-03-28 16:23:05 | INFO     | __main__ | Using device: cpu
+2026-03-28 16:23:05 | INFO     | __main__ | 
+============================================================
+2026-03-28 16:23:05 | INFO     | __main__ | Evaluating category: bottle
+2026-03-28 16:23:05 | INFO     | __main__ | ============================================================
+2026-03-28 16:23:05 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-28 16:23:05 | INFO     | src.models.simclr | Projection head: 2048 -> 256 -> 128
+2026-03-28 16:23:05 | INFO     | src.models.simclr | SimCLR model initialized (feature_dim=2048, projection_dim=128)
+2026-03-28 16:23:05 | INFO     | root | Checkpoint loaded: outputs/checkpoints\bottle_best.pt (epoch 2, loss 0.5575)
+2026-03-28 16:23:05 | INFO     | src.memory.memory_bank | Memory bank loaded from outputs/checkpoints\bottle_memory_bank.pt: 208 features
+2026-03-28 16:23:05 | INFO     | src.scoring.distance | Anomaly scorer initialized: method=cosine
+2026-03-28 16:23:05 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=test, samples=83, normal=20, anomaly=63
+2026-03-28 16:23:05 | INFO     | __main__ | Test samples: 83

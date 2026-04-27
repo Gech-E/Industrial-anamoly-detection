@@ -1,0 +1,18 @@
+2026-03-28 12:29:36 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260328_122935.log
+2026-03-28 12:29:36 | INFO     | root | Using CPU
+2026-03-28 12:29:36 | INFO     | __main__ | Using device: cpu
+2026-03-28 12:29:36 | INFO     | __main__ | 
+============================================================
+2026-03-28 12:29:36 | INFO     | __main__ | Training SimCLR for category: cable
+2026-03-28 12:29:36 | INFO     | __main__ | ============================================================
+2026-03-28 12:29:36 | INFO     | __main__ | Creating training dataloader...
+2026-03-28 12:29:36 | INFO     | src.dataset | MVTecDataset: category=cable, split=train, samples=224, normal=224, anomaly=0
+2026-03-28 12:29:36 | INFO     | __main__ | Training samples: 224
+2026-03-28 12:29:37 | INFO     | src.model | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-28 12:29:37 | INFO     | src.model | Projection head: 2048 -> 256 -> 128
+2026-03-28 12:29:37 | INFO     | src.model | SimCLR model initialized (feature_dim=2048, projection_dim=128)
+2026-03-28 12:29:37 | INFO     | __main__ | Model parameters: 24.07M total, 24.07M trainable
+2026-03-28 12:29:37 | INFO     | src.losses | NT-Xent loss initialized with temperature=0.07
+2026-03-28 12:29:37 | INFO     | src.trainer | SimCLR Trainer initialized | AMP=OFF | Device=cpu | Epochs=10
+2026-03-28 12:29:37 | INFO     | src.trainer | Starting SimCLR training for category: cable
+2026-03-28 12:29:37 | INFO     | src.trainer | Epochs: 10 | Batch size: 32

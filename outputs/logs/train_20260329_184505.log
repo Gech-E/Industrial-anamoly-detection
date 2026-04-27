@@ -1,0 +1,136 @@
+2026-03-29 18:45:05 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260329_184505.log
+2026-03-29 18:45:05 | INFO     | root | Using CPU
+2026-03-29 18:45:05 | INFO     | __main__ | Using device: cpu
+2026-03-29 18:45:05 | INFO     | __main__ | Pipeline: PatchCore
+2026-03-29 18:45:05 | INFO     | __main__ | 
+============================================================
+2026-03-29 18:45:05 | INFO     | __main__ | Processing category: leather
+2026-03-29 18:45:05 | INFO     | __main__ | ============================================================
+2026-03-29 18:45:06 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-29 18:45:06 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-03-29 18:45:06 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-03-29 18:45:06 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-03-29 18:45:06 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-03-29 18:45:06 | INFO     | __main__ | Mode: SimCLR contrastive training
+2026-03-29 18:45:07 | INFO     | src.training.dataset | MVTecDataset: category=leather, split=train, samples=245, normal=245, anomaly=0
+2026-03-29 18:45:07 | INFO     | __main__ | Training samples: 245
+2026-03-29 18:45:07 | INFO     | src.training.losses | NT-Xent loss initialized with temperature=0.07
+2026-03-29 18:45:07 | INFO     | src.training.trainer | CPU detected — AMP disabled, optimizing for CPU inference
+2026-03-29 18:45:07 | INFO     | src.training.trainer | Early stopping initialized: patience=15, min_delta=0.001
+2026-03-29 18:45:07 | INFO     | src.training.trainer | SimCLR Trainer initialized | AMP=OFF | Device=cpu | Epochs=50 | Early stopping=ON
+2026-03-29 18:45:07 | INFO     | src.training.trainer | Starting SimCLR training for category: leather
+2026-03-29 18:45:07 | INFO     | src.training.trainer | Epochs: 1->50 | Batch size: 32 | Batches/epoch: 7
+2026-03-29 18:49:14 | INFO     | src.training.trainer | Epoch [1/50] | Loss: 4.8300 | LR: 0.000060 | Time: 4.1m | Elapsed: 4.1m | ETA: 3h 21m
+2026-03-29 18:49:15 | INFO     | root | Checkpoint saved: outputs/checkpoints\leather_best.pt (epoch 1, loss 4.8300)
+2026-03-29 18:53:14 | INFO     | src.training.trainer | Epoch [2/50] | Loss: 4.4998 | LR: 0.000120 | Time: 4.0m | Elapsed: 8.1m | ETA: 3h 14m
+2026-03-29 18:53:15 | INFO     | root | Checkpoint saved: outputs/checkpoints\leather_best.pt (epoch 2, loss 4.4998)
+2026-03-29 18:57:14 | INFO     | src.training.trainer | Epoch [3/50] | Loss: 4.4845 | LR: 0.000180 | Time: 4.0m | Elapsed: 12.1m | ETA: 3h 9m
+2026-03-29 18:57:15 | INFO     | root | Checkpoint saved: outputs/checkpoints\leather_best.pt (epoch 3, loss 4.4845)
+2026-03-29 19:01:37 | INFO     | src.training.trainer | Epoch [4/50] | Loss: 4.3351 | LR: 0.000240 | Time: 4.4m | Elapsed: 16.5m | ETA: 3h 9m
+2026-03-29 19:01:38 | INFO     | root | Checkpoint saved: outputs/checkpoints\leather_best.pt (epoch 4, loss 4.3351)
+2026-03-29 19:05:42 | INFO     | src.training.trainer | Epoch [5/50] | Loss: 4.3102 | LR: 0.000300 | Time: 4.1m | Elapsed: 20.6m | ETA: 3h 5m
+2026-03-29 19:05:43 | INFO     | root | Checkpoint saved: outputs/checkpoints\leather_best.pt (epoch 5, loss 4.3102)
+2026-03-29 19:10:12 | INFO     | src.training.trainer | Epoch [6/50] | Loss: 4.2252 | LR: 0.000300 | Time: 4.5m | Elapsed: 25.1m | ETA: 3h 3m
+2026-03-29 19:10:13 | INFO     | root | Checkpoint saved: outputs/checkpoints\leather_best.pt (epoch 6, loss 4.2252)
+2026-03-29 19:13:06 | INFO     | src.training.trainer | Epoch [7/50] | Loss: 4.2608 | LR: 0.000299 | Time: 2.9m | Elapsed: 28.0m | ETA: 2h 51m
+2026-03-29 19:17:39 | INFO     | src.training.trainer | Epoch [8/50] | Loss: 4.2075 | LR: 0.000297 | Time: 4.5m | Elapsed: 32.5m | ETA: 2h 50m
+2026-03-29 19:17:40 | INFO     | root | Checkpoint saved: outputs/checkpoints\leather_best.pt (epoch 8, loss 4.2075)
+2026-03-29 19:23:33 | INFO     | src.training.trainer | Epoch [9/50] | Loss: 4.2500 | LR: 0.000294 | Time: 5.9m | Elapsed: 38.4m | ETA: 2h 55m
+2026-03-29 19:27:48 | INFO     | src.training.trainer | Epoch [10/50] | Loss: 4.1613 | LR: 0.000291 | Time: 4.3m | Elapsed: 42.7m | ETA: 2h 50m
+2026-03-29 19:27:49 | INFO     | root | Checkpoint saved: outputs/checkpoints\leather_best.pt (epoch 10, loss 4.1613)
+2026-03-29 19:27:50 | INFO     | root | Checkpoint saved: outputs/checkpoints\leather_epoch_10.pt (epoch 10, loss 4.1613)
+2026-03-29 19:32:11 | INFO     | src.training.trainer | Epoch [11/50] | Loss: 4.1991 | LR: 0.000287 | Time: 4.4m | Elapsed: 47.1m | ETA: 2h 46m
+2026-03-29 19:36:32 | INFO     | src.training.trainer | Epoch [12/50] | Loss: 4.1563 | LR: 0.000282 | Time: 4.3m | Elapsed: 51.4m | ETA: 2h 42m
+2026-03-29 19:36:33 | INFO     | root | Checkpoint saved: outputs/checkpoints\leather_best.pt (epoch 12, loss 4.1563)
+2026-03-29 19:41:18 | INFO     | src.training.trainer | Epoch [13/50] | Loss: 4.1751 | LR: 0.000277 | Time: 4.7m | Elapsed: 56.2m | ETA: 2h 39m
+2026-03-29 19:45:46 | INFO     | src.training.trainer | Epoch [14/50] | Loss: 4.1582 | LR: 0.000271 | Time: 4.5m | Elapsed: 1h 0m | ETA: 2h 35m
+2026-03-29 19:50:22 | INFO     | src.training.trainer | Epoch [15/50] | Loss: 4.1626 | LR: 0.000265 | Time: 4.6m | Elapsed: 1h 5m | ETA: 2h 32m
+2026-03-29 19:55:01 | INFO     | src.training.trainer | Epoch [16/50] | Loss: 4.1618 | LR: 0.000258 | Time: 4.6m | Elapsed: 1h 9m | ETA: 2h 28m
+2026-03-29 19:59:34 | INFO     | src.training.trainer | Epoch [17/50] | Loss: 4.1488 | LR: 0.000250 | Time: 4.6m | Elapsed: 1h 14m | ETA: 2h 24m
+2026-03-29 19:59:34 | INFO     | root | Checkpoint saved: outputs/checkpoints\leather_best.pt (epoch 17, loss 4.1488)
+2026-03-29 20:03:22 | INFO     | src.training.trainer | Epoch [18/50] | Loss: 4.1255 | LR: 0.000242 | Time: 3.8m | Elapsed: 1h 18m | ETA: 2h 19m
+2026-03-29 20:03:22 | INFO     | root | Checkpoint saved: outputs/checkpoints\leather_best.pt (epoch 18, loss 4.1255)
+2026-03-29 20:06:43 | INFO     | src.training.trainer | Epoch [19/50] | Loss: 4.1466 | LR: 0.000234 | Time: 3.3m | Elapsed: 1h 21m | ETA: 2h 13m
+2026-03-29 20:09:51 | INFO     | src.training.trainer | Epoch [20/50] | Loss: 4.1704 | LR: 0.000225 | Time: 3.1m | Elapsed: 1h 24m | ETA: 2h 7m
+2026-03-29 20:09:52 | INFO     | root | Checkpoint saved: outputs/checkpoints\leather_epoch_20.pt (epoch 20, loss 4.1704)
+2026-03-29 20:13:07 | INFO     | src.training.trainer | Epoch [21/50] | Loss: 4.1497 | LR: 0.000216 | Time: 3.3m | Elapsed: 1h 27m | ETA: 2h 1m
+2026-03-29 20:16:09 | INFO     | src.training.trainer | Epoch [22/50] | Loss: 4.1569 | LR: 0.000206 | Time: 3.0m | Elapsed: 1h 31m | ETA: 1h 55m
+2026-03-29 20:19:01 | INFO     | src.training.trainer | Epoch [23/50] | Loss: 4.1453 | LR: 0.000196 | Time: 2.9m | Elapsed: 1h 33m | ETA: 1h 50m
+2026-03-29 20:21:53 | INFO     | src.training.trainer | Epoch [24/50] | Loss: 4.1481 | LR: 0.000186 | Time: 2.9m | Elapsed: 1h 36m | ETA: 1h 44m
+2026-03-29 20:25:06 | INFO     | src.training.trainer | Epoch [25/50] | Loss: 4.1398 | LR: 0.000176 | Time: 3.2m | Elapsed: 1h 39m | ETA: 1h 39m
+2026-03-29 20:28:41 | INFO     | src.training.trainer | Epoch [26/50] | Loss: 4.1519 | LR: 0.000166 | Time: 3.6m | Elapsed: 1h 43m | ETA: 1h 35m
+2026-03-29 20:32:19 | INFO     | src.training.trainer | Epoch [27/50] | Loss: 4.1524 | LR: 0.000155 | Time: 3.6m | Elapsed: 1h 47m | ETA: 1h 31m
+2026-03-29 20:35:37 | INFO     | src.training.trainer | Epoch [28/50] | Loss: 4.1463 | LR: 0.000145 | Time: 3.3m | Elapsed: 1h 50m | ETA: 1h 26m
+2026-03-29 20:38:55 | INFO     | src.training.trainer | Epoch [29/50] | Loss: 4.1456 | LR: 0.000134 | Time: 3.3m | Elapsed: 1h 53m | ETA: 1h 22m
+2026-03-29 20:42:11 | INFO     | src.training.trainer | Epoch [30/50] | Loss: 4.1446 | LR: 0.000124 | Time: 3.3m | Elapsed: 1h 57m | ETA: 1h 18m
+2026-03-29 20:42:12 | INFO     | root | Checkpoint saved: outputs/checkpoints\leather_epoch_30.pt (epoch 30, loss 4.1446)
+2026-03-29 20:45:29 | INFO     | src.training.trainer | Epoch [31/50] | Loss: 4.1449 | LR: 0.000114 | Time: 3.3m | Elapsed: 2h 0m | ETA: 1h 13m
+2026-03-29 20:48:56 | INFO     | src.training.trainer | Epoch [32/50] | Loss: 4.1429 | LR: 0.000104 | Time: 3.4m | Elapsed: 2h 3m | ETA: 1h 9m
+2026-03-29 20:52:14 | INFO     | src.training.trainer | Epoch [33/50] | Loss: 4.1438 | LR: 0.000094 | Time: 3.3m | Elapsed: 2h 7m | ETA: 1h 5m
+2026-03-29 20:52:14 | INFO     | src.training.trainer | Early stopping triggered after 15 epochs without improvement (best_loss=4.1255)
+2026-03-29 20:52:14 | INFO     | src.training.trainer | Early stopping at epoch 33/50
+2026-03-29 20:52:14 | INFO     | src.training.trainer | 
+============================================================
+2026-03-29 20:52:14 | INFO     | src.training.trainer | Training Summary — leather
+2026-03-29 20:52:14 | INFO     | src.training.trainer | ============================================================
+2026-03-29 20:52:14 | INFO     | src.training.trainer |   Total epochs:    33/50
+2026-03-29 20:52:14 | INFO     | src.training.trainer |   Total time:      2h 7m
+2026-03-29 20:52:14 | INFO     | src.training.trainer |   Best loss:       4.1255
+2026-03-29 20:52:14 | INFO     | src.training.trainer |   Avg epoch time:  3.8m
+2026-03-29 20:52:14 | INFO     | src.training.trainer |   Early stopped:   Yes (patience=15)
+2026-03-29 20:52:14 | INFO     | src.training.trainer | ============================================================
+2026-03-29 20:52:14 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-03-29 20:52:14 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-03-29 20:52:15 | INFO     | src.training.dataset | MVTecDataset: category=leather, split=train, samples=245, normal=245, anomaly=0
+2026-03-29 20:52:15 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-03-29 20:53:02 | INFO     | src.memory.memory_bank | Patch extraction: 192080 patches, dim=1536, patch_shape=(28, 28), time=47.3s
+2026-03-29 20:53:02 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 256 dims
+2026-03-29 20:53:23 | INFO     | src.memory.memory_bank | PCA explained variance: 92.5%
+2026-03-29 20:53:24 | INFO     | src.memory.memory_bank | Coreset subsampling: 192080 -> 5000 patches
+2026-03-29 20:54:53 | INFO     | src.memory.memory_bank |   Coreset progress: 500/5000
+2026-03-29 20:56:02 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/5000
+2026-03-29 20:57:37 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/5000
+2026-03-29 20:59:04 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/5000
+2026-03-29 21:00:35 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/5000
+2026-03-29 21:02:00 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/5000
+2026-03-29 21:03:31 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/5000
+2026-03-29 21:05:01 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/5000
+2026-03-29 21:06:30 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/5000
+2026-03-29 21:07:50 | INFO     | src.memory.memory_bank | Patch memory bank built: 5000 patches, dim=256, total_time=935.8s
+2026-03-29 21:07:51 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\leather_patch_bank.pt
+2026-03-29 21:07:51 | INFO     | __main__ | Building global feature memory bank...
+2026-03-29 21:07:53 | INFO     | src.training.dataset | MVTecDataset: category=leather, split=train, samples=245, normal=245, anomaly=0
+2026-03-29 21:07:53 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-03-29 21:08:52 | INFO     | src.memory.memory_bank | Feature extraction: 245 samples, dim=3584, time=59.3s
+2026-03-29 21:08:52 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 200 dims
+2026-03-29 21:08:52 | INFO     | src.memory.memory_bank | PCA explained variance: 100.0%
+2026-03-29 21:08:52 | INFO     | src.memory.memory_bank | Memory bank built: 245 features, dim=200, total_time=59.6s
+2026-03-29 21:08:52 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\leather_memory_bank.pt
+2026-03-29 21:08:52 | INFO     | __main__ | Running PatchCore evaluation...
+2026-03-29 21:08:52 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=3, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-03-29 21:08:52 | INFO     | faiss.loader | Loading faiss with AVX2 support.
+2026-03-29 21:08:54 | INFO     | faiss.loader | Successfully loaded faiss with AVX2 support.
+2026-03-29 21:08:54 | INFO     | src.memory.memory_bank | Faiss index built with 5000 patches
+2026-03-29 21:08:54 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 5000 patches
+2026-03-29 21:08:54 | INFO     | src.training.dataset | MVTecDataset: category=leather, split=test, samples=124, normal=32, anomaly=92
+2026-03-29 21:09:28 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=minmax_sigmoid
+2026-03-29 21:09:28 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.9819, max=1.1681, threshold=1.0521, method=minmax_sigmoid
+2026-03-29 21:09:28 | INFO     | src.evaluation.evaluator | [leather] AUROC: 0.9898 | AP: 0.9969 | F1: 0.9778 | Acc: 0.9677 | Precision: 1.0000 | Recall: 0.9565 | Threshold: 1.0311 (youden)
+2026-03-29 21:09:29 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\leather_roc_curve.png
+2026-03-29 21:09:29 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\leather_pr_curve.png
+2026-03-29 21:09:30 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\leather_metrics.json
+2026-03-29 21:09:30 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\leather_metrics.json
+2026-03-29 21:09:30 | INFO     | __main__ | 
+  >>> Results: AUROC=0.9898 | F1=0.9778 | Precision=1.0000 | Recall=0.9565
+2026-03-29 21:09:30 | INFO     | __main__ | Total pipeline time for leather: 2h 24m
+2026-03-29 21:09:30 | INFO     | __main__ | 
+==============================================================================
+2026-03-29 21:09:30 | INFO     | __main__ | Category           AUROC       AP       F1     Prec   Recall
+2026-03-29 21:09:30 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-03-29 21:09:30 | INFO     | __main__ | leather           0.9898   0.9969   0.9778   1.0000   0.9565
+2026-03-29 21:09:30 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-03-29 21:09:30 | INFO     | __main__ | MEAN...........   0.9898 +/- 0.0000
+2026-03-29 21:09:30 | INFO     | __main__ | ==============================================================================
+2026-03-29 21:09:30 | INFO     | __main__ | Summary saved: outputs/results\all_categories_summary.json
+2026-03-29 21:09:30 | INFO     | __main__ | 
+All processing complete!

@@ -1,0 +1,57 @@
+2026-03-29 12:56:26 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260329_125626.log
+2026-03-29 12:56:26 | INFO     | root | Using CPU
+2026-03-29 12:56:26 | INFO     | __main__ | Using device: cpu
+2026-03-29 12:56:26 | INFO     | __main__ | 
+============================================================
+2026-03-29 12:56:26 | INFO     | __main__ | Evaluating category: bottle
+2026-03-29 12:56:26 | INFO     | __main__ | ============================================================
+2026-03-29 12:56:27 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-29 12:56:27 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-03-29 12:56:27 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-03-29 12:56:27 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-03-29 12:56:28 | INFO     | root | Checkpoint loaded: outputs/checkpoints\bottle_best.pt (epoch 20, loss 1.0073)
+2026-03-29 12:56:28 | INFO     | __main__ | Using PatchCore pipeline
+2026-03-29 12:56:28 | INFO     | src.memory.memory_bank | Patch PCA transform restored: 1536 -> 256
+2026-03-29 12:56:28 | INFO     | src.memory.memory_bank | Patch memory bank loaded: 5000 patches, dim=256, patch_shape=(28, 28)
+2026-03-29 12:56:28 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=3, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-03-29 12:56:28 | INFO     | faiss.loader | Loading faiss with AVX2 support.
+2026-03-29 12:56:28 | INFO     | faiss.loader | Successfully loaded faiss with AVX2 support.
+2026-03-29 12:56:28 | INFO     | src.memory.memory_bank | Faiss index built with 5000 patches
+2026-03-29 12:56:28 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 5000 patches
+2026-03-29 12:56:28 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=test, samples=83, normal=20, anomaly=63
+2026-03-29 12:56:28 | INFO     | __main__ | Test samples: 83
+2026-03-29 12:56:53 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=minmax_sigmoid
+2026-03-29 12:56:53 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.7591, max=1.1080, threshold=0.9105, method=minmax_sigmoid
+2026-03-29 12:56:53 | INFO     | src.evaluation.evaluator | [bottle] AUROC: 1.0000 | AP: 1.0000 | F1: 1.0000 | Acc: 1.0000 | Precision: 1.0000 | Recall: 1.0000 | Threshold: 0.9167 (youden)
+2026-03-29 12:56:53 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\bottle_roc_curve.png
+2026-03-29 12:56:54 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\bottle_pr_curve.png
+2026-03-29 12:56:55 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\bottle_metrics.json
+2026-03-29 12:56:55 | INFO     | __main__ | Generating anomaly heatmap visualizations...
+2026-03-29 12:56:57 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\bottle_good_63_heatmap.png
+2026-03-29 12:56:58 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\bottle_good_64_heatmap.png
+2026-03-29 12:56:59 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\bottle_broken_large_0_heatmap.png
+2026-03-29 12:57:00 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\bottle_broken_large_1_heatmap.png
+2026-03-29 12:57:01 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\bottle_broken_large_2_heatmap.png
+2026-03-29 12:57:02 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\bottle_broken_large_3_heatmap.png
+2026-03-29 12:57:03 | INFO     | src.visualization.heatmap | Heatmap visualization saved: outputs/visualizations\bottle_broken_large_4_heatmap.png
+2026-03-29 12:57:03 | INFO     | __main__ | Evaluation complete for bottle
+2026-03-29 12:57:03 | INFO     | src.evaluation.evaluator | 
+==============================================================================
+2026-03-29 12:57:03 | INFO     | src.evaluation.evaluator | Cross-Category Summary (mean +/- std)
+2026-03-29 12:57:03 | INFO     | src.evaluation.evaluator | ==============================================================================
+2026-03-29 12:57:03 | INFO     | src.evaluation.evaluator |   auroc               : 1.0000 +/- 0.0000 (min=1.0000, max=1.0000)
+2026-03-29 12:57:03 | INFO     | src.evaluation.evaluator |   average_precision   : 1.0000 +/- 0.0000 (min=1.0000, max=1.0000)
+2026-03-29 12:57:03 | INFO     | src.evaluation.evaluator |   f1_score            : 1.0000 +/- 0.0000 (min=1.0000, max=1.0000)
+2026-03-29 12:57:03 | INFO     | src.evaluation.evaluator |   accuracy            : 1.0000 +/- 0.0000 (min=1.0000, max=1.0000)
+2026-03-29 12:57:03 | INFO     | src.evaluation.evaluator |   precision           : 1.0000 +/- 0.0000 (min=1.0000, max=1.0000)
+2026-03-29 12:57:03 | INFO     | src.evaluation.evaluator |   recall              : 1.0000 +/- 0.0000 (min=1.0000, max=1.0000)
+2026-03-29 12:57:03 | INFO     | src.evaluation.evaluator | ==============================================================================
+2026-03-29 12:57:03 | INFO     | __main__ | 
+==============================================================================
+2026-03-29 12:57:03 | INFO     | __main__ | Category           AUROC       AP       F1      Acc     Prec   Recall
+2026-03-29 12:57:03 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-03-29 12:57:03 | INFO     | __main__ | bottle            1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
+2026-03-29 12:57:03 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-03-29 12:57:03 | INFO     | __main__ | MEAN...........   1.0000 +/- 0.0000
+2026-03-29 12:57:03 | INFO     | __main__ | ==============================================================================
+2026-03-29 12:57:03 | INFO     | __main__ | Summary saved: outputs/results\all_categories_summary.json

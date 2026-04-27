@@ -1,0 +1,48 @@
+2026-03-29 09:15:44 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260329_091544.log
+2026-03-29 09:15:44 | INFO     | root | Using CPU
+2026-03-29 09:15:44 | INFO     | __main__ | Using device: cpu
+2026-03-29 09:15:44 | INFO     | __main__ | 
+============================================================
+2026-03-29 09:15:44 | INFO     | __main__ | Processing category: cable
+2026-03-29 09:15:44 | INFO     | __main__ | ============================================================
+2026-03-29 09:15:44 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-29 09:15:44 | INFO     | src.models.simclr | Projection head: 2048 -> 256 -> 128
+2026-03-29 09:15:44 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-03-29 09:15:44 | INFO     | __main__ | Model parameters: 24.07M total, 24.07M trainable
+2026-03-29 09:15:44 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained features)
+2026-03-29 09:15:44 | INFO     | __main__ | Using multi-layer extraction for high-quality representations
+2026-03-29 09:15:45 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\cable_best.pt
+2026-03-29 09:15:45 | INFO     | __main__ | Building feature memory bank from normal training images...
+2026-03-29 09:15:45 | INFO     | src.training.dataset | MVTecDataset: category=cable, split=train, samples=224, normal=224, anomaly=0
+2026-03-29 09:15:45 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-03-29 09:16:18 | INFO     | src.memory.memory_bank | Feature extraction: 224 samples, dim=3584, time=32.4s
+2026-03-29 09:16:18 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 200 dims
+2026-03-29 09:16:18 | INFO     | src.memory.memory_bank | PCA explained variance: 99.7%
+2026-03-29 09:16:18 | INFO     | src.memory.memory_bank | Memory bank built: 224 features, dim=200, total_time=32.6s
+2026-03-29 09:16:18 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\cable_memory_bank.pt
+2026-03-29 09:16:18 | INFO     | __main__ | Metadata saved: outputs/checkpoints\cable_meta.pt
+2026-03-29 09:16:18 | INFO     | __main__ | Running quick evaluation...
+2026-03-29 09:16:18 | INFO     | src.memory.memory_bank | Anomaly scorer initialized: method=mahalanobis, k=5
+2026-03-29 09:16:18 | INFO     | src.memory.memory_bank | Mahalanobis statistics computed via Cholesky decomposition (dim=200, reg=1e-05)
+2026-03-29 09:16:18 | INFO     | src.memory.memory_bank | Scorer fitted with 224 reference features
+2026-03-29 09:16:19 | INFO     | src.training.dataset | MVTecDataset: category=cable, split=test, samples=150, normal=58, anomaly=92
+2026-03-29 09:16:42 | INFO     | src.evaluation.evaluator | [cable] AUROC: 0.8420 | AP: 0.8918 | F1: 0.7927 | Acc: 0.7733 | Precision: 0.9028 | Recall: 0.7065 | Threshold: 15.7861 (youden)
+2026-03-29 09:16:42 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\cable_roc_curve.png
+2026-03-29 09:16:42 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\cable_pr_curve.png
+2026-03-29 09:16:43 | INFO     | src.evaluation.evaluator | F1 vs threshold plot saved: outputs/results\cable_f1_threshold.png
+2026-03-29 09:16:43 | INFO     | src.evaluation.evaluator | Confusion matrix saved: outputs/results\cable_confusion_matrix.png
+2026-03-29 09:16:43 | INFO     | src.evaluation.evaluator | Score distribution saved: outputs/results\cable_score_distribution.png
+2026-03-29 09:16:43 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\cable_metrics.json
+2026-03-29 09:16:43 | INFO     | __main__ | 
+  >>> Quick Eval: AUROC=0.8420 | F1=0.7927 | Precision=0.9028 | Recall=0.7065
+2026-03-29 09:16:43 | INFO     | __main__ | Total pipeline time for cable: 59.2s
+2026-03-29 09:16:43 | INFO     | __main__ | 
+======================================================================
+2026-03-29 09:16:43 | INFO     | __main__ | Category           AUROC       F1     Prec   Recall
+2026-03-29 09:16:43 | INFO     | __main__ | ----------------------------------------------------------------------
+2026-03-29 09:16:43 | INFO     | __main__ | cable             0.8420   0.7927   0.9028   0.7065
+2026-03-29 09:16:43 | INFO     | __main__ | ----------------------------------------------------------------------
+2026-03-29 09:16:43 | INFO     | __main__ | MEAN              0.8420
+2026-03-29 09:16:43 | INFO     | __main__ | ======================================================================
+2026-03-29 09:16:43 | INFO     | __main__ | 
+All processing complete!

@@ -1,0 +1,47 @@
+2026-04-19 10:59:41 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260419_105941.log
+2026-04-19 10:59:41 | INFO     | root | Using CPU
+2026-04-19 10:59:41 | INFO     | __main__ | Using device: cpu
+2026-04-19 10:59:41 | INFO     | __main__ | Pipeline: Global features
+2026-04-19 10:59:41 | INFO     | __main__ | 
+============================================================
+2026-04-19 10:59:41 | INFO     | __main__ | Processing category: wood
+2026-04-19 10:59:41 | INFO     | __main__ | ============================================================
+2026-04-19 10:59:42 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-19 10:59:42 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-19 10:59:42 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-19 10:59:42 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-19 10:59:42 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-19 10:59:42 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-19 10:59:42 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\wood_best.pt
+2026-04-19 10:59:42 | INFO     | __main__ | Pipeline: Global features (legacy)
+2026-04-19 10:59:42 | INFO     | __main__ | Building global feature memory bank...
+2026-04-19 10:59:43 | INFO     | src.training.dataset | MVTecDataset: category=wood, split=train, samples=247, normal=247, anomaly=0
+2026-04-19 10:59:43 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-19 11:00:22 | INFO     | src.memory.memory_bank | Feature extraction: 247 samples, dim=3584, time=39.8s
+2026-04-19 11:00:22 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 200 dims
+2026-04-19 11:00:23 | INFO     | src.memory.memory_bank | PCA explained variance: 99.8%
+2026-04-19 11:00:23 | INFO     | src.memory.memory_bank | Memory bank built: 247 features, dim=200, total_time=40.0s
+2026-04-19 11:00:23 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\wood_memory_bank.pt
+2026-04-19 11:00:23 | INFO     | __main__ | Running global feature evaluation...
+2026-04-19 11:00:23 | INFO     | src.memory.memory_bank | Anomaly scorer initialized: method=mahalanobis, k=5
+2026-04-19 11:00:23 | INFO     | src.memory.memory_bank | Mahalanobis statistics computed via Cholesky decomposition (dim=200, reg=1e-05)
+2026-04-19 11:00:23 | INFO     | src.memory.memory_bank | Scorer fitted with 247 reference features
+2026-04-19 11:00:23 | INFO     | src.training.dataset | MVTecDataset: category=wood, split=test, samples=79, normal=19, anomaly=60
+2026-04-19 11:00:38 | INFO     | src.evaluation.evaluator | [wood] AUROC: 0.9386 | AP: 0.9817 | F1: 0.9009 | Acc: 0.8608 | Precision: 0.9804 | Recall: 0.8333 | Threshold: 22.1143 (youden)
+2026-04-19 11:00:39 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\wood_roc_curve.png
+2026-04-19 11:00:39 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\wood_pr_curve.png
+2026-04-19 11:00:40 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\wood_metrics.json
+2026-04-19 11:00:40 | INFO     | __main__ | 
+  >>> Results: AUROC=0.9386 | F1=0.9009 | Precision=0.9804 | Recall=0.8333
+2026-04-19 11:00:40 | INFO     | __main__ | Total pipeline time for wood: 58.8s
+2026-04-19 11:00:40 | INFO     | __main__ | 
+==============================================================================
+2026-04-19 11:00:40 | INFO     | __main__ | Category           AUROC       AP       F1     Prec   Recall
+2026-04-19 11:00:40 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-04-19 11:00:40 | INFO     | __main__ | wood              0.9386   0.9817   0.9009   0.9804   0.8333
+2026-04-19 11:00:40 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-04-19 11:00:40 | INFO     | __main__ | MEAN...........   0.9386 +/- 0.0000
+2026-04-19 11:00:40 | INFO     | __main__ | ==============================================================================
+2026-04-19 11:00:40 | INFO     | __main__ | Summary saved: outputs/results\all_categories_summary.json
+2026-04-19 11:00:40 | INFO     | __main__ | 
+All processing complete!

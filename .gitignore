@@ -3,12 +3,25 @@ data/
 *.tar.xz
 *.tar.gz
 
-# Model outputs
-outputs/
+# Model outputs - exclude large files
+outputs/*/logs/
+outputs/*/heatmaps/
+outputs/*/confusion_matrix/
+outputs/visualizations/
 checkpoints/
-*.pt
+
+# Large model checkpoints (94MB+ each) - not needed for deployment
+# The app reconstructs the model from pretrained ImageNet weights
+outputs/checkpoints/*_best.pt
+outputs/checkpoints/*_epoch_*.pt
 *.pth
 *.onnx
+
+# Keep small essential files for cloud deployment:
+# outputs/checkpoints/*_meta.pt        (~1KB - model metadata)
+# outputs/checkpoints/*_patch_bank.pt  (~5MB - PatchCore features)
+# outputs/checkpoints/*_memory_bank.pt (~3MB - global features)
+# outputs/results/*_metrics.json       (~1KB - thresholds/calibration)
 
 # Python
 __pycache__/

@@ -1,0 +1,76 @@
+2026-04-23 15:44:14 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260423_154414.log
+2026-04-23 15:44:14 | INFO     | root | Using CPU
+2026-04-23 15:44:14 | INFO     | __main__ | Using device: cpu
+2026-04-23 15:44:14 | INFO     | __main__ | Pipeline: PatchCore
+2026-04-23 15:44:14 | INFO     | __main__ | 
+============================================================
+2026-04-23 15:44:14 | INFO     | __main__ | Processing category: screw
+2026-04-23 15:44:14 | INFO     | __main__ | ============================================================
+2026-04-23 15:44:15 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 15:44:15 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 15:44:15 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 15:44:15 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 15:44:15 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 15:44:15 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 15:44:15 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\screw_best.pt
+2026-04-23 15:44:15 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 15:44:15 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 15:44:16 | INFO     | src.training.dataset | MVTecDataset: category=screw, split=train, samples=320, normal=320, anomaly=0
+2026-04-23 15:44:16 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 15:45:30 | INFO     | src.memory.memory_bank | Patch extraction: 250880 patches, dim=1536, patch_shape=(28, 28), time=73.2s
+2026-04-23 15:45:30 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 15:46:03 | INFO     | src.memory.memory_bank | PCA explained variance: 81.1%
+2026-04-23 15:46:04 | INFO     | src.memory.memory_bank | Coreset subsampling: 250880 -> 8000 patches
+2026-04-23 15:47:16 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 15:48:14 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 15:49:33 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 15:50:31 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 15:51:52 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 15:53:13 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 15:54:26 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 15:55:29 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 15:56:29 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 15:57:44 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 15:58:42 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 15:59:56 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 16:00:53 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 16:02:15 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 16:03:08 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 16:04:16 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=1199.3s
+2026-04-23 16:04:16 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\screw_patch_bank.pt
+2026-04-23 16:04:16 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 16:04:17 | INFO     | src.training.dataset | MVTecDataset: category=screw, split=train, samples=320, normal=320, anomaly=0
+2026-04-23 16:04:17 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 16:05:16 | INFO     | src.memory.memory_bank | Feature extraction: 320 samples, dim=3584, time=59.5s
+2026-04-23 16:05:16 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 16:05:17 | INFO     | src.memory.memory_bank | PCA explained variance: 98.3%
+2026-04-23 16:05:17 | INFO     | src.memory.memory_bank | Memory bank built: 320 features, dim=128, total_time=60.0s
+2026-04-23 16:05:17 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\screw_memory_bank.pt
+2026-04-23 16:05:17 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 16:05:17 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 16:05:17 | INFO     | faiss.loader | Loading faiss with AVX2 support.
+2026-04-23 16:05:18 | INFO     | faiss.loader | Successfully loaded faiss with AVX2 support.
+2026-04-23 16:05:18 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 16:05:18 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 16:05:19 | INFO     | src.training.dataset | MVTecDataset: category=screw, split=test, samples=160, normal=41, anomaly=119
+2026-04-23 16:06:03 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 16:06:03 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.9035, max=0.9834, threshold=0.9326, method=percentile
+2026-04-23 16:06:03 | INFO     | src.evaluation.evaluator | [screw] AUROC: 0.6387 | AP: 0.8022 | F1: 0.7299 | Acc: 0.6438 | Precision: 0.8370 | Recall: 0.6471 | Threshold: 0.9247 (youden)
+2026-04-23 16:06:03 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\screw_roc_curve.png
+2026-04-23 16:06:04 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\screw_pr_curve.png
+2026-04-23 16:06:05 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\screw_metrics.json
+2026-04-23 16:06:05 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\screw_metrics.json
+2026-04-23 16:06:05 | INFO     | __main__ | 
+  >>> Results: AUROC=0.6387 | F1=0.7299 | Precision=0.8370 | Recall=0.6471
+2026-04-23 16:06:05 | INFO     | __main__ | Total pipeline time for screw: 21.8m
+2026-04-23 16:06:05 | INFO     | __main__ | 
+==============================================================================
+2026-04-23 16:06:05 | INFO     | __main__ | Category           AUROC       AP       F1     Prec   Recall
+2026-04-23 16:06:05 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-04-23 16:06:05 | INFO     | __main__ | screw             0.6387   0.8022   0.7299   0.8370   0.6471
+2026-04-23 16:06:05 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-04-23 16:06:05 | INFO     | __main__ | MEAN...........   0.6387 +/- 0.0000
+2026-04-23 16:06:05 | INFO     | __main__ | ==============================================================================
+2026-04-23 16:06:05 | INFO     | __main__ | Summary saved: outputs/results\all_categories_summary.json
+2026-04-23 16:06:05 | INFO     | __main__ | 
+All processing complete!

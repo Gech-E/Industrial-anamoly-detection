@@ -1,0 +1,76 @@
+2026-04-23 15:22:26 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260423_152226.log
+2026-04-23 15:22:26 | INFO     | root | Using CPU
+2026-04-23 15:22:26 | INFO     | __main__ | Using device: cpu
+2026-04-23 15:22:26 | INFO     | __main__ | Pipeline: PatchCore
+2026-04-23 15:22:26 | INFO     | __main__ | 
+============================================================
+2026-04-23 15:22:26 | INFO     | __main__ | Processing category: leather
+2026-04-23 15:22:26 | INFO     | __main__ | ============================================================
+2026-04-23 15:22:27 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-23 15:22:27 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-23 15:22:27 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-23 15:22:27 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-23 15:22:27 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-23 15:22:27 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-23 15:22:27 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\leather_best.pt
+2026-04-23 15:22:27 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-04-23 15:22:27 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-04-23 15:22:28 | INFO     | src.training.dataset | MVTecDataset: category=leather, split=train, samples=245, normal=245, anomaly=0
+2026-04-23 15:22:28 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-04-23 15:23:13 | INFO     | src.memory.memory_bank | Patch extraction: 192080 patches, dim=1536, patch_shape=(28, 28), time=44.6s
+2026-04-23 15:23:13 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 128 dims
+2026-04-23 15:23:28 | INFO     | src.memory.memory_bank | PCA explained variance: 82.4%
+2026-04-23 15:23:28 | INFO     | src.memory.memory_bank | Coreset subsampling: 192080 -> 8000 patches
+2026-04-23 15:23:49 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-04-23 15:24:09 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-04-23 15:24:30 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-04-23 15:24:51 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-04-23 15:25:11 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-04-23 15:25:37 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-04-23 15:26:11 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-04-23 15:26:49 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-04-23 15:27:20 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-04-23 15:28:00 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-04-23 15:28:55 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-04-23 15:29:26 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-04-23 15:29:53 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-04-23 15:30:20 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-04-23 15:30:49 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
+2026-04-23 15:31:22 | INFO     | src.memory.memory_bank | Patch memory bank built: 8000 patches, dim=128, total_time=533.7s
+2026-04-23 15:31:22 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\leather_patch_bank.pt
+2026-04-23 15:31:22 | INFO     | __main__ | Building global feature memory bank...
+2026-04-23 15:31:23 | INFO     | src.training.dataset | MVTecDataset: category=leather, split=train, samples=245, normal=245, anomaly=0
+2026-04-23 15:31:23 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-23 15:32:08 | INFO     | src.memory.memory_bank | Feature extraction: 245 samples, dim=3584, time=45.0s
+2026-04-23 15:32:08 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 128 dims
+2026-04-23 15:32:08 | INFO     | src.memory.memory_bank | PCA explained variance: 98.6%
+2026-04-23 15:32:08 | INFO     | src.memory.memory_bank | Memory bank built: 245 features, dim=128, total_time=45.2s
+2026-04-23 15:32:08 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\leather_memory_bank.pt
+2026-04-23 15:32:08 | INFO     | __main__ | Running PatchCore evaluation...
+2026-04-23 15:32:08 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=7, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-04-23 15:32:08 | INFO     | faiss.loader | Loading faiss with AVX2 support.
+2026-04-23 15:32:08 | INFO     | faiss.loader | Successfully loaded faiss with AVX2 support.
+2026-04-23 15:32:08 | INFO     | src.memory.memory_bank | Faiss index built with 8000 patches
+2026-04-23 15:32:08 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 8000 patches
+2026-04-23 15:32:09 | INFO     | src.training.dataset | MVTecDataset: category=leather, split=test, samples=124, normal=32, anomaly=92
+2026-04-23 15:32:36 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=percentile
+2026-04-23 15:32:36 | INFO     | src.scoring.calibration | Calibrator fitted: min=1.0748, max=1.1964, threshold=1.1299, method=percentile
+2026-04-23 15:32:36 | INFO     | src.evaluation.evaluator | [leather] AUROC: 1.0000 | AP: 1.0000 | F1: 1.0000 | Acc: 1.0000 | Precision: 1.0000 | Recall: 1.0000 | Threshold: 1.1341 (youden)
+2026-04-23 15:32:36 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\leather_roc_curve.png
+2026-04-23 15:32:37 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\leather_pr_curve.png
+2026-04-23 15:32:37 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\leather_metrics.json
+2026-04-23 15:32:37 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\leather_metrics.json
+2026-04-23 15:32:37 | INFO     | __main__ | 
+  >>> Results: AUROC=1.0000 | F1=1.0000 | Precision=1.0000 | Recall=1.0000
+2026-04-23 15:32:37 | INFO     | __main__ | Total pipeline time for leather: 10.2m
+2026-04-23 15:32:37 | INFO     | __main__ | 
+==============================================================================
+2026-04-23 15:32:37 | INFO     | __main__ | Category           AUROC       AP       F1     Prec   Recall
+2026-04-23 15:32:37 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-04-23 15:32:37 | INFO     | __main__ | leather           1.0000   1.0000   1.0000   1.0000   1.0000
+2026-04-23 15:32:37 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-04-23 15:32:37 | INFO     | __main__ | MEAN...........   1.0000 +/- 0.0000
+2026-04-23 15:32:37 | INFO     | __main__ | ==============================================================================
+2026-04-23 15:32:37 | INFO     | __main__ | Summary saved: outputs/results\all_categories_summary.json
+2026-04-23 15:32:37 | INFO     | __main__ | 
+All processing complete!

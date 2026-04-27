@@ -1,0 +1,20 @@
+2026-03-28 17:33:24 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260328_173324.log
+2026-03-28 17:33:24 | INFO     | root | Using CPU
+2026-03-28 17:33:24 | INFO     | __main__ | Using device: cpu
+2026-03-28 17:33:24 | INFO     | __main__ | 
+============================================================
+2026-03-28 17:33:24 | INFO     | __main__ | Training SimCLR for category: bottle
+2026-03-28 17:33:24 | INFO     | __main__ | ============================================================
+2026-03-28 17:33:24 | INFO     | __main__ | Creating training dataloader...
+2026-03-28 17:33:24 | WARNING  | src.training.dataset | Skipping corrupt image: Data/mvtec_ad\bottle\train\good\011.png (broken PNG file (bad header checksum in b'IDAT'))
+2026-03-28 17:33:24 | WARNING  | src.training.dataset | Skipped 1 corrupt image(s) in Data/mvtec_ad\bottle\train
+2026-03-28 17:33:24 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=train, samples=208, normal=208, anomaly=0
+2026-03-28 17:33:24 | INFO     | __main__ | Training samples: 208
+2026-03-28 17:33:25 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-28 17:33:25 | INFO     | src.models.simclr | Projection head: 2048 -> 256 -> 128
+2026-03-28 17:33:25 | INFO     | src.models.simclr | SimCLR model initialized (feature_dim=2048, projection_dim=128)
+2026-03-28 17:33:25 | INFO     | __main__ | Model parameters: 24.07M total, 24.07M trainable
+2026-03-28 17:33:25 | INFO     | src.training.losses | NT-Xent loss initialized with temperature=0.07
+2026-03-28 17:33:25 | INFO     | src.training.trainer | SimCLR Trainer initialized | AMP=OFF | Device=cpu | Epochs=10
+2026-03-28 17:33:25 | INFO     | src.training.trainer | Starting SimCLR training for category: bottle
+2026-03-28 17:33:25 | INFO     | src.training.trainer | Epochs: 10 | Batch size: 32

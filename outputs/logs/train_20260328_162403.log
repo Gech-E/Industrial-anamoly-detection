@@ -1,0 +1,40 @@
+2026-03-28 16:24:03 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260328_162403.log
+2026-03-28 16:24:03 | INFO     | root | Using CPU
+2026-03-28 16:24:03 | INFO     | __main__ | Using device: cpu
+2026-03-28 16:24:03 | INFO     | __main__ | 
+============================================================
+2026-03-28 16:24:03 | INFO     | __main__ | Training SimCLR for category: bottle
+2026-03-28 16:24:03 | INFO     | __main__ | ============================================================
+2026-03-28 16:24:03 | INFO     | __main__ | Creating training dataloader...
+2026-03-28 16:24:03 | WARNING  | src.training.dataset | Skipping corrupt image: Data/mvtec_ad\bottle\train\good\011.png (broken PNG file (bad header checksum in b'IDAT'))
+2026-03-28 16:24:04 | WARNING  | src.training.dataset | Skipped 1 corrupt image(s) in Data/mvtec_ad\bottle\train
+2026-03-28 16:24:04 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=train, samples=208, normal=208, anomaly=0
+2026-03-28 16:24:04 | INFO     | __main__ | Training samples: 208
+2026-03-28 16:24:04 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-28 16:24:04 | INFO     | src.models.simclr | Projection head: 2048 -> 256 -> 128
+2026-03-28 16:24:04 | INFO     | src.models.simclr | SimCLR model initialized (feature_dim=2048, projection_dim=128)
+2026-03-28 16:24:04 | INFO     | __main__ | Model parameters: 24.07M total, 24.07M trainable
+2026-03-28 16:24:04 | INFO     | src.training.losses | NT-Xent loss initialized with temperature=0.07
+2026-03-28 16:24:04 | INFO     | src.training.trainer | SimCLR Trainer initialized | AMP=OFF | Device=cpu | Epochs=1
+2026-03-28 16:24:04 | INFO     | src.training.trainer | Starting SimCLR training for category: bottle
+2026-03-28 16:24:04 | INFO     | src.training.trainer | Epochs: 1 | Batch size: 32
+2026-03-28 16:26:14 | INFO     | src.training.trainer | Epoch [1/1] | Loss: 1.1570 | LR: 0.000030 | Elapsed: 2.2m | ETA: 0.0s
+2026-03-28 16:26:14 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_1.pt (epoch 1, loss 1.1570)
+2026-03-28 16:26:14 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 1, loss 1.1570)
+2026-03-28 16:26:14 | INFO     | src.training.trainer | Training complete for bottle | Total time: 2.2m | Best loss: 1.1570
+2026-03-28 16:26:14 | INFO     | __main__ | Building feature memory bank from normal training images...
+2026-03-28 16:26:14 | WARNING  | src.training.dataset | Skipping corrupt image: Data/mvtec_ad\bottle\train\good\011.png (broken PNG file (bad header checksum in b'IDAT'))
+2026-03-28 16:26:15 | WARNING  | src.training.dataset | Skipped 1 corrupt image(s) in Data/mvtec_ad\bottle\train
+2026-03-28 16:26:15 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=train, samples=208, normal=208, anomaly=0
+2026-03-28 16:26:47 | INFO     | src.memory.memory_bank | Applying coreset sampling (kcenter) to reduce from 163072 to ~30000
+2026-03-28 16:26:47 | INFO     | src.memory.coreset | K-Center Greedy: Subsampling 163072 features to 30000...
+2026-03-28 16:35:49 | INFO     | src.memory.coreset | Coreset Selection: 6000/30000 iterations completed.
+2026-03-28 16:44:43 | INFO     | src.memory.coreset | Coreset Selection: 12000/30000 iterations completed.
+2026-03-28 16:53:58 | INFO     | src.memory.coreset | Coreset Selection: 18000/30000 iterations completed.
+2026-03-28 17:03:35 | INFO     | src.memory.coreset | Coreset Selection: 24000/30000 iterations completed.
+2026-03-28 17:13:00 | INFO     | src.memory.coreset | Coreset subsampling finished.
+2026-03-28 17:13:00 | INFO     | src.memory.memory_bank | Memory bank built: 30000 features, shape=torch.Size([30000, 512])
+2026-03-28 17:13:00 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\bottle_memory_bank.pt
+2026-03-28 17:13:00 | INFO     | __main__ | Memory bank saved: outputs/checkpoints\bottle_memory_bank.pt
+2026-03-28 17:13:00 | INFO     | __main__ | Calibrating anomaly detection threshold on normal train images...
+2026-03-28 17:13:00 | INFO     | src.scoring.distance | Anomaly scorer initialized: method=knn

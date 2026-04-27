@@ -1,0 +1,192 @@
+2026-03-28 18:59:44 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260328_185944.log
+2026-03-28 18:59:44 | INFO     | root | Using CPU
+2026-03-28 18:59:44 | INFO     | __main__ | Using device: cpu
+2026-03-28 18:59:44 | INFO     | __main__ | 
+============================================================
+2026-03-28 18:59:44 | INFO     | __main__ | Training SimCLR for category: bottle
+2026-03-28 18:59:44 | INFO     | __main__ | ============================================================
+2026-03-28 18:59:44 | INFO     | __main__ | Creating training dataloader...
+2026-03-28 18:59:44 | WARNING  | src.training.dataset | Skipping corrupt image: Data/mvtec_ad\bottle\train\good\011.png (broken PNG file (bad header checksum in b'IDAT'))
+2026-03-28 18:59:45 | WARNING  | src.training.dataset | Skipped 1 corrupt image(s) in Data/mvtec_ad\bottle\train
+2026-03-28 18:59:45 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=train, samples=208, normal=208, anomaly=0
+2026-03-28 18:59:45 | INFO     | __main__ | Training samples: 208
+2026-03-28 18:59:45 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-28 18:59:45 | INFO     | src.models.simclr | Projection head: 2048 -> 256 -> 128
+2026-03-28 18:59:45 | INFO     | src.models.simclr | SimCLR model initialized (feature_dim=2048, projection_dim=128)
+2026-03-28 18:59:45 | INFO     | __main__ | Model parameters: 24.07M total, 24.07M trainable
+2026-03-28 18:59:45 | INFO     | src.training.losses | NT-Xent loss initialized with temperature=0.07
+2026-03-28 18:59:45 | INFO     | src.training.trainer | SimCLR Trainer initialized | AMP=OFF | Device=cpu | Epochs=100
+2026-03-28 18:59:45 | INFO     | src.training.trainer | Starting SimCLR training for category: bottle
+2026-03-28 18:59:45 | INFO     | src.training.trainer | Epochs: 100 | Batch size: 32
+2026-03-28 19:01:59 | INFO     | src.training.trainer | Epoch [1/100] | Loss: 1.1572 | LR: 0.000030 | Elapsed: 2.2m | ETA: 3h 40m
+2026-03-28 19:02:00 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_1.pt (epoch 1, loss 1.1572)
+2026-03-28 19:02:01 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 1, loss 1.1572)
+2026-03-28 19:06:33 | INFO     | src.training.trainer | Epoch [2/100] | Loss: 0.5577 | LR: 0.000060 | Elapsed: 6.8m | ETA: 5h 32m
+2026-03-28 19:06:33 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_2.pt (epoch 2, loss 0.5577)
+2026-03-28 19:06:34 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 2, loss 0.5577)
+2026-03-28 19:10:24 | INFO     | src.training.trainer | Epoch [3/100] | Loss: 0.2921 | LR: 0.000090 | Elapsed: 10.6m | ETA: 5h 44m
+2026-03-28 19:10:24 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_3.pt (epoch 3, loss 0.2921)
+2026-03-28 19:10:24 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 3, loss 0.2921)
+2026-03-28 19:14:20 | INFO     | src.training.trainer | Epoch [4/100] | Loss: 0.1439 | LR: 0.000120 | Elapsed: 14.6m | ETA: 5h 50m
+2026-03-28 19:14:21 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_4.pt (epoch 4, loss 0.1439)
+2026-03-28 19:14:21 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 4, loss 0.1439)
+2026-03-28 19:18:32 | INFO     | src.training.trainer | Epoch [5/100] | Loss: 0.0690 | LR: 0.000150 | Elapsed: 18.8m | ETA: 5h 56m
+2026-03-28 19:18:33 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_5.pt (epoch 5, loss 0.0690)
+2026-03-28 19:18:34 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 5, loss 0.0690)
+2026-03-28 19:23:05 | INFO     | src.training.trainer | Epoch [6/100] | Loss: 0.0307 | LR: 0.000180 | Elapsed: 23.3m | ETA: 6h 5m
+2026-03-28 19:23:06 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_6.pt (epoch 6, loss 0.0307)
+2026-03-28 19:23:07 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 6, loss 0.0307)
+2026-03-28 19:26:50 | INFO     | src.training.trainer | Epoch [7/100] | Loss: 0.0233 | LR: 0.000210 | Elapsed: 27.1m | ETA: 5h 59m
+2026-03-28 19:26:51 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_7.pt (epoch 7, loss 0.0233)
+2026-03-28 19:26:51 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 7, loss 0.0233)
+2026-03-28 19:31:14 | INFO     | src.training.trainer | Epoch [8/100] | Loss: 0.0166 | LR: 0.000240 | Elapsed: 31.5m | ETA: 6h 1m
+2026-03-28 19:31:14 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_8.pt (epoch 8, loss 0.0166)
+2026-03-28 19:31:14 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 8, loss 0.0166)
+2026-03-28 19:35:07 | INFO     | src.training.trainer | Epoch [9/100] | Loss: 0.0322 | LR: 0.000270 | Elapsed: 35.4m | ETA: 5h 57m
+2026-03-28 19:39:49 | INFO     | src.training.trainer | Epoch [10/100] | Loss: 0.0253 | LR: 0.000300 | Elapsed: 40.1m | ETA: 6h 0m
+2026-03-28 19:39:50 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_10.pt (epoch 10, loss 0.0253)
+2026-03-28 19:44:37 | INFO     | src.training.trainer | Epoch [11/100] | Loss: 0.0275 | LR: 0.000300 | Elapsed: 44.9m | ETA: 6h 2m
+2026-03-28 19:49:18 | INFO     | src.training.trainer | Epoch [12/100] | Loss: 0.0271 | LR: 0.000300 | Elapsed: 49.5m | ETA: 6h 3m
+2026-03-28 19:54:04 | INFO     | src.training.trainer | Epoch [13/100] | Loss: 0.0238 | LR: 0.000299 | Elapsed: 54.3m | ETA: 6h 3m
+2026-03-28 19:57:35 | INFO     | src.training.trainer | Epoch [14/100] | Loss: 0.0155 | LR: 0.000299 | Elapsed: 57.8m | ETA: 5h 55m
+2026-03-28 19:57:36 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_14.pt (epoch 14, loss 0.0155)
+2026-03-28 19:57:37 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 14, loss 0.0155)
+2026-03-28 20:01:10 | INFO     | src.training.trainer | Epoch [15/100] | Loss: 0.0413 | LR: 0.000298 | Elapsed: 1h 1m | ETA: 5h 48m
+2026-03-28 20:04:38 | INFO     | src.training.trainer | Epoch [16/100] | Loss: 0.0418 | LR: 0.000297 | Elapsed: 1h 4m | ETA: 5h 40m
+2026-03-28 20:07:31 | INFO     | src.training.trainer | Epoch [17/100] | Loss: 0.0781 | LR: 0.000296 | Elapsed: 1h 7m | ETA: 5h 30m
+2026-03-28 20:11:03 | INFO     | src.training.trainer | Epoch [18/100] | Loss: 0.0266 | LR: 0.000294 | Elapsed: 1h 11m | ETA: 5h 24m
+2026-03-28 20:15:35 | INFO     | src.training.trainer | Epoch [19/100] | Loss: 0.0307 | LR: 0.000293 | Elapsed: 1h 15m | ETA: 5h 23m
+2026-03-28 20:21:15 | INFO     | src.training.trainer | Epoch [20/100] | Loss: 0.0283 | LR: 0.000291 | Elapsed: 1h 21m | ETA: 5h 25m
+2026-03-28 20:21:16 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_20.pt (epoch 20, loss 0.0283)
+2026-03-28 20:27:06 | INFO     | src.training.trainer | Epoch [21/100] | Loss: 0.0301 | LR: 0.000289 | Elapsed: 1h 27m | ETA: 5h 28m
+2026-03-28 20:31:09 | INFO     | src.training.trainer | Epoch [22/100] | Loss: 0.0269 | LR: 0.000287 | Elapsed: 1h 31m | ETA: 5h 24m
+2026-03-28 20:35:57 | INFO     | src.training.trainer | Epoch [23/100] | Loss: 0.0152 | LR: 0.000285 | Elapsed: 1h 36m | ETA: 5h 22m
+2026-03-28 20:35:58 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_23.pt (epoch 23, loss 0.0152)
+2026-03-28 20:35:59 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 23, loss 0.0152)
+2026-03-28 20:39:43 | INFO     | src.training.trainer | Epoch [24/100] | Loss: 0.0134 | LR: 0.000282 | Elapsed: 1h 39m | ETA: 5h 16m
+2026-03-28 20:39:44 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_24.pt (epoch 24, loss 0.0134)
+2026-03-28 20:39:45 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 24, loss 0.0134)
+2026-03-28 20:43:38 | INFO     | src.training.trainer | Epoch [25/100] | Loss: 0.0134 | LR: 0.000280 | Elapsed: 1h 43m | ETA: 5h 11m
+2026-03-28 20:47:13 | INFO     | src.training.trainer | Epoch [26/100] | Loss: 0.0136 | LR: 0.000277 | Elapsed: 1h 47m | ETA: 5h 5m
+2026-03-28 20:51:47 | INFO     | src.training.trainer | Epoch [27/100] | Loss: 0.0113 | LR: 0.000274 | Elapsed: 1h 52m | ETA: 5h 2m
+2026-03-28 20:51:48 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_27.pt (epoch 27, loss 0.0113)
+2026-03-28 20:51:49 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 27, loss 0.0113)
+2026-03-28 20:55:13 | INFO     | src.training.trainer | Epoch [28/100] | Loss: 0.0169 | LR: 0.000271 | Elapsed: 1h 55m | ETA: 4h 56m
+2026-03-28 20:58:06 | INFO     | src.training.trainer | Epoch [29/100] | Loss: 0.0176 | LR: 0.000268 | Elapsed: 1h 58m | ETA: 4h 49m
+2026-03-28 21:01:15 | INFO     | src.training.trainer | Epoch [30/100] | Loss: 0.0082 | LR: 0.000265 | Elapsed: 2h 1m | ETA: 4h 43m
+2026-03-28 21:01:16 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_30.pt (epoch 30, loss 0.0082)
+2026-03-28 21:01:17 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 30, loss 0.0082)
+2026-03-28 21:04:55 | INFO     | src.training.trainer | Epoch [31/100] | Loss: 0.0114 | LR: 0.000261 | Elapsed: 2h 5m | ETA: 4h 38m
+2026-03-28 21:08:21 | INFO     | src.training.trainer | Epoch [32/100] | Loss: 0.0124 | LR: 0.000258 | Elapsed: 2h 8m | ETA: 4h 33m
+2026-03-28 21:11:33 | INFO     | src.training.trainer | Epoch [33/100] | Loss: 0.0088 | LR: 0.000254 | Elapsed: 2h 11m | ETA: 4h 27m
+2026-03-28 21:14:58 | INFO     | src.training.trainer | Epoch [34/100] | Loss: 0.0091 | LR: 0.000250 | Elapsed: 2h 15m | ETA: 4h 22m
+2026-03-28 21:17:14 | INFO     | src.training.trainer | Epoch [35/100] | Loss: 0.0066 | LR: 0.000246 | Elapsed: 2h 17m | ETA: 4h 15m
+2026-03-28 21:17:14 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_35.pt (epoch 35, loss 0.0066)
+2026-03-28 21:17:15 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 35, loss 0.0066)
+2026-03-28 21:20:17 | INFO     | src.training.trainer | Epoch [36/100] | Loss: 0.0039 | LR: 0.000242 | Elapsed: 2h 20m | ETA: 4h 9m
+2026-03-28 21:20:18 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_36.pt (epoch 36, loss 0.0039)
+2026-03-28 21:20:19 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 36, loss 0.0039)
+2026-03-28 21:23:57 | INFO     | src.training.trainer | Epoch [37/100] | Loss: 0.0053 | LR: 0.000238 | Elapsed: 2h 24m | ETA: 4h 5m
+2026-03-28 21:31:27 | INFO     | src.training.trainer | Epoch [38/100] | Loss: 0.0058 | LR: 0.000234 | Elapsed: 2h 31m | ETA: 4h 7m
+2026-03-28 21:34:58 | INFO     | src.training.trainer | Epoch [39/100] | Loss: 0.0069 | LR: 0.000229 | Elapsed: 2h 35m | ETA: 4h 2m
+2026-03-28 21:37:35 | INFO     | src.training.trainer | Epoch [40/100] | Loss: 0.0054 | LR: 0.000225 | Elapsed: 2h 37m | ETA: 3h 56m
+2026-03-28 21:37:35 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_40.pt (epoch 40, loss 0.0054)
+2026-03-28 21:40:38 | INFO     | src.training.trainer | Epoch [41/100] | Loss: 0.0048 | LR: 0.000220 | Elapsed: 2h 40m | ETA: 3h 51m
+2026-03-28 21:43:46 | INFO     | src.training.trainer | Epoch [42/100] | Loss: 0.0047 | LR: 0.000216 | Elapsed: 2h 44m | ETA: 3h 46m
+2026-03-28 21:46:55 | INFO     | src.training.trainer | Epoch [43/100] | Loss: 0.0038 | LR: 0.000211 | Elapsed: 2h 47m | ETA: 3h 41m
+2026-03-28 21:46:56 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_43.pt (epoch 43, loss 0.0038)
+2026-03-28 21:46:56 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 43, loss 0.0038)
+2026-03-28 21:49:55 | INFO     | src.training.trainer | Epoch [44/100] | Loss: 0.0045 | LR: 0.000206 | Elapsed: 2h 50m | ETA: 3h 36m
+2026-03-28 21:52:58 | INFO     | src.training.trainer | Epoch [45/100] | Loss: 0.0043 | LR: 0.000201 | Elapsed: 2h 53m | ETA: 3h 31m
+2026-03-28 21:56:00 | INFO     | src.training.trainer | Epoch [46/100] | Loss: 0.0075 | LR: 0.000196 | Elapsed: 2h 56m | ETA: 3h 26m
+2026-03-28 21:58:42 | INFO     | src.training.trainer | Epoch [47/100] | Loss: 0.0030 | LR: 0.000191 | Elapsed: 2h 58m | ETA: 3h 21m
+2026-03-28 21:58:42 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_47.pt (epoch 47, loss 0.0030)
+2026-03-28 21:58:43 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 47, loss 0.0030)
+2026-03-28 22:02:12 | INFO     | src.training.trainer | Epoch [48/100] | Loss: 0.0034 | LR: 0.000186 | Elapsed: 3h 2m | ETA: 3h 17m
+2026-03-28 22:05:46 | INFO     | src.training.trainer | Epoch [49/100] | Loss: 0.0021 | LR: 0.000181 | Elapsed: 3h 6m | ETA: 3h 13m
+2026-03-28 22:05:47 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_49.pt (epoch 49, loss 0.0021)
+2026-03-28 22:05:48 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 49, loss 0.0021)
+2026-03-28 22:09:58 | INFO     | src.training.trainer | Epoch [50/100] | Loss: 0.0036 | LR: 0.000176 | Elapsed: 3h 10m | ETA: 3h 10m
+2026-03-28 22:09:58 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_50.pt (epoch 50, loss 0.0036)
+2026-03-28 22:13:18 | INFO     | src.training.trainer | Epoch [51/100] | Loss: 0.0008 | LR: 0.000171 | Elapsed: 3h 13m | ETA: 3h 5m
+2026-03-28 22:13:19 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_51.pt (epoch 51, loss 0.0008)
+2026-03-28 22:13:20 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 51, loss 0.0008)
+2026-03-28 22:16:18 | INFO     | src.training.trainer | Epoch [52/100] | Loss: 0.0015 | LR: 0.000166 | Elapsed: 3h 16m | ETA: 3h 1m
+2026-03-28 22:19:24 | INFO     | src.training.trainer | Epoch [53/100] | Loss: 0.0011 | LR: 0.000160 | Elapsed: 3h 19m | ETA: 2h 57m
+2026-03-28 22:22:06 | INFO     | src.training.trainer | Epoch [54/100] | Loss: 0.0029 | LR: 0.000155 | Elapsed: 3h 22m | ETA: 2h 52m
+2026-03-28 22:24:50 | INFO     | src.training.trainer | Epoch [55/100] | Loss: 0.0010 | LR: 0.000150 | Elapsed: 3h 25m | ETA: 2h 47m
+2026-03-28 22:27:05 | INFO     | src.training.trainer | Epoch [56/100] | Loss: 0.0016 | LR: 0.000145 | Elapsed: 3h 27m | ETA: 2h 42m
+2026-03-28 22:29:07 | INFO     | src.training.trainer | Epoch [57/100] | Loss: 0.0014 | LR: 0.000140 | Elapsed: 3h 29m | ETA: 2h 37m
+2026-03-28 22:31:23 | INFO     | src.training.trainer | Epoch [58/100] | Loss: 0.0018 | LR: 0.000134 | Elapsed: 3h 31m | ETA: 2h 33m
+2026-03-28 22:33:15 | INFO     | src.training.trainer | Epoch [59/100] | Loss: 0.0014 | LR: 0.000129 | Elapsed: 3h 33m | ETA: 2h 28m
+2026-03-28 22:35:14 | INFO     | src.training.trainer | Epoch [60/100] | Loss: 0.0011 | LR: 0.000124 | Elapsed: 3h 35m | ETA: 2h 23m
+2026-03-28 22:35:14 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_60.pt (epoch 60, loss 0.0011)
+2026-03-28 22:37:25 | INFO     | src.training.trainer | Epoch [61/100] | Loss: 0.0010 | LR: 0.000119 | Elapsed: 3h 37m | ETA: 2h 19m
+2026-03-28 22:44:28 | INFO     | src.training.trainer | Epoch [62/100] | Loss: 0.0011 | LR: 0.000114 | Elapsed: 3h 44m | ETA: 2h 17m
+2026-03-28 22:47:14 | INFO     | src.training.trainer | Epoch [63/100] | Loss: 0.0007 | LR: 0.000109 | Elapsed: 3h 47m | ETA: 2h 13m
+2026-03-28 22:47:15 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_63.pt (epoch 63, loss 0.0007)
+2026-03-28 22:47:15 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 63, loss 0.0007)
+2026-03-28 22:50:06 | INFO     | src.training.trainer | Epoch [64/100] | Loss: 0.0008 | LR: 0.000104 | Elapsed: 3h 50m | ETA: 2h 9m
+2026-03-28 22:52:42 | INFO     | src.training.trainer | Epoch [65/100] | Loss: 0.0005 | LR: 0.000099 | Elapsed: 3h 52m | ETA: 2h 5m
+2026-03-28 22:52:43 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_65.pt (epoch 65, loss 0.0005)
+2026-03-28 22:52:43 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 65, loss 0.0005)
+2026-03-28 22:55:49 | INFO     | src.training.trainer | Epoch [66/100] | Loss: 0.0006 | LR: 0.000094 | Elapsed: 3h 56m | ETA: 2h 1m
+2026-03-28 23:00:02 | INFO     | src.training.trainer | Epoch [67/100] | Loss: 0.0007 | LR: 0.000089 | Elapsed: 4h 0m | ETA: 1h 58m
+2026-03-28 23:03:59 | INFO     | src.training.trainer | Epoch [68/100] | Loss: 0.0005 | LR: 0.000084 | Elapsed: 4h 4m | ETA: 1h 54m
+2026-03-28 23:07:30 | INFO     | src.training.trainer | Epoch [69/100] | Loss: 0.0006 | LR: 0.000080 | Elapsed: 4h 7m | ETA: 1h 51m
+2026-03-28 23:11:44 | INFO     | src.training.trainer | Epoch [70/100] | Loss: 0.0006 | LR: 0.000075 | Elapsed: 4h 11m | ETA: 1h 47m
+2026-03-28 23:11:45 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_70.pt (epoch 70, loss 0.0006)
+2026-03-28 23:16:12 | INFO     | src.training.trainer | Epoch [71/100] | Loss: 0.0006 | LR: 0.000071 | Elapsed: 4h 16m | ETA: 1h 44m
+2026-03-28 23:21:46 | INFO     | src.training.trainer | Epoch [72/100] | Loss: 0.0006 | LR: 0.000066 | Elapsed: 4h 22m | ETA: 1h 41m
+2026-03-28 23:25:04 | INFO     | src.training.trainer | Epoch [73/100] | Loss: 0.0006 | LR: 0.000062 | Elapsed: 4h 25m | ETA: 1h 38m
+2026-03-28 23:28:26 | INFO     | src.training.trainer | Epoch [74/100] | Loss: 0.0005 | LR: 0.000058 | Elapsed: 4h 28m | ETA: 1h 34m
+2026-03-28 23:28:27 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_74.pt (epoch 74, loss 0.0005)
+2026-03-28 23:28:27 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 74, loss 0.0005)
+2026-03-28 23:31:57 | INFO     | src.training.trainer | Epoch [75/100] | Loss: 0.0005 | LR: 0.000054 | Elapsed: 4h 32m | ETA: 1h 30m
+2026-03-28 23:31:57 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_75.pt (epoch 75, loss 0.0005)
+2026-03-28 23:31:58 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 75, loss 0.0005)
+2026-03-28 23:35:03 | INFO     | src.training.trainer | Epoch [76/100] | Loss: 0.0005 | LR: 0.000050 | Elapsed: 4h 35m | ETA: 1h 26m
+2026-03-28 23:37:53 | INFO     | src.training.trainer | Epoch [77/100] | Loss: 0.0006 | LR: 0.000046 | Elapsed: 4h 38m | ETA: 1h 23m
+2026-03-28 23:41:42 | INFO     | src.training.trainer | Epoch [78/100] | Loss: 0.0005 | LR: 0.000042 | Elapsed: 4h 41m | ETA: 1h 19m
+2026-03-28 23:46:09 | INFO     | src.training.trainer | Epoch [79/100] | Loss: 0.0004 | LR: 0.000039 | Elapsed: 4h 46m | ETA: 1h 16m
+2026-03-28 23:46:10 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_79.pt (epoch 79, loss 0.0004)
+2026-03-28 23:46:11 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 79, loss 0.0004)
+2026-03-28 23:50:38 | INFO     | src.training.trainer | Epoch [80/100] | Loss: 0.0004 | LR: 0.000035 | Elapsed: 4h 50m | ETA: 1h 12m
+2026-03-28 23:50:39 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_80.pt (epoch 80, loss 0.0004)
+2026-03-28 23:50:39 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 80, loss 0.0004)
+2026-03-28 23:54:43 | INFO     | src.training.trainer | Epoch [81/100] | Loss: 0.0006 | LR: 0.000032 | Elapsed: 4h 54m | ETA: 1h 9m
+2026-03-28 23:58:17 | INFO     | src.training.trainer | Epoch [82/100] | Loss: 0.0005 | LR: 0.000029 | Elapsed: 4h 58m | ETA: 1h 5m
+2026-03-29 00:01:38 | INFO     | src.training.trainer | Epoch [83/100] | Loss: 0.0005 | LR: 0.000026 | Elapsed: 5h 1m | ETA: 1h 1m
+2026-03-29 00:05:25 | INFO     | src.training.trainer | Epoch [84/100] | Loss: 0.0005 | LR: 0.000023 | Elapsed: 5h 5m | ETA: 58.2m
+2026-03-29 00:10:09 | INFO     | src.training.trainer | Epoch [85/100] | Loss: 0.0004 | LR: 0.000020 | Elapsed: 5h 10m | ETA: 54.8m
+2026-03-29 00:15:22 | INFO     | src.training.trainer | Epoch [86/100] | Loss: 0.0006 | LR: 0.000018 | Elapsed: 5h 15m | ETA: 51.4m
+2026-03-29 00:20:39 | INFO     | src.training.trainer | Epoch [87/100] | Loss: 0.0006 | LR: 0.000015 | Elapsed: 5h 20m | ETA: 48.0m
+2026-03-29 00:26:22 | INFO     | src.training.trainer | Epoch [88/100] | Loss: 0.0004 | LR: 0.000013 | Elapsed: 5h 26m | ETA: 44.5m
+2026-03-29 00:30:18 | INFO     | src.training.trainer | Epoch [89/100] | Loss: 0.0005 | LR: 0.000011 | Elapsed: 5h 30m | ETA: 40.9m
+2026-03-29 00:34:54 | INFO     | src.training.trainer | Epoch [90/100] | Loss: 0.0004 | LR: 0.000009 | Elapsed: 5h 35m | ETA: 37.2m
+2026-03-29 00:34:55 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_90.pt (epoch 90, loss 0.0004)
+2026-03-29 00:41:24 | INFO     | src.training.trainer | Epoch [91/100] | Loss: 0.0005 | LR: 0.000007 | Elapsed: 5h 41m | ETA: 33.8m
+2026-03-29 00:45:54 | INFO     | src.training.trainer | Epoch [92/100] | Loss: 0.0004 | LR: 0.000006 | Elapsed: 5h 46m | ETA: 30.1m
+2026-03-29 00:50:18 | INFO     | src.training.trainer | Epoch [93/100] | Loss: 0.0004 | LR: 0.000004 | Elapsed: 5h 50m | ETA: 26.4m
+2026-03-29 00:54:41 | INFO     | src.training.trainer | Epoch [94/100] | Loss: 0.0004 | LR: 0.000003 | Elapsed: 5h 54m | ETA: 22.7m
+2026-03-29 00:58:55 | INFO     | src.training.trainer | Epoch [95/100] | Loss: 0.0005 | LR: 0.000002 | Elapsed: 5h 59m | ETA: 18.9m
+2026-03-29 01:03:10 | INFO     | src.training.trainer | Epoch [96/100] | Loss: 0.0005 | LR: 0.000001 | Elapsed: 6h 3m | ETA: 15.1m
+2026-03-29 01:06:58 | INFO     | src.training.trainer | Epoch [97/100] | Loss: 0.0005 | LR: 0.000001 | Elapsed: 6h 7m | ETA: 11.4m
+2026-03-29 01:10:48 | INFO     | src.training.trainer | Epoch [98/100] | Loss: 0.0005 | LR: 0.000000 | Elapsed: 6h 11m | ETA: 7.6m
+2026-03-29 01:14:50 | INFO     | src.training.trainer | Epoch [99/100] | Loss: 0.0005 | LR: 0.000000 | Elapsed: 6h 15m | ETA: 3.8m
+2026-03-29 01:18:15 | INFO     | src.training.trainer | Epoch [100/100] | Loss: 0.0005 | LR: 0.000000 | Elapsed: 6h 18m | ETA: 0.0s
+2026-03-29 01:18:16 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_100.pt (epoch 100, loss 0.0005)
+2026-03-29 01:18:16 | INFO     | src.training.trainer | Training complete for bottle | Total time: 6h 18m | Best loss: 0.0004
+2026-03-29 01:18:16 | INFO     | __main__ | Building feature memory bank from normal training images...
+2026-03-29 01:18:16 | WARNING  | src.training.dataset | Skipping corrupt image: Data/mvtec_ad\bottle\train\good\011.png (broken PNG file (bad header checksum in b'IDAT'))
+2026-03-29 01:18:17 | WARNING  | src.training.dataset | Skipped 1 corrupt image(s) in Data/mvtec_ad\bottle\train
+2026-03-29 01:18:17 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=train, samples=208, normal=208, anomaly=0
+2026-03-29 01:19:17 | INFO     | src.memory.memory_bank | Memory bank built: 208 features, shape=torch.Size([208, 2048])
+2026-03-29 01:19:17 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\bottle_memory_bank.pt
+2026-03-29 01:19:17 | INFO     | __main__ | Memory bank saved: outputs/checkpoints\bottle_memory_bank.pt
+2026-03-29 01:19:17 | INFO     | __main__ | Metadata saved: outputs/checkpoints\bottle_meta.pt
+2026-03-29 01:19:17 | INFO     | __main__ | Training complete for category: bottle
+2026-03-29 01:19:17 | INFO     | __main__ | 
+============================================================
+2026-03-29 01:19:17 | INFO     | __main__ | All training complete!
+2026-03-29 01:19:17 | INFO     | __main__ | ============================================================

@@ -1,0 +1,174 @@
+2026-03-30 11:59:33 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260330_115933.log
+2026-03-30 11:59:33 | INFO     | root | Using CPU
+2026-03-30 11:59:33 | INFO     | __main__ | Using device: cpu
+2026-03-30 11:59:33 | INFO     | __main__ | Pipeline: PatchCore
+2026-03-30 11:59:33 | INFO     | __main__ | 
+============================================================
+2026-03-30 11:59:33 | INFO     | __main__ | Processing category: bottle
+2026-03-30 11:59:33 | INFO     | __main__ | ============================================================
+2026-03-30 11:59:34 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-30 11:59:34 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-03-30 11:59:34 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-03-30 11:59:34 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-03-30 11:59:34 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-03-30 11:59:34 | INFO     | __main__ | Mode: SimCLR contrastive training
+2026-03-30 11:59:34 | WARNING  | src.training.dataset | Skipping corrupt image: Data/mvtec_ad\bottle\train\good\011.png (broken PNG file (bad header checksum in b'IDAT'))
+2026-03-30 11:59:35 | WARNING  | src.training.dataset | Skipped 1 corrupt image(s) in Data/mvtec_ad\bottle\train
+2026-03-30 11:59:35 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=train, samples=208, normal=208, anomaly=0
+2026-03-30 11:59:35 | INFO     | __main__ | Training samples: 208
+2026-03-30 11:59:35 | INFO     | src.training.losses | NT-Xent loss initialized with temperature=0.07
+2026-03-30 11:59:35 | INFO     | src.training.trainer | CPU detected — AMP disabled, optimizing for CPU inference
+2026-03-30 11:59:35 | INFO     | src.training.trainer | Early stopping initialized: patience=15, min_delta=0.001
+2026-03-30 11:59:35 | INFO     | src.training.trainer | SimCLR Trainer initialized | AMP=OFF | Device=cpu | Epochs=50 | Early stopping=ON
+2026-03-30 11:59:35 | INFO     | src.training.trainer | Starting SimCLR training for category: bottle
+2026-03-30 11:59:35 | INFO     | src.training.trainer | Epochs: 1->50 | Batch size: 32 | Batches/epoch: 6
+2026-03-30 12:02:53 | INFO     | src.training.trainer | Epoch [1/50] | Loss: 4.7121 | LR: 0.000060 | Time: 3.3m | Elapsed: 3.3m | ETA: 2h 42m
+2026-03-30 12:02:54 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 1, loss 4.7121)
+2026-03-30 12:06:10 | INFO     | src.training.trainer | Epoch [2/50] | Loss: 4.3931 | LR: 0.000120 | Time: 3.3m | Elapsed: 6.6m | ETA: 2h 38m
+2026-03-30 12:06:11 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 2, loss 4.3931)
+2026-03-30 12:09:29 | INFO     | src.training.trainer | Epoch [3/50] | Loss: 4.1209 | LR: 0.000180 | Time: 3.3m | Elapsed: 9.9m | ETA: 2h 35m
+2026-03-30 12:09:30 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 3, loss 4.1209)
+2026-03-30 12:12:43 | INFO     | src.training.trainer | Epoch [4/50] | Loss: 3.7447 | LR: 0.000240 | Time: 3.2m | Elapsed: 13.1m | ETA: 2h 31m
+2026-03-30 12:12:44 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 4, loss 3.7447)
+2026-03-30 12:16:00 | INFO     | src.training.trainer | Epoch [5/50] | Loss: 3.4894 | LR: 0.000300 | Time: 3.3m | Elapsed: 16.4m | ETA: 2h 27m
+2026-03-30 12:16:01 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 5, loss 3.4894)
+2026-03-30 12:19:15 | INFO     | src.training.trainer | Epoch [6/50] | Loss: 3.4426 | LR: 0.000300 | Time: 3.2m | Elapsed: 19.7m | ETA: 2h 24m
+2026-03-30 12:19:15 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 6, loss 3.4426)
+2026-03-30 12:22:28 | INFO     | src.training.trainer | Epoch [7/50] | Loss: 3.0038 | LR: 0.000299 | Time: 3.2m | Elapsed: 22.9m | ETA: 2h 20m
+2026-03-30 12:22:28 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 7, loss 3.0038)
+2026-03-30 12:25:44 | INFO     | src.training.trainer | Epoch [8/50] | Loss: 2.9450 | LR: 0.000297 | Time: 3.3m | Elapsed: 26.1m | ETA: 2h 17m
+2026-03-30 12:25:44 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 8, loss 2.9450)
+2026-03-30 12:28:59 | INFO     | src.training.trainer | Epoch [9/50] | Loss: 2.7684 | LR: 0.000294 | Time: 3.2m | Elapsed: 29.4m | ETA: 2h 13m
+2026-03-30 12:29:00 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 9, loss 2.7684)
+2026-03-30 12:32:20 | INFO     | src.training.trainer | Epoch [10/50] | Loss: 2.3716 | LR: 0.000291 | Time: 3.3m | Elapsed: 32.8m | ETA: 2h 11m
+2026-03-30 12:32:21 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 10, loss 2.3716)
+2026-03-30 12:32:21 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_10.pt (epoch 10, loss 2.3716)
+2026-03-30 12:35:39 | INFO     | src.training.trainer | Epoch [11/50] | Loss: 2.2496 | LR: 0.000287 | Time: 3.3m | Elapsed: 36.1m | ETA: 2h 7m
+2026-03-30 12:35:40 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 11, loss 2.2496)
+2026-03-30 12:39:10 | INFO     | src.training.trainer | Epoch [12/50] | Loss: 1.9812 | LR: 0.000282 | Time: 3.5m | Elapsed: 39.6m | ETA: 2h 5m
+2026-03-30 12:39:10 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 12, loss 1.9812)
+2026-03-30 12:42:27 | INFO     | src.training.trainer | Epoch [13/50] | Loss: 1.8610 | LR: 0.000277 | Time: 3.3m | Elapsed: 42.9m | ETA: 2h 2m
+2026-03-30 12:42:28 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 13, loss 1.8610)
+2026-03-30 12:45:23 | INFO     | src.training.trainer | Epoch [14/50] | Loss: 1.9044 | LR: 0.000271 | Time: 2.9m | Elapsed: 45.8m | ETA: 1h 57m
+2026-03-30 12:48:02 | INFO     | src.training.trainer | Epoch [15/50] | Loss: 1.6296 | LR: 0.000265 | Time: 2.7m | Elapsed: 48.5m | ETA: 1h 53m
+2026-03-30 12:48:03 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 15, loss 1.6296)
+2026-03-30 12:50:43 | INFO     | src.training.trainer | Epoch [16/50] | Loss: 1.7335 | LR: 0.000258 | Time: 2.7m | Elapsed: 51.1m | ETA: 1h 48m
+2026-03-30 12:53:41 | INFO     | src.training.trainer | Epoch [17/50] | Loss: 1.6524 | LR: 0.000250 | Time: 3.0m | Elapsed: 54.1m | ETA: 1h 45m
+2026-03-30 12:56:19 | INFO     | src.training.trainer | Epoch [18/50] | Loss: 1.2903 | LR: 0.000242 | Time: 2.6m | Elapsed: 56.7m | ETA: 1h 40m
+2026-03-30 12:56:20 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 18, loss 1.2903)
+2026-03-30 12:59:03 | INFO     | src.training.trainer | Epoch [19/50] | Loss: 1.1467 | LR: 0.000234 | Time: 2.7m | Elapsed: 59.5m | ETA: 1h 37m
+2026-03-30 12:59:04 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 19, loss 1.1467)
+2026-03-30 13:01:40 | INFO     | src.training.trainer | Epoch [20/50] | Loss: 1.2296 | LR: 0.000225 | Time: 2.6m | Elapsed: 1h 2m | ETA: 1h 33m
+2026-03-30 13:01:40 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_20.pt (epoch 20, loss 1.2296)
+2026-03-30 13:04:30 | INFO     | src.training.trainer | Epoch [21/50] | Loss: 1.1962 | LR: 0.000216 | Time: 2.8m | Elapsed: 1h 4m | ETA: 1h 29m
+2026-03-30 13:07:23 | INFO     | src.training.trainer | Epoch [22/50] | Loss: 1.0285 | LR: 0.000206 | Time: 2.9m | Elapsed: 1h 7m | ETA: 1h 26m
+2026-03-30 13:07:24 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 22, loss 1.0285)
+2026-03-30 13:10:01 | INFO     | src.training.trainer | Epoch [23/50] | Loss: 1.0279 | LR: 0.000196 | Time: 2.6m | Elapsed: 1h 10m | ETA: 1h 22m
+2026-03-30 13:10:02 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 23, loss 1.0279)
+2026-03-30 13:12:34 | INFO     | src.training.trainer | Epoch [24/50] | Loss: 1.2518 | LR: 0.000186 | Time: 2.5m | Elapsed: 1h 12m | ETA: 1h 19m
+2026-03-30 13:15:10 | INFO     | src.training.trainer | Epoch [25/50] | Loss: 0.9195 | LR: 0.000176 | Time: 2.6m | Elapsed: 1h 15m | ETA: 1h 15m
+2026-03-30 13:15:11 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 25, loss 0.9195)
+2026-03-30 13:17:49 | INFO     | src.training.trainer | Epoch [26/50] | Loss: 0.9205 | LR: 0.000166 | Time: 2.6m | Elapsed: 1h 18m | ETA: 1h 12m
+2026-03-30 13:20:50 | INFO     | src.training.trainer | Epoch [27/50] | Loss: 0.7704 | LR: 0.000155 | Time: 3.0m | Elapsed: 1h 21m | ETA: 1h 9m
+2026-03-30 13:20:50 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 27, loss 0.7704)
+2026-03-30 13:24:02 | INFO     | src.training.trainer | Epoch [28/50] | Loss: 0.8977 | LR: 0.000145 | Time: 3.2m | Elapsed: 1h 24m | ETA: 1h 6m
+2026-03-30 13:27:14 | INFO     | src.training.trainer | Epoch [29/50] | Loss: 0.7781 | LR: 0.000134 | Time: 3.2m | Elapsed: 1h 27m | ETA: 1h 3m
+2026-03-30 13:30:28 | INFO     | src.training.trainer | Epoch [30/50] | Loss: 0.8859 | LR: 0.000124 | Time: 3.2m | Elapsed: 1h 30m | ETA: 1h 0m
+2026-03-30 13:30:29 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_30.pt (epoch 30, loss 0.8859)
+2026-03-30 13:33:49 | INFO     | src.training.trainer | Epoch [31/50] | Loss: 0.7737 | LR: 0.000114 | Time: 3.3m | Elapsed: 1h 34m | ETA: 57.8m
+2026-03-30 13:37:13 | INFO     | src.training.trainer | Epoch [32/50] | Loss: 0.8924 | LR: 0.000104 | Time: 3.4m | Elapsed: 1h 37m | ETA: 54.9m
+2026-03-30 13:40:52 | INFO     | src.training.trainer | Epoch [33/50] | Loss: 0.6132 | LR: 0.000094 | Time: 3.6m | Elapsed: 1h 41m | ETA: 52.2m
+2026-03-30 13:40:52 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 33, loss 0.6132)
+2026-03-30 13:44:20 | INFO     | src.training.trainer | Epoch [34/50] | Loss: 0.5860 | LR: 0.000084 | Time: 3.5m | Elapsed: 1h 44m | ETA: 49.3m
+2026-03-30 13:44:21 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 34, loss 0.5860)
+2026-03-30 13:47:08 | INFO     | src.training.trainer | Epoch [35/50] | Loss: 0.4790 | LR: 0.000075 | Time: 2.8m | Elapsed: 1h 47m | ETA: 46.1m
+2026-03-30 13:47:09 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 35, loss 0.4790)
+2026-03-30 13:49:44 | INFO     | src.training.trainer | Epoch [36/50] | Loss: 0.5639 | LR: 0.000066 | Time: 2.6m | Elapsed: 1h 50m | ETA: 42.8m
+2026-03-30 13:52:30 | INFO     | src.training.trainer | Epoch [37/50] | Loss: 0.5781 | LR: 0.000058 | Time: 2.8m | Elapsed: 1h 52m | ETA: 39.7m
+2026-03-30 13:56:04 | INFO     | src.training.trainer | Epoch [38/50] | Loss: 0.4465 | LR: 0.000050 | Time: 3.6m | Elapsed: 1h 56m | ETA: 36.8m
+2026-03-30 13:56:05 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 38, loss 0.4465)
+2026-03-30 14:00:54 | INFO     | src.training.trainer | Epoch [39/50] | Loss: 0.5506 | LR: 0.000042 | Time: 4.8m | Elapsed: 2h 1m | ETA: 34.2m
+2026-03-30 14:04:28 | INFO     | src.training.trainer | Epoch [40/50] | Loss: 0.4356 | LR: 0.000035 | Time: 3.6m | Elapsed: 2h 4m | ETA: 31.2m
+2026-03-30 14:04:29 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 40, loss 0.4356)
+2026-03-30 14:04:29 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_40.pt (epoch 40, loss 0.4356)
+2026-03-30 14:07:58 | INFO     | src.training.trainer | Epoch [41/50] | Loss: 0.4157 | LR: 0.000029 | Time: 3.5m | Elapsed: 2h 8m | ETA: 28.2m
+2026-03-30 14:07:59 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 41, loss 0.4157)
+2026-03-30 14:11:28 | INFO     | src.training.trainer | Epoch [42/50] | Loss: 0.4495 | LR: 0.000023 | Time: 3.5m | Elapsed: 2h 11m | ETA: 25.1m
+2026-03-30 14:14:49 | INFO     | src.training.trainer | Epoch [43/50] | Loss: 0.5184 | LR: 0.000018 | Time: 3.4m | Elapsed: 2h 15m | ETA: 22.0m
+2026-03-30 14:18:11 | INFO     | src.training.trainer | Epoch [44/50] | Loss: 0.4944 | LR: 0.000013 | Time: 3.4m | Elapsed: 2h 18m | ETA: 18.9m
+2026-03-30 14:21:37 | INFO     | src.training.trainer | Epoch [45/50] | Loss: 0.4623 | LR: 0.000009 | Time: 3.4m | Elapsed: 2h 22m | ETA: 15.8m
+2026-03-30 14:24:59 | INFO     | src.training.trainer | Epoch [46/50] | Loss: 0.3031 | LR: 0.000006 | Time: 3.4m | Elapsed: 2h 25m | ETA: 12.6m
+2026-03-30 14:25:00 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_best.pt (epoch 46, loss 0.3031)
+2026-03-30 14:28:24 | INFO     | src.training.trainer | Epoch [47/50] | Loss: 0.4567 | LR: 0.000003 | Time: 3.4m | Elapsed: 2h 28m | ETA: 9.5m
+2026-03-30 14:31:44 | INFO     | src.training.trainer | Epoch [48/50] | Loss: 0.4845 | LR: 0.000001 | Time: 3.3m | Elapsed: 2h 32m | ETA: 6.3m
+2026-03-30 14:35:06 | INFO     | src.training.trainer | Epoch [49/50] | Loss: 0.3862 | LR: 0.000000 | Time: 3.4m | Elapsed: 2h 35m | ETA: 3.2m
+2026-03-30 14:38:24 | INFO     | src.training.trainer | Epoch [50/50] | Loss: 0.3462 | LR: 0.000000 | Time: 3.3m | Elapsed: 2h 38m | ETA: 0.0s
+2026-03-30 14:38:25 | INFO     | root | Checkpoint saved: outputs/checkpoints\bottle_epoch_50.pt (epoch 50, loss 0.3462)
+2026-03-30 14:38:25 | INFO     | src.training.trainer | 
+============================================================
+2026-03-30 14:38:25 | INFO     | src.training.trainer | Training Summary — bottle
+2026-03-30 14:38:25 | INFO     | src.training.trainer | ============================================================
+2026-03-30 14:38:25 | INFO     | src.training.trainer |   Total epochs:    50/50
+2026-03-30 14:38:25 | INFO     | src.training.trainer |   Total time:      2h 38m
+2026-03-30 14:38:25 | INFO     | src.training.trainer |   Best loss:       0.3031
+2026-03-30 14:38:25 | INFO     | src.training.trainer |   Avg epoch time:  3.2m
+2026-03-30 14:38:25 | INFO     | src.training.trainer | ============================================================
+2026-03-30 14:38:25 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-03-30 14:38:25 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-03-30 14:38:25 | WARNING  | src.training.dataset | Skipping corrupt image: Data/mvtec_ad\bottle\train\good\011.png (broken PNG file (bad header checksum in b'IDAT'))
+2026-03-30 14:38:26 | WARNING  | src.training.dataset | Skipped 1 corrupt image(s) in Data/mvtec_ad\bottle\train
+2026-03-30 14:38:26 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=train, samples=208, normal=208, anomaly=0
+2026-03-30 14:38:26 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-03-30 14:39:12 | INFO     | src.memory.memory_bank | Patch extraction: 163072 patches, dim=1536, patch_shape=(28, 28), time=46.5s
+2026-03-30 14:39:12 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 256 dims
+2026-03-30 14:39:34 | INFO     | src.memory.memory_bank | PCA explained variance: 94.0%
+2026-03-30 14:39:34 | INFO     | src.memory.memory_bank | Coreset subsampling: 163072 -> 5000 patches
+2026-03-30 14:40:31 | INFO     | src.memory.memory_bank |   Coreset progress: 500/5000
+2026-03-30 14:41:27 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/5000
+2026-03-30 14:42:24 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/5000
+2026-03-30 14:43:21 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/5000
+2026-03-30 14:44:19 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/5000
+2026-03-30 14:45:16 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/5000
+2026-03-30 14:46:13 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/5000
+2026-03-30 14:47:09 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/5000
+2026-03-30 14:48:07 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/5000
+2026-03-30 14:49:04 | INFO     | src.memory.memory_bank | Patch memory bank built: 5000 patches, dim=256, total_time=637.9s
+2026-03-30 14:49:04 | INFO     | src.memory.memory_bank | Patch memory bank saved to outputs/checkpoints\bottle_patch_bank.pt
+2026-03-30 14:49:04 | INFO     | __main__ | Building global feature memory bank...
+2026-03-30 14:49:04 | WARNING  | src.training.dataset | Skipping corrupt image: Data/mvtec_ad\bottle\train\good\011.png (broken PNG file (bad header checksum in b'IDAT'))
+2026-03-30 14:49:04 | WARNING  | src.training.dataset | Skipped 1 corrupt image(s) in Data/mvtec_ad\bottle\train
+2026-03-30 14:49:04 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=train, samples=208, normal=208, anomaly=0
+2026-03-30 14:49:04 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-03-30 14:49:47 | INFO     | src.memory.memory_bank | Feature extraction: 208 samples, dim=3584, time=42.6s
+2026-03-30 14:49:47 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 200 dims
+2026-03-30 14:49:47 | INFO     | src.memory.memory_bank | PCA explained variance: 100.0%
+2026-03-30 14:49:47 | INFO     | src.memory.memory_bank | Memory bank built: 208 features, dim=200, total_time=42.9s
+2026-03-30 14:49:47 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\bottle_memory_bank.pt
+2026-03-30 14:49:47 | INFO     | __main__ | Running PatchCore evaluation...
+2026-03-30 14:49:47 | INFO     | src.memory.memory_bank | PatchAnomalyScorer initialized: k=3, weights=(knn=1.0, maha=0.0, cos=0.0)
+2026-03-30 14:49:48 | INFO     | faiss.loader | Loading faiss with AVX2 support.
+2026-03-30 14:49:49 | INFO     | faiss.loader | Successfully loaded faiss with AVX2 support.
+2026-03-30 14:49:49 | INFO     | src.memory.memory_bank | Faiss index built with 5000 patches
+2026-03-30 14:49:49 | INFO     | src.memory.memory_bank | PatchAnomalyScorer fitted with 5000 patches
+2026-03-30 14:49:49 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=test, samples=83, normal=20, anomaly=63
+2026-03-30 14:50:12 | INFO     | src.scoring.calibration | ScoreCalibrator initialized: method=minmax_sigmoid
+2026-03-30 14:50:12 | INFO     | src.scoring.calibration | Calibrator fitted: min=0.7278, max=1.1106, threshold=0.8920, method=minmax_sigmoid
+2026-03-30 14:50:12 | INFO     | src.evaluation.evaluator | [bottle] AUROC: 1.0000 | AP: 1.0000 | F1: 1.0000 | Acc: 1.0000 | Precision: 1.0000 | Recall: 1.0000 | Threshold: 0.9209 (youden)
+2026-03-30 14:50:13 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\bottle_roc_curve.png
+2026-03-30 14:50:13 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\bottle_pr_curve.png
+2026-03-30 14:50:15 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\bottle_metrics.json
+2026-03-30 14:50:15 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\bottle_metrics.json
+2026-03-30 14:50:15 | INFO     | __main__ | 
+  >>> Results: AUROC=1.0000 | F1=1.0000 | Precision=1.0000 | Recall=1.0000
+2026-03-30 14:50:15 | INFO     | __main__ | Total pipeline time for bottle: 2h 50m
+2026-03-30 14:50:15 | INFO     | __main__ | 
+==============================================================================
+2026-03-30 14:50:15 | INFO     | __main__ | Category           AUROC       AP       F1     Prec   Recall
+2026-03-30 14:50:15 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-03-30 14:50:15 | INFO     | __main__ | bottle            1.0000   1.0000   1.0000   1.0000   1.0000
+2026-03-30 14:50:15 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-03-30 14:50:15 | INFO     | __main__ | MEAN...........   1.0000 +/- 0.0000
+2026-03-30 14:50:15 | INFO     | __main__ | ==============================================================================
+2026-03-30 14:50:15 | INFO     | __main__ | Summary saved: outputs/results\all_categories_summary.json
+2026-03-30 14:50:15 | INFO     | __main__ | 
+All processing complete!

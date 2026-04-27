@@ -1,0 +1,48 @@
+2026-03-29 09:40:40 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260329_094040.log
+2026-03-29 09:40:40 | INFO     | root | Using CPU
+2026-03-29 09:40:40 | INFO     | __main__ | Using device: cpu
+2026-03-29 09:40:40 | INFO     | __main__ | 
+============================================================
+2026-03-29 09:40:40 | INFO     | __main__ | Processing category: capsule
+2026-03-29 09:40:40 | INFO     | __main__ | ============================================================
+2026-03-29 09:40:40 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-29 09:40:40 | INFO     | src.models.simclr | Projection head: 2048 -> 256 -> 128
+2026-03-29 09:40:40 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-03-29 09:40:40 | INFO     | __main__ | Model parameters: 24.07M total, 24.07M trainable
+2026-03-29 09:40:40 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained features)
+2026-03-29 09:40:40 | INFO     | __main__ | Using multi-layer extraction for high-quality representations
+2026-03-29 09:40:40 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\capsule_best.pt
+2026-03-29 09:40:40 | INFO     | __main__ | Building feature memory bank from normal training images...
+2026-03-29 09:40:41 | INFO     | src.training.dataset | MVTecDataset: category=capsule, split=train, samples=219, normal=219, anomaly=0
+2026-03-29 09:40:41 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-03-29 09:41:09 | INFO     | src.memory.memory_bank | Feature extraction: 219 samples, dim=3584, time=28.0s
+2026-03-29 09:41:09 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 200 dims
+2026-03-29 09:41:09 | INFO     | src.memory.memory_bank | PCA explained variance: 99.9%
+2026-03-29 09:41:09 | INFO     | src.memory.memory_bank | Memory bank built: 219 features, dim=200, total_time=28.2s
+2026-03-29 09:41:09 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\capsule_memory_bank.pt
+2026-03-29 09:41:09 | INFO     | __main__ | Metadata saved: outputs/checkpoints\capsule_meta.pt
+2026-03-29 09:41:09 | INFO     | __main__ | Running quick evaluation...
+2026-03-29 09:41:09 | INFO     | src.memory.memory_bank | Anomaly scorer initialized: method=mahalanobis, k=5
+2026-03-29 09:41:09 | INFO     | src.memory.memory_bank | Mahalanobis statistics computed via Cholesky decomposition (dim=200, reg=1e-05)
+2026-03-29 09:41:09 | INFO     | src.memory.memory_bank | Scorer fitted with 219 reference features
+2026-03-29 09:41:10 | INFO     | src.training.dataset | MVTecDataset: category=capsule, split=test, samples=132, normal=23, anomaly=109
+2026-03-29 09:41:29 | INFO     | src.evaluation.evaluator | [capsule] AUROC: 0.7874 | AP: 0.9491 | F1: 0.8342 | Acc: 0.7500 | Precision: 0.9222 | Recall: 0.7615 | Threshold: 15.6526 (youden)
+2026-03-29 09:41:29 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\capsule_roc_curve.png
+2026-03-29 09:41:29 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\capsule_pr_curve.png
+2026-03-29 09:41:29 | INFO     | src.evaluation.evaluator | F1 vs threshold plot saved: outputs/results\capsule_f1_threshold.png
+2026-03-29 09:41:29 | INFO     | src.evaluation.evaluator | Confusion matrix saved: outputs/results\capsule_confusion_matrix.png
+2026-03-29 09:41:30 | INFO     | src.evaluation.evaluator | Score distribution saved: outputs/results\capsule_score_distribution.png
+2026-03-29 09:41:30 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\capsule_metrics.json
+2026-03-29 09:41:30 | INFO     | __main__ | 
+  >>> Quick Eval: AUROC=0.7874 | F1=0.8342 | Precision=0.9222 | Recall=0.7615
+2026-03-29 09:41:30 | INFO     | __main__ | Total pipeline time for capsule: 49.8s
+2026-03-29 09:41:30 | INFO     | __main__ | 
+======================================================================
+2026-03-29 09:41:30 | INFO     | __main__ | Category           AUROC       F1     Prec   Recall
+2026-03-29 09:41:30 | INFO     | __main__ | ----------------------------------------------------------------------
+2026-03-29 09:41:30 | INFO     | __main__ | capsule           0.7874   0.8342   0.9222   0.7615
+2026-03-29 09:41:30 | INFO     | __main__ | ----------------------------------------------------------------------
+2026-03-29 09:41:30 | INFO     | __main__ | MEAN              0.7874
+2026-03-29 09:41:30 | INFO     | __main__ | ======================================================================
+2026-03-29 09:41:30 | INFO     | __main__ | 
+All processing complete!

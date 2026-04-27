@@ -1,0 +1,47 @@
+2026-04-19 10:52:34 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260419_105234.log
+2026-04-19 10:52:34 | INFO     | root | Using CPU
+2026-04-19 10:52:34 | INFO     | __main__ | Using device: cpu
+2026-04-19 10:52:34 | INFO     | __main__ | Pipeline: Global features
+2026-04-19 10:52:34 | INFO     | __main__ | 
+============================================================
+2026-04-19 10:52:34 | INFO     | __main__ | Processing category: screw
+2026-04-19 10:52:34 | INFO     | __main__ | ============================================================
+2026-04-19 10:52:35 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-04-19 10:52:35 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-04-19 10:52:35 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-04-19 10:52:35 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-04-19 10:52:35 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-04-19 10:52:35 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-04-19 10:52:35 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\screw_best.pt
+2026-04-19 10:52:35 | INFO     | __main__ | Pipeline: Global features (legacy)
+2026-04-19 10:52:35 | INFO     | __main__ | Building global feature memory bank...
+2026-04-19 10:52:35 | INFO     | src.training.dataset | MVTecDataset: category=screw, split=train, samples=320, normal=320, anomaly=0
+2026-04-19 10:52:35 | INFO     | src.memory.memory_bank | Extracting features for memory bank...
+2026-04-19 10:53:16 | INFO     | src.memory.memory_bank | Feature extraction: 320 samples, dim=3584, time=40.7s
+2026-04-19 10:53:16 | INFO     | src.memory.memory_bank | Applying PCA: 3584 -> 200 dims
+2026-04-19 10:53:16 | INFO     | src.memory.memory_bank | PCA explained variance: 99.4%
+2026-04-19 10:53:16 | INFO     | src.memory.memory_bank | Memory bank built: 320 features, dim=200, total_time=41.0s
+2026-04-19 10:53:16 | INFO     | src.memory.memory_bank | Memory bank saved to outputs/checkpoints\screw_memory_bank.pt
+2026-04-19 10:53:16 | INFO     | __main__ | Running global feature evaluation...
+2026-04-19 10:53:16 | INFO     | src.memory.memory_bank | Anomaly scorer initialized: method=mahalanobis, k=5
+2026-04-19 10:53:17 | INFO     | src.memory.memory_bank | Mahalanobis statistics computed via Cholesky decomposition (dim=200, reg=1e-05)
+2026-04-19 10:53:17 | INFO     | src.memory.memory_bank | Scorer fitted with 320 reference features
+2026-04-19 10:53:17 | INFO     | src.training.dataset | MVTecDataset: category=screw, split=test, samples=160, normal=41, anomaly=119
+2026-04-19 10:53:41 | INFO     | src.evaluation.evaluator | [screw] AUROC: 0.7217 | AP: 0.8925 | F1: 0.8018 | Acc: 0.7188 | Precision: 0.8426 | Recall: 0.7647 | Threshold: 14.4113 (youden)
+2026-04-19 10:53:41 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\screw_roc_curve.png
+2026-04-19 10:53:41 | INFO     | src.evaluation.evaluator | PR curve saved: outputs/results\screw_pr_curve.png
+2026-04-19 10:53:42 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\screw_metrics.json
+2026-04-19 10:53:42 | INFO     | __main__ | 
+  >>> Results: AUROC=0.7217 | F1=0.8018 | Precision=0.8426 | Recall=0.7647
+2026-04-19 10:53:42 | INFO     | __main__ | Total pipeline time for screw: 1.1m
+2026-04-19 10:53:42 | INFO     | __main__ | 
+==============================================================================
+2026-04-19 10:53:42 | INFO     | __main__ | Category           AUROC       AP       F1     Prec   Recall
+2026-04-19 10:53:42 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-04-19 10:53:42 | INFO     | __main__ | screw             0.7217   0.8925   0.8018   0.8426   0.7647
+2026-04-19 10:53:42 | INFO     | __main__ | ------------------------------------------------------------------------------
+2026-04-19 10:53:42 | INFO     | __main__ | MEAN...........   0.7217 +/- 0.0000
+2026-04-19 10:53:42 | INFO     | __main__ | ==============================================================================
+2026-04-19 10:53:42 | INFO     | __main__ | Summary saved: outputs/results\all_categories_summary.json
+2026-04-19 10:53:42 | INFO     | __main__ | 
+All processing complete!

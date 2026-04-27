@@ -1,0 +1,39 @@
+2026-03-28 18:07:43 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260328_180743.log
+2026-03-28 18:07:43 | INFO     | root | Using CPU
+2026-03-28 18:07:43 | INFO     | __main__ | Using device: cpu
+2026-03-28 18:07:43 | INFO     | __main__ | 
+============================================================
+2026-03-28 18:07:43 | INFO     | __main__ | Evaluating category: bottle
+2026-03-28 18:07:43 | INFO     | __main__ | ============================================================
+2026-03-28 18:07:44 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-28 18:07:44 | INFO     | src.models.simclr | Projection head: 2048 -> 256 -> 128
+2026-03-28 18:07:44 | INFO     | src.models.simclr | SimCLR model initialized (feature_dim=2048, projection_dim=128)
+2026-03-28 18:07:44 | INFO     | root | Checkpoint loaded: outputs/checkpoints\bottle_best.pt (epoch 8, loss 0.0166)
+2026-03-28 18:07:44 | INFO     | src.memory.memory_bank | Memory bank loaded from outputs/checkpoints\bottle_memory_bank.pt: 208 features
+2026-03-28 18:07:44 | INFO     | src.memory.memory_bank | Anomaly scorer initialized: method=knn, k=3
+2026-03-28 18:07:45 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=test, samples=83, normal=20, anomaly=63
+2026-03-28 18:07:45 | INFO     | __main__ | Test samples: 83
+2026-03-28 18:08:08 | INFO     | src.evaluation.evaluator | [bottle] AUROC: 0.7500 | F1: 0.8142 | Acc: 0.7470 | Precision: 0.9200 | Recall: 0.7302
+2026-03-28 18:08:09 | INFO     | src.evaluation.evaluator | ROC curve saved: outputs/results\bottle_roc_curve.png
+2026-03-28 18:08:09 | INFO     | src.evaluation.evaluator | Confusion matrix saved: outputs/results\bottle_confusion_matrix.png
+2026-03-28 18:08:10 | INFO     | src.evaluation.evaluator | Score distribution saved: outputs/results\bottle_score_distribution.png
+2026-03-28 18:08:10 | INFO     | src.evaluation.evaluator | Metrics saved: outputs/results\bottle_metrics.json
+2026-03-28 18:08:10 | INFO     | __main__ | Generating Grad-CAM visualizations...
+2026-03-28 18:08:10 | INFO     | src.inference.gradcam | Grad-CAM initialized with target layer: layer3
+2026-03-28 18:08:11 | INFO     | src.inference.gradcam | Grad-CAM visualization saved: outputs/visualizations\bottle_good_63_gradcam.png
+2026-03-28 18:08:12 | INFO     | src.inference.gradcam | Grad-CAM visualization saved: outputs/visualizations\bottle_good_64_gradcam.png
+2026-03-28 18:08:13 | INFO     | src.inference.gradcam | Grad-CAM visualization saved: outputs/visualizations\bottle_broken_large_0_gradcam.png
+2026-03-28 18:08:14 | INFO     | src.inference.gradcam | Grad-CAM visualization saved: outputs/visualizations\bottle_broken_large_1_gradcam.png
+2026-03-28 18:08:15 | INFO     | src.inference.gradcam | Grad-CAM visualization saved: outputs/visualizations\bottle_broken_large_2_gradcam.png
+2026-03-28 18:08:16 | INFO     | src.inference.gradcam | Grad-CAM visualization saved: outputs/visualizations\bottle_broken_large_3_gradcam.png
+2026-03-28 18:08:18 | INFO     | src.inference.gradcam | Grad-CAM visualization saved: outputs/visualizations\bottle_broken_large_4_gradcam.png
+2026-03-28 18:08:18 | INFO     | __main__ | Evaluation complete for bottle
+2026-03-28 18:08:18 | INFO     | __main__ | 
+======================================================================
+2026-03-28 18:08:18 | INFO     | __main__ | Category           AUROC       F1      Acc     Prec   Recall
+2026-03-28 18:08:18 | INFO     | __main__ | ----------------------------------------------------------------------
+2026-03-28 18:08:18 | INFO     | __main__ | bottle            0.7500   0.8142   0.7470   0.9200   0.7302
+2026-03-28 18:08:18 | INFO     | __main__ | ----------------------------------------------------------------------
+2026-03-28 18:08:18 | INFO     | __main__ | MEAN              0.7500
+2026-03-28 18:08:18 | INFO     | __main__ | ======================================================================
+2026-03-28 18:08:18 | INFO     | __main__ | Summary saved: outputs/results\all_categories_summary.json

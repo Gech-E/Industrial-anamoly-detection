@@ -1,0 +1,36 @@
+2026-03-28 12:03:43 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260328_120343.log
+2026-03-28 12:03:43 | INFO     | root | Using CPU
+2026-03-28 12:03:43 | INFO     | __main__ | Using device: cpu
+2026-03-28 12:03:43 | INFO     | __main__ | 
+============================================================
+2026-03-28 12:03:43 | INFO     | __main__ | Training SimCLR for category: cable
+2026-03-28 12:03:43 | INFO     | __main__ | ============================================================
+2026-03-28 12:03:43 | INFO     | __main__ | Creating training dataloader...
+2026-03-28 12:03:44 | INFO     | src.dataset | MVTecDataset: category=cable, split=train, samples=224, normal=224, anomaly=0
+2026-03-28 12:03:44 | INFO     | __main__ | Training samples: 224
+2026-03-28 12:03:45 | INFO     | src.model | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-03-28 12:03:45 | INFO     | src.model | Projection head: 2048 -> 256 -> 128
+2026-03-28 12:03:45 | INFO     | src.model | SimCLR model initialized (feature_dim=2048, projection_dim=128)
+2026-03-28 12:03:45 | INFO     | __main__ | Model parameters: 24.07M total, 24.07M trainable
+2026-03-28 12:03:45 | INFO     | src.losses | NT-Xent loss initialized with temperature=0.07
+2026-03-28 12:03:45 | INFO     | src.trainer | SimCLR Trainer initialized | AMP=OFF | Device=cpu | Epochs=100
+2026-03-28 12:03:45 | INFO     | src.trainer | Starting SimCLR training for category: cable
+2026-03-28 12:03:45 | INFO     | src.trainer | Epochs: 100 | Batch size: 32
+2026-03-28 12:06:56 | INFO     | src.trainer | Epoch [1/100] | Loss: 0.5449 | LR: 0.000030 | Elapsed: 3.2m | ETA: 5h 16m
+2026-03-28 12:06:57 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_epoch_1.pt (epoch 1, loss 0.5449)
+2026-03-28 12:06:57 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 1, loss 0.5449)
+2026-03-28 12:09:37 | INFO     | src.trainer | Epoch [2/100] | Loss: 0.2852 | LR: 0.000060 | Elapsed: 5.9m | ETA: 4h 47m
+2026-03-28 12:09:37 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_epoch_2.pt (epoch 2, loss 0.2852)
+2026-03-28 12:09:37 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 2, loss 0.2852)
+2026-03-28 12:12:19 | INFO     | src.trainer | Epoch [3/100] | Loss: 0.1130 | LR: 0.000090 | Elapsed: 8.6m | ETA: 4h 37m
+2026-03-28 12:12:19 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_epoch_3.pt (epoch 3, loss 0.1130)
+2026-03-28 12:12:20 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 3, loss 0.1130)
+2026-03-28 12:16:07 | INFO     | src.trainer | Epoch [4/100] | Loss: 0.0664 | LR: 0.000120 | Elapsed: 12.4m | ETA: 4h 56m
+2026-03-28 12:16:08 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_epoch_4.pt (epoch 4, loss 0.0664)
+2026-03-28 12:16:08 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 4, loss 0.0664)
+2026-03-28 12:19:25 | INFO     | src.trainer | Epoch [5/100] | Loss: 0.0427 | LR: 0.000150 | Elapsed: 15.7m | ETA: 4h 57m
+2026-03-28 12:19:26 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_epoch_5.pt (epoch 5, loss 0.0427)
+2026-03-28 12:19:26 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 5, loss 0.0427)
+2026-03-28 12:22:52 | INFO     | src.trainer | Epoch [6/100] | Loss: 0.0255 | LR: 0.000180 | Elapsed: 19.1m | ETA: 4h 59m
+2026-03-28 12:22:52 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_epoch_6.pt (epoch 6, loss 0.0255)
+2026-03-28 12:22:53 | INFO     | root | Checkpoint saved: outputs/checkpoints\cable_best.pt (epoch 6, loss 0.0255)
