@@ -3,11 +3,7 @@ data/
 *.tar.xz
 *.tar.gz
 
-# Model outputs
-outputs/
-checkpoints/
-*.pt
-*.pth
+# Model outputs (*.pt and *.pth tracked via Git LFS)
 *.onnx
 
 # Python

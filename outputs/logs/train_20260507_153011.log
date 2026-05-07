@@ -1,0 +1,40 @@
+2026-05-07 15:30:11 | INFO     | root | Logging initialized. Log file: outputs/logs\train_20260507_153011.log
+2026-05-07 15:30:11 | INFO     | root | Using CPU
+2026-05-07 15:30:11 | INFO     | __main__ | Using device: cpu
+2026-05-07 15:30:11 | INFO     | __main__ | Pipeline: PatchCore
+2026-05-07 15:30:11 | INFO     | __main__ | 
+============================================================
+2026-05-07 15:30:11 | INFO     | __main__ | Processing category: bottle
+2026-05-07 15:30:11 | INFO     | __main__ | ============================================================
+2026-05-07 15:30:12 | INFO     | src.models.simclr | ResNet-50 encoder initialized with ImageNet pretrained weights
+2026-05-07 15:30:12 | INFO     | src.models.simclr | Projection head: 2048 -> 512 -> 128
+2026-05-07 15:30:12 | INFO     | src.models.simclr | SimCLR model initialized | backbone=resnet50 | multi-layer=['layer2', 'layer3', 'layer4'] -> 3584-dim | projection_dim=128
+2026-05-07 15:30:12 | INFO     | src.models.simclr | Patch features: layers=['layer2', 'layer3'] -> 1536-dim per patch
+2026-05-07 15:30:12 | INFO     | __main__ | Model parameters: 24.62M total, 24.62M trainable
+2026-05-07 15:30:12 | INFO     | __main__ | Mode: Feature extraction only (ImageNet pretrained)
+2026-05-07 15:30:12 | INFO     | __main__ | Pretrained model saved: outputs/checkpoints\bottle_best.pt
+2026-05-07 15:30:12 | INFO     | __main__ | Pipeline: PatchCore (patch-level features)
+2026-05-07 15:30:12 | INFO     | __main__ | Building PatchCore patch memory bank...
+2026-05-07 15:30:12 | WARNING  | src.training.dataset | Skipping corrupt image: Data/mvtec_ad\bottle\train\good\011.png (broken PNG file (bad header checksum in b'IDAT'))
+2026-05-07 15:30:13 | WARNING  | src.training.dataset | Skipped 1 corrupt image(s) in Data/mvtec_ad\bottle\train
+2026-05-07 15:30:13 | INFO     | src.training.dataset | MVTecDataset: category=bottle, split=train, samples=208, normal=208, anomaly=0
+2026-05-07 15:30:13 | INFO     | src.memory.memory_bank | Building patch memory bank...
+2026-05-07 15:30:48 | INFO     | src.memory.memory_bank | Patch extraction: 163072 patches, dim=1536, patch_shape=(28, 28), time=35.1s
+2026-05-07 15:30:48 | INFO     | src.memory.memory_bank | Applying PCA to patches: 1536 -> 256 dims
+2026-05-07 15:31:09 | INFO     | src.memory.memory_bank | PCA explained variance: 95.8%
+2026-05-07 15:31:09 | INFO     | src.memory.memory_bank | Coreset subsampling: 163072 -> 8000 patches
+2026-05-07 15:32:22 | INFO     | src.memory.memory_bank |   Coreset progress: 500/8000
+2026-05-07 15:33:38 | INFO     | src.memory.memory_bank |   Coreset progress: 1000/8000
+2026-05-07 15:34:48 | INFO     | src.memory.memory_bank |   Coreset progress: 1500/8000
+2026-05-07 15:36:04 | INFO     | src.memory.memory_bank |   Coreset progress: 2000/8000
+2026-05-07 15:37:19 | INFO     | src.memory.memory_bank |   Coreset progress: 2500/8000
+2026-05-07 15:38:44 | INFO     | src.memory.memory_bank |   Coreset progress: 3000/8000
+2026-05-07 15:40:06 | INFO     | src.memory.memory_bank |   Coreset progress: 3500/8000
+2026-05-07 15:41:32 | INFO     | src.memory.memory_bank |   Coreset progress: 4000/8000
+2026-05-07 15:42:48 | INFO     | src.memory.memory_bank |   Coreset progress: 4500/8000
+2026-05-07 15:44:10 | INFO     | src.memory.memory_bank |   Coreset progress: 5000/8000
+2026-05-07 15:45:18 | INFO     | src.memory.memory_bank |   Coreset progress: 5500/8000
+2026-05-07 15:46:23 | INFO     | src.memory.memory_bank |   Coreset progress: 6000/8000
+2026-05-07 15:47:48 | INFO     | src.memory.memory_bank |   Coreset progress: 6500/8000
+2026-05-07 15:49:02 | INFO     | src.memory.memory_bank |   Coreset progress: 7000/8000
+2026-05-07 15:50:19 | INFO     | src.memory.memory_bank |   Coreset progress: 7500/8000
