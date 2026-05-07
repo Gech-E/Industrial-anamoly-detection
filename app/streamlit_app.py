@@ -337,18 +337,7 @@ def main():
                 f"python scripts/train.py --category {category}\n```"
             )
 
-        st.markdown("---")
-        st.markdown(
-            "### 🎓 About\n"
-            "BSc Final Year Project\n\n"
-            "**Method:** PatchCore + Hybrid Scoring\n\n"
-            "**Backbone:** ResNet-50 (ImageNet)\n\n"
-            "**Dataset:** MVTec AD\n\n"
-            "**Features:**\n"
-            "- Patch-level anomaly detection\n"
-            "- Anomaly heatmap localization\n"
-            "- Calibrated confidence scores"
-        )
+
 
     # Main content
     col1, col2 = st.columns([1, 1])
@@ -483,86 +472,6 @@ def main():
                 )
             else:
                 st.info("No overlay available")
-
-    # Performance dashboard
-    st.markdown("---")
-    st.markdown("### 📈 Model Performance Dashboard")
-
-    results_dir = config.get("output", {}).get("results_dir", "outputs/results")
-
-    if os.path.exists(results_dir):
-        metric_files = [
-            f for f in os.listdir(results_dir) if f.endswith("_metrics.json")
-        ]
-
-        if metric_files:
-            perf_data = []
-            for mf in metric_files:
-                try:
-                    with open(os.path.join(results_dir, mf)) as f:
-                        data = json.load(f)
-                        perf_data.append(data)
-                except Exception:
-                    pass
-
-            if perf_data:
-                import pandas as pd
-
-                df = pd.DataFrame([
-                    {
-                        "Category": d["category"],
-                        "Pipeline": d.get("pipeline", "global"),
-                        "AUROC": d["auroc"],
-                        "F1-Score": d["f1_score"],
-                        "Accuracy": d["accuracy"],
-                        "Precision": d["precision"],
-                        "Recall": d["recall"],
-                    }
-                    for d in perf_data
-                ])
-
-                st.dataframe(
-                    df.style.format({
-                        "AUROC": "{:.4f}",
-                        "F1-Score": "{:.4f}",
-                        "Accuracy": "{:.4f}",
-                        "Precision": "{:.4f}",
-                        "Recall": "{:.4f}",
-                    }),
-                    use_container_width=True,
-                )
-
-                # Mean AUROC highlight
-                mean_auroc = df["AUROC"].mean()
-                st.markdown(
-                    f"**Mean AUROC: {mean_auroc:.4f}** "
-                    f"({'✅ Target met!' if mean_auroc >= 0.90 else '⚠️ Below 0.90 target'})"
-                )
-
-                # Show ROC curves if available
-                roc_files = [
-                    f for f in os.listdir(results_dir)
-                    if f.endswith("_roc_curve.png")
-                ]
-                if roc_files:
-                    st.markdown("#### ROC Curves")
-                    cols = st.columns(min(len(roc_files), 3))
-                    for i, rf in enumerate(roc_files[:6]):
-                        with cols[i % 3]:
-                            st.image(
-                                os.path.join(results_dir, rf),
-                                use_container_width=True,
-                            )
-        else:
-            st.info(
-                "📋 No evaluation results yet. Run evaluation first:\n"
-                "```\npython scripts/evaluate.py\n```"
-            )
-    else:
-        st.info(
-            "📋 No results directory found. "
-            "Train and evaluate the model first."
-        )
 
 
 if __name__ == "__main__":
