@@ -63,7 +63,7 @@ patch_detection:
   # Coreset subsampling: keep this fraction of patches
   # Lower = faster inference + less memory, minimal AUROC impact
   coreset_ratio: 0.1
-  coreset_max: 5000
+  coreset_max: 8000
 
   # PCA on patch features for dimensionality reduction
   use_pca: true
